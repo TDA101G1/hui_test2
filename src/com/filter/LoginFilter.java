@@ -44,8 +44,8 @@ public class LoginFilter implements Filter {
 		if(member == null) {
 			String action =req.getParameter("action");
 			String schedule_id = req.getParameter("schedule_id");
-//			System.out.println("====================================");
-//			System.out.println(action + schedule_id);
+			System.out.println("====================================");
+			System.out.println(action + schedule_id);
 			if(action != null) {
 				if(schedule_id != null) {
 					StringBuilder path = new StringBuilder();
