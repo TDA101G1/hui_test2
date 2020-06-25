@@ -1142,7 +1142,7 @@
         </div>
     </article>
   </div>
-	<%@ include file="../frontstage_member/pages/footer.file" %>
+	<!-- <%@ include file="../frontstage_member/pages/footer.file" %> -->
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -1373,9 +1373,9 @@
           initMap();
           directionsRenderer.setMap(map);
           calculateAndDisplayRoute(directionsService, directionsRenderer, false, tempCallback);
-        }else{
-          initMap();
-        }
+      }else{
+        initMap();
+      }
       
       var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/';
       var icons = {
@@ -1437,7 +1437,7 @@
         });
       $(this).addClass("-select_travel_mode");
       let travel_mode = $(this).attr("name");
-      initMap();
+      // initMap();
       directionsRenderer.setMap(map);
       calculateAndDisplayRoute(directionsService, directionsRenderer, false, tempCallback, travel_mode);
     })
@@ -1897,10 +1897,13 @@
         $("ul.schedule_list").html(""); //先將行程列表清空
         printSessionStorage_and_refreshProduct($(this).text()); //取得要切換天數的sessionStorage，把資料印出，並更新產品(已被選的不會出現)
         if(!$("button#btn_standard").hasClass("-none")){      //代表現在是地圖模式，
-          console.log("現在是地圖模式")
-          initMap();
-          directionsRenderer.setMap(map);
-          calculateAndDisplayRoute(directionsService, directionsRenderer, false, tempCallback);
+          if ($("ul.schedule_list").find("li").hasClass("schedule_block")) {
+            initMap();
+            directionsRenderer.setMap(map);
+            calculateAndDisplayRoute(directionsService, directionsRenderer, false, tempCallback);
+          }else{
+            initMap();
+          }
         }
       });
       
@@ -1951,9 +1954,13 @@
             $("div.schedule_header").attr("data-sort", 1);
             $("ul.schedule_list").html(""); //先將行程列表清空
             printSessionStorage_and_refreshProduct("Day1"); //重新取資料，載入行程及產品列表
-            initMap();
-            directionsRenderer.setMap(map);
-            calculateAndDisplayRoute(directionsService, directionsRenderer, false, tempCallback);
+            if ($("ul.schedule_list").find("li").hasClass("schedule_block")) {
+              initMap();
+              directionsRenderer.setMap(map);
+              calculateAndDisplayRoute(directionsService, directionsRenderer, false, tempCallback);
+            }else{
+              initMap();
+            }
             for (let i = 1; i <= li_length; i++) {
               let date = flatpickr.formatDate(new Date(time), 'Y-m-d');
               if(i == 1){
@@ -2011,19 +2018,18 @@
           let cust_schedule_detail_data = take_all_sessionStorage([]);
           console.log("cust_schedule_detail_data = " + cust_schedule_detail_data)
           ajax_insertDataBase(cust_schedule_detail_data, sweet_alert);
-          // ajax_insertDB(sweet_alert);
         }
       });
-      function sweet_alert(){
-        swal({
-            position: 'top-end',
-            icon: 'success',
-            title: '儲存成功',
-            showConfirmButton: false,
-            timer: 1500
-        });
-      }
       /*----------一些儲存需要用到的方法----------*/
+      function sweet_alert(){
+          swal({
+              position: 'top-end',
+              icon: 'success',
+              title: '儲存成功',
+              showConfirmButton: false,
+              timer: 1500
+          });
+        } 
       function take_all_sessionStorage(array){
         let last_data = [];
         let day_number = $("div.schedule_header p").html(); //取得當前的天數
@@ -2051,7 +2057,7 @@
             "last_day": last_day,
             "total_day": total_day
           }
-        };
+        }
         $.ajax({
           url: "<%=request.getContextPath()%>/project/JsonController",
           type: "POST",
@@ -2154,10 +2160,13 @@
         if (current_data.length == 0) {
           $("p.no_schedule").removeClass("-none");
         }
-        
-        initMap();
-        directionsRenderer.setMap(map);
-        calculateAndDisplayRoute(directionsService, directionsRenderer, false, tempCallback);
+        if ($("ul.schedule_list").find("li").hasClass("schedule_block")) {
+          initMap();
+          directionsRenderer.setMap(map);
+          calculateAndDisplayRoute(directionsService, directionsRenderer, false, tempCallback);
+        }else{
+          initMap();
+        }
         if(current_data.length == 0 || current_data === []){
           json.push({"delete_day_number":day_number});
           webSocket.send(JSON.stringify(json));
@@ -2294,7 +2303,7 @@
         success: function (data) {
           if (data.hasOwnProperty("products")) { //判斷回傳的物件是否有查詢到資料 = 這個key
             filter_product = data.products; //products = server傳回的key
-            console.log(filter_product.length)
+            console.log("產品篩選後的數量 = "+filter_product.length)
             sortProduct(data.products);
           } else {
             sortProduct(data.checkBox_no_result);
@@ -2389,6 +2398,29 @@
       }, 300);
     }
     
+    function printSessionStorage_and_refreshProduct_for_init(day_number) {
+      let get_Data = JSON.parse(sessionStorage.getItem(day_number)); //取得要切換天數的sessionStorage，把資料印出
+      if (get_Data != null) { //判斷取得的sessionStorage有沒有資料，若有就將"請加入行程"-none，反之則無
+        if (get_Data.length != 0) {
+          $("p.no_schedule").addClass("-none");
+        }else {
+          $("p.no_schedule").removeClass("-none");
+        }
+      } else {
+        $("p.no_schedule").removeClass("-none");
+      }
+      $.each(get_Data, function (index, items) {
+      console.log(items)
+        scheduleView_afterDistance(items.product_ID, items.sort, items.product_img, items.product_name, items.stay_time, items
+          .schedule_info, items.product_Latitutde, items.product_Longitude);
+      });
+      // $("div.product_body_content").html(
+      //   '<li style="text-align: center;"><i class="fas fa-spinner fa-spin fa-3x"></i></li>'); //讀取動畫
+      setTimeout(function () {
+        sortProduct(filter_product); //將最新產品的篩選結果，重新顯示一次
+      }, 2000);
+    }
+    
     /*==================================================載入此頁面做的事：選擇的天數、從編輯行程或我的行程按鈕過來==================================================*/
     function init(selected_county) {
       let $ul = $("ul#sum_day");
@@ -2459,7 +2491,7 @@
                 sessionStorage.setItem("Day" + count, JSON.stringify(userSchedule));
               } //若被捕捉到例外，代表到了最後一筆資料，直接存到sessionStorage
             });
-            printSessionStorage_and_refreshProduct(day_number);
+            printSessionStorage_and_refreshProduct_for_init(day_number);
           }
         },
         error: function () {
@@ -2467,35 +2499,7 @@
         }
       });
     }
-      //   if(li_length > 0){
-      //     directionsService.route({
-      //       origin: user_departure,         // Note that Javascript allows us to access the constant
-      //       destination: user_destination,  // using square brackets and a string value as its"property."
-      //       waypoints: waypts,
-      //       optimizeWaypoints: optimizeWaypoint,
-      //       travelMode: google.maps.TravelMode['DRIVING']
-      //     }, function(response, status) {
-      //       if (status == 'OK') {
-      //         console.log(response.routes[0]);
-      //         let legs = response.routes[0].legs;
-      //         let waypoint_order = response.routes[0].waypoint_order;
-      //         for(let i = 0; i < legs.length; i++){
-      //           distance.push(legs[i].distance.text);
-      //         }
-      //           callback(distance);
-      //       } else {
-      //         window.alert('Directions request failed due to ' + status);
-      //       }
-      //     });
-      //     for (let i = 0; i < get_Data.length; i++) {
-      //     let items = listSchedule[i]; //只是要讓名稱短一點
-      //     scheduleView(items.product_ID, i, items.product_img, items.product_name, items.stay_time, items
-      //       .schedule_info, items.product_Latitutde, items.product_Longitude, distance[i]);
-      //   } 
-      //   }
-      // } 
-      // }
-      
+    
     /*==================================================新增行程區塊的function==================================================*/
     function scheduleView(product_ID, sort, product_img, product_name, stay_time, schedule_info, product_Latitutde,
       product_Longitude, distance) {
@@ -2528,7 +2532,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-2 col-md-2 align-self-center" style="margin-top:50px;">
+                            <div class="col-2 col-md-2 align-self-center" style="margin-top:50px; text-align: center;">
                               <span class="trash" style="cursor: pointer;"><i class="fas fa-trash-alt fa-2x"></i></span>
                             </div>
                             
@@ -2553,7 +2557,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-2 col-md-2 align-self-center">
+                            <div class="col-2 col-md-2 align-self-center" style="text-align: center;">
                               <span class="trash" style="cursor: pointer;"><i class="fas fa-trash-alt fa-2x"></i></span>
                             </div>
                            
@@ -2603,7 +2607,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-2 col-md-2 align-self-center" style="margin-top:50px;">
+                            <div class="col-2 col-md-2 align-self-center" style="margin-top:50px; text-align: center;">
                               <span class="trash" style="cursor: pointer;"><i class="fas fa-trash-alt fa-2x"></i></span>
                             </div>
                             
@@ -2627,7 +2631,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-2 col-md-2 align-self-center">
+                            <div class="col-2 col-md-2 align-self-center" style="text-align: center;">
                               <span class="trash" style="cursor: pointer;"><i class="fas fa-trash-alt fa-2x"></i></span>
                             </div>
                             
