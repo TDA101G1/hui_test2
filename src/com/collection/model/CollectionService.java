@@ -65,11 +65,11 @@ public class CollectionService {
 
 	public static void main(String[] args) {
 		CollectionService dao = new CollectionService();
-		System.out.println(dao.getAll());
-		System.out.println(dao.getOne("COID000023"));
-		System.out.println(dao.getCollectionByMemberID("MID000000"));
-
-		System.out.println(dao.deleteCollection("COID000001"));
+//		System.out.println(dao.getAll());
+//		System.out.println(dao.getOne("COID000023"));
+//		System.out.println(dao.getCollectionByMemberID("MID000000"));
+//		System.out.println(dao.getOne(null));
+//		System.out.println(dao.deleteCollection("COID000001"));
 //		System.out.println(dao.addCollection("MID000000", "PID000000"));
 	}
 

@@ -64,8 +64,15 @@ div.main_content{
 <body>
 <%
 //取得當天登入會員ID
+
 	MemberVO member = (MemberVO) session.getAttribute("member");
-	String member_ID = member.getMember_ID();
+	String member_ID = null;
+	if(member != null){
+		member_ID = member.getMember_ID();
+	}else{
+		request.getRequestDispatcher("/frontstage_member/login2.jsp").forward(request, response);
+		return;
+	}
 //取得所有某一個會員的collection
 	CollectionService service = new CollectionService();
 	Set<CollectionVO> collections = service.getCollectionByMemberID(member_ID);
@@ -178,10 +185,10 @@ div.main_content{
 					      <c:when test="${product.product_Class != '套裝行程' }">
 						  <div class="col-lg-4 col-md-6 mb-4">
 				            <div class="card h-100" data-product_id="${product.product_ID }" data-product_class="${product.product_Class }">
-				              <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/util/ShowProductImage?id=${product.product_ID}" height="200px"></a>
+				              <a href="<%=request.getContextPath()%>/ProductServlet.do?action=goDetailPage&product_ID=${product.product_ID}&product_Class=${product.product_Class}"><img class="card-img-top" src="<%=request.getContextPath()%>/util/ShowProductImage?id=${product.product_ID}" height="200px"></a>
 				              <div class="card-body">
 				                <h4 class="card-title">
-				                  <a href="#">${product.product_Name }</a>
+				                  <a href="<%=request.getContextPath()%>/ProductServlet.do?action=goDetailPage&product_ID=${product.product_ID}&product_Class=${product.product_Class}">${product.product_Name }</a>
 				                </h4>
 				                <p class="card-text"><i class="fas fa-map-marker-alt" style="color: #FF0000;"></i>${product.product_Address }</p>
 				                <p class="card-text"><i class="fas fa-dollar-sign"></i>金額:
@@ -216,10 +223,10 @@ div.main_content{
 				          <c:when test="${product.product_Class == '套裝行程' }">
 						  <div class="col-lg-4 col-md-6 mb-4">
 				            <div class="card h-100" data-product_id="${product.product_ID }" data-product_class="${product.product_Class }">
-				              <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/util/ShowProductImage?id=${product.product_ID}" height="200px"></a>
+				              <a href="<%=request.getContextPath()%>/ProductServlet.do?action=goDetailPage&product_ID=${product.product_ID}&product_Class=${product.product_Class}"><img class="card-img-top" src="<%=request.getContextPath()%>/util/ShowProductImage?id=${product.product_ID}" height="200px"></a>
 				              <div class="card-body">
 				                <h4 class="card-title">
-				                  <a href="#">${product.product_Name }</a>
+				                  <a href="<%=request.getContextPath()%>/ProductServlet.do?action=goDetailPage&product_ID=${product.product_ID}&product_Class=${product.product_Class}">${product.product_Name }</a>
 				                </h4>
 				                <fmt:parseNumber var="days" type="number" integerOnly="true" value="${product.product_Staytime }"></fmt:parseNumber>
 				                <p class="card-text"><i class="far fa-calendar-alt"></i>安排天數: ${days }</p>
@@ -305,6 +312,7 @@ div.main_content{
 		}
 		
 		$('button.removeCollection').on('click', function(){
+			/* e.stopPropagation(); */
 			let buttonRemove = $(this);
 			let collection_id = $(this).closest('div.card-footer').find('input.collectionid').val();
 			let form_data = {
@@ -343,12 +351,12 @@ div.main_content{
 			});
 		});
 		
-		$(document).on('click', ".card", function(){
+<%-- 		$(document).on('click', ".card", function(){
 			let product_ID= $(this).data('product_id');
 			let product_Class = $(this).data('product_class');
  	    	window.location.href='<%=request.getContextPath()%>/ProductServlet.do?action=goDetailPage&product_ID='+product_ID+"&product_Class="+product_Class;
  
-		})
+		}) --%>
 </script>
 </body>
 </html>
