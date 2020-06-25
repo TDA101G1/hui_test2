@@ -1,0 +1,474 @@
+body{
+  margin: 0;
+  font-family: microsoft JhengHei !important;
+  background-color: #F3F3F3 !important;
+}
+
+div.coupon{
+  background-color: white;
+  margin: 10px 0px;
+  padding: 20px 0px;
+  box-shadow: 0px 3px 2px 0px #cccccc;
+}
+
+td p{
+  margin: 10px 0px ;
+}
+
+.choiceCoupon{
+  width: 80%;
+  height: 100%;
+  background: white;
+  border: none;
+  border-radius: 4px;
+}
+
+
+div.payments{
+  background-color: white;
+  margin: 10px 0px;
+  padding: 20px 0px;
+  box-shadow: 0px 3px 2px 0px #cccccc;
+}
+
+.btn_payments {
+  width: 80px;
+  height: 32px;
+  background: #E5B280;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn_payments:hover{
+  background: #E6903B;
+}
+
+.-on{
+  background: #E6903B;
+}
+
+.btn_payments:disabled{
+  background: lightgray;
+}
+
+
+div.choiceAccount{
+  background-color: white;
+  margin: 10px 0px;
+  padding: 20px 0px;
+  box-shadow: 0px 3px 2px 0px #cccccc;
+}
+.choiceAccount button{
+  width: 200px;
+  height: 32px;
+  background: #556FFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+
+
+
+div.checkout{
+  background-color: white;
+  margin: 10px 0px;
+  padding: 20px 0px;
+  box-shadow: 0px 3px 2px 0px #cccccc;
+}
+
+.checkout button{
+  width: 100%;
+  height: 40px;
+  background: #E6903B;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn_order[disabled="disabled"]{
+	background: gray;
+}
+
+label a{
+  position: relative;
+  bottom: 4px;
+}
+
+input[type="radio"]{
+  height: 20px;
+  width: 20px;
+  margin: 12px;
+}
+
+table, tr, td, th{
+  /* border: 2px solid blue; */
+  padding: 5px;
+  text-align: center;
+  box-sizing: content-box;
+  table-layout:fixed;
+}
+
+table{
+  width: 100% !important;
+  background-color: white;
+  overflow:scroll;
+}
+
+th,td{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  nowrap: false;
+  padding: 10px;
+}
+
+tr{
+  /* box-shadow: 1px 2px 2px 2px #cccccc; */
+  /* border: 2px solid blue; */
+}
+
+td{
+  /* border-bottom: 12px solid #f0f0f0; */
+  word-wrap:break-word
+}
+
+hr{
+  height: 0.1px !important;
+  background-color: #E6903B;
+}
+
+.subtotalAgain{
+  text-align: right;
+  padding: 0px 25px;
+  box-shadow: 0px 3px 1px 0px #cccccc;
+}
+
+div.previewImg{
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.previewImg img{
+  max-width: 100%;
+  max-height: 150%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+/* ====================彈出視窗的css起點==================== */
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
+}
+
+/* Add Animation - Zoom in the Modal */
+.box, #caption {
+  animation-name: zoom;
+  animation-duration: 0.3s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* =========彈出視窗內的割版起點========= */
+.box {
+  font-size: 20px;
+  color: black;
+  background-color: white;
+  width: 600px;
+  height: 620px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -310px 0 0 -300px;
+}
+.couponTittle{
+  margin: 20px;
+}
+.addCouponArea{
+  margin: 20px;
+}
+.inputCode{
+  border: 1px solid gray;
+  border-radius: 4px;
+  width: 50%;
+}
+
+.couponCode{
+  background-color: #556FFF;
+  color: white;
+  width: 160px;
+  border: none;
+  border-radius: 4px;
+}
+
+.cancel{
+  background-color: #E5B280;
+  color: white;
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  float: right;
+  margin: 20px;
+}
+
+.confirm{
+  background-color: #E6903B;
+  color: white;
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  float: right;
+  margin: 20px;
+}
+
+.creditCard{
+	display: none;
+}
+
+.registerCreditcard{
+  background-color: #E6903B;
+  color: white;
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  float: right;
+  margin: 20px;
+}
+
+.couponList{
+  height: 5px;
+  width: 90%;
+  overflow-y: auto;
+}
+
+.couponList tbody{
+  height: 5px;
+  width: 90%;
+  overflow-y: auto;
+}
+
+.couponList td{
+  border: 1px blue solid;
+}
+
+.table-hidden tbody{
+  overflow-y: auto;/*設定卷軸 auto 是有超過我的高度的時候才會出現卷軸*/
+	height: 320px;/*自己設定*/
+	display: block;
+}
+.table-hidden tr {
+	width: 100%;
+	display: inline-table;
+}
+
+.column3 button{
+  background-color: transparent;
+  border: none;
+}
+
+.couponDetail{
+  display: none;
+  padding: 30px;
+  font-size: 20px;
+  color: black;
+  background-color: white;
+  width: 600px;
+  height: 620px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -310px 0 0 -300px;
+}
+.couponName {
+  background-color: #31C7D2;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0px;
+  height: 60px;
+  text-align: center;
+  box-shadow: 3px 5px 3px 2px #cccccc;
+}
+
+.couponDetail button{
+  width: 150px;
+  height: 45px;
+  background-color: #E6903B;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  margin: 0 0 0 -60px;
+}
+
+/* =========彈出視窗內的割版終點========= */
+/* ====================彈出視窗的css終點==================== */
+
+.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+/* @media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+} */
+
+.form_credicard{
+  padding: 0px 20px;
+}
+
+.form_credicard input{
+  margin: 10px 0px;
+  padding: 10px;
+  width: 100%;
+}
+
+input.mm, input.yyyy, input.cvv{
+  width: 30%;
+}
+
+
+/* ====================搜尋列的css起點==================== */
+.search_area{
+  width: 90%;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+  display: inline-block;
+  margin-left: 5%;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+.search_area input#search{
+  width: 100%;
+  height: 40px;
+  font-size: 10pt;
+  float: left;
+  color: #63717f;
+  padding-left: 10px;
+  border-radius: 20px;
+  display: block;
+  border: solid 1px;
+  transition: background .55s ease;
+}
+.search_area input#search::-webkit-input-placeholder {
+   color: #65737e;
+}
+.search_area input#search:-moz-placeholder { /* Firefox 18- */
+   color: #65737e;
+}
+.search_area input#search::-moz-placeholder {  /* Firefox 19+ */
+   color: #65737e;
+}
+.search_area input#search:-ms-input-placeholder {
+   color: #65737e;
+}
+.search_area .searchIcon{
+  max-width: auto;
+  display: fixed;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  z-index: 1;
+  color: #4f5b66;
+}
+.search_area input#search:hover, .search_area input#search:focus, .search_area input#search:active{
+    outline:none;
+    background: #f0f0f0;
+}
+
+.td{
+  padding: 0px !important;
+}
+.column1{
+  text-align: left;
+}
+
+/* ====================搜尋列的css終點=============================== */

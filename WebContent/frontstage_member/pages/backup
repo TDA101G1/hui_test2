@@ -1,0 +1,82 @@
+if (action.equals("produce_schedule")) {
+			System.out.println("進來produce_schedule");
+			String schedule_data = req.getParameter("schedule_data"); // 取前端name為schedule_data的value
+			try {
+				JSONObject json = new JSONObject(schedule_data); // 將value轉成jsonObject
+				JSONObject obj = json.getJSONObject("schedule_data"); // 再取裡面的key為schedule_data的Object
+				System.out.println("產生行程 = " + json);
+				String schedule_id = obj.getString("schedule_id");
+				String title = obj.getString("title");
+				String first_day = obj.getString("first_day");
+				String last_day = obj.getString("last_day");
+				String total_day = obj.getString("total_day");
+
+				CustomerizeService CustDao = new CustomerizeService();
+				CustDetailService custDetailDao = new CustDetailService();
+				ProductDetailService productDetailDao = new ProductDetailService();
+				ProductService productDao = new ProductService();
+				CustomerizeVO custResult = new CustomerizeVO();
+				custResult.setCust_Schedule_ID(schedule_id);  // 先select這個ID的值
+				custResult = CustDao.select(custResult);  //傳回原本的VO
+				custResult.setCust_Schedule_Name(title); // 再把剛從JSON取出的值塞進去
+				custResult.setCust_Schedule_Start_Time(Date.valueOf(first_day));
+				custResult.setCust_Schedule_End_Time(Date.valueOf(last_day));
+				custResult.setCust_Schedule_Total_Day(Integer.parseInt(total_day));
+				custResult = CustDao.update(custResult); // 做update
+
+				
+				List<ProductVO> listProducts = productDao.getAll();
+				List<ProductDetailVO> listProductDetails = productDetailDao.getAll();
+				List<CustDetailVO> custDetails = custDetailDao.select_by_schedule(custResult.getCust_Schedule_ID());
+				custDetails.sort(Comparator.comparing(CustDetailVO::getCust_Schedule_Detail_Date) // Comparator<CustDetailVO> byDate = Comparator.comparing(CustDetailVO::getCust_Schedule_Detail_Date);
+						.thenComparing(CustDetailVO::getCust_Schedule_Detail_Seq));
+
+				List<String> product_id = custDetails.stream().map(detail -> detail.getProduct_ID())
+						.collect(Collectors.toList());
+				List<ProductVO> products = listProducts.stream().filter(p -> product_id.contains(p.getProduct_ID()))
+						.collect(Collectors.toList());
+				List<ProductDetailVO> productDetails = listProductDetails.stream()
+						.filter(pd -> product_id.contains(pd.getProduct_ID())).collect(Collectors.toList());
+
+				for (CustDetailVO custDetail : custDetails) {
+					for (ProductVO product : products) {
+						if (custDetail.getProduct_ID().equals(product.getProduct_ID())) {
+							custDetail.setProductVO(product);
+							List<ProductDetailVO> list = new ArrayList<>();
+							for (ProductDetailVO productDetail : productDetails) {
+								if (product.getProduct_ID().equals(productDetail.getProduct_ID())) {
+									list.add(productDetail);
+								}
+							}
+							if (list.size() != 0) {						//為了不讓沒有值的list加入
+								product.setProductDetailVOs(list);
+								break;
+							}
+						}
+					}
+				}
+				req.setAttribute("custVO", custResult);
+				req.setAttribute("custDetails", custDetails);
+//				custDetails.forEach(all -> System.out.println("最後面要送出的custDetails = " + all));
+				req.getRequestDispatcher("/hui_project/produce_schedule.jsp").forward(req, res);
+
+//				String str = selectResult.getCust_Selected_County();		//將字串轉成陣列
+//				str = str.substring(1, str.length()-1);
+//				String[] selected_county = str.split(",");
+//				
+//				Map<String, String[]> map = new TreeMap<>();
+//				map.put("cust_schedule_id", new String[] {schedule_id});
+//				map.put("product_county", selected_county);
+//				List<CustDetailVO> detailJoinProduct = detailDao.get_detail_join_product(map);		//動態查詢
+//				for(int i = 0; i < detailJoinProduct.size(); i++) {
+//					System.out.println(detailJoinProduct.get(i));
+//				}
+//				req.setAttribute("custVO", custVO);
+//				System.out.println("最後面要送出的custVO = "+custVO);
+//				req.setAttribute("custDetailVOs", detailJoinProduct);
+//				System.out.println("最後面要送出的detailJoinProduct = "+detailJoinProduct);
+//				req.getRequestDispatcher("/project/produce_schedule.jsp").forward(req, res);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}

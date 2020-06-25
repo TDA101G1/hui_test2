@@ -1,0 +1,22 @@
+		      	<c:choose>
+		      		<c:when test="${empty member }">
+					</c:when>
+		      		<c:when test="${!empty member }">
+				        <a class="nav-link" href="#" data-member_id="${sessionScope.member.member_ID }"> <img
+						src="<%=request.getContextPath()%>/member/ShowMemberImage?id=${sessionScope.member.member_ID}"
+						class="img-fluid align-top " alt="tourism"> Hi${member.member_Name }
+					</a> 
+		      		</c:when>
+		      	</c:choose>
+		      	
+		      	
+		      	
+		      	
+		      	"/frontstage_member/member_Inbox/*",
+													  "/frontstage_member/member_Order/*",
+													  "/frontstage_member/member_Calendar/*",
+													  "/frontstage_member/member_Collection/*",
+													  "/frontstage_member/member_Comment/*",
+													  "/frontstage_member/member_Credit_Card/*",
+													  "/frontstage_member/member_Schedule/*",
+													  "/frontstage_member/MemberUpdate.jsp",

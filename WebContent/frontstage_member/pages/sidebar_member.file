@@ -1,0 +1,18 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+			<div class="sidebar col-lg-2 col-md-3 col-sm-4">
+				<nav class="nav nav-pills flex-column">
+					<div class="d-none d-sm-block nav-link text-center" href="#" data-member_id="${sessionScope.member.member_ID }"> <img
+						src="<%=request.getContextPath()%>/member/ShowMemberImage?id=${sessionScope.member.member_ID}"
+						class="img-fluid align-top " alt="tourism"> Hi
+						${member.member_Name }
+					</div> 
+					<a class="nav-link mx-auto" href="<%=request.getContextPath()%>/frontstage_member/MemberUpdate.jsp"><h5 class="font-weight-bold">個人中心</h4></a> 
+					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Order/Member_Order.jsp"><h5 class="font-weight-bold">管理訂單</h4></a>
+					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Schedule/Member_Schedule.jsp"><h5 class="font-weight-bold">我的行程</h4></a> 
+					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Calendar/Member_Calendar.jsp"><h5 class="font-weight-bold">我的日曆</h4></a>
+					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Inbox/Member_Inbox.jsp"><h5 class="font-weight-bold">我的信箱</h4></a> 
+					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/product/shoppingCar.jsp"><h5 class="font-weight-bold">我的購物車</h5></a> 
+					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Comment/Member_Comment.jsp"><h5 class="font-weight-bold">我的評價</h4></a> 
+					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Collection/Member_Collection.jsp"><h5 class="font-weight-bold">我的收藏</h4></a>
+				</nav>
+			</div>
