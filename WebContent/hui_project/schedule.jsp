@@ -879,7 +879,7 @@
   <%@include file="../frontstage_member/pages/header.file" %>
 
   <div class="container-fluid">
-    <div class="row" id="first_row">
+    <div class="row align-items-center" id="first_row">
       <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3" style="padding: 0;">
         <div class="input_title" data-schedule-id="${custVO.cust_Schedule_ID}" data-member-id="${custVO.member_ID}"
           data-quantity="${custVO.cust_Quantity}" data-position="${custVO.cust_Position}"
@@ -1187,7 +1187,11 @@
     init(selected_county);
     
     $(function () {
-      var directionsRenderer = new google.maps.DirectionsRenderer;
+      var directionsRenderer = new google.maps.DirectionsRenderer({polylineOptions: {
+                                                                                      strokeColor: "blue",  //路線顏色
+                                                                                      strokeWeight: 5       //線的寬度
+                                                                                    }
+                                                                  });
       var directionsService = new google.maps.DirectionsService;
       var user_departure = {lat: parseFloat(position[0]), lng: parseFloat(position[1].trim())};
       var map;

@@ -96,7 +96,7 @@ pageContext.setAttribute("list", lists);
         div.top_navbar {
             width: 100%;
             height: 70px;
-            margin-top: 56px;
+            margin-top: 62px;
             background-color: #343434;
             color: #E6903B;
             font-size: 32px;
@@ -111,11 +111,12 @@ pageContext.setAttribute("list", lists);
         }
 
         div.btn_model {
-            line-height: 62px;
+            /* line-height: 62px; */
             float: right;
         }
 
         div.btn_model button {
+            width: 120px;
             margin-left: 10px;
         }
 
@@ -420,6 +421,16 @@ pageContext.setAttribute("list", lists);
             height: 100%;
         }
 
+        div.map_img{
+            font-size: 20px;
+            text-align: center;
+        }
+
+        div.map_img img{
+            width: 200px;
+            height: 100px;
+        }
+
         div.days {
             height: 100%;
             width: 100%;
@@ -470,25 +481,25 @@ pageContext.setAttribute("list", lists);
             }
         }
 
-
-
-        div.btn_model button {
-            width: 150px;
-      margin-right: 5px;
-    }
-        .dropdown-menu{
+/*----------------------------共同編輯下拉選單-------------------------------*/
+    .dropdown-menu{
         width: 400px;
         padding: 10px 20px;
         margin: 0 auto;
-        height: 110px;
+        min-height: 125px;
     }
-        .show{
-        /* transform: translate3d(381px, 48px, 0px); */
-        left: -10px !important;
-        }
-        .dropdown-menu span{
-            font-size: 20px;
-        }
+    .show{
+      /* transform: translate3d(381px, 48px, 0px); */
+        left: -264px !important;
+        height: auto;
+        max-height: 300px;
+    }
+    .dropdown-menu span{
+        font-size: 20px;
+    }
+    ul#firend{
+        overflow-y: scroll;
+    }
 
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -522,10 +533,10 @@ pageContext.setAttribute("list", lists);
         </nav> --%>
 		<%@include file="../frontstage_member/pages/header.file" %>
 
-        <div class="container-fliud">
+        <div class="container">
             <div class="top_navbar" data-schedule-id="${custVO.cust_Schedule_ID}" data-member-id="${custVO.member_ID}"
                 data-position="${custVO.cust_Position}" data-selected-county="${custVO.cust_Selected_County}">
-                <div class="row" style="margin: 0;">
+                <div class="row align-items-center" style="margin: 0;">
                     <div class="col col-md-6">
                         <span class="text_title">${custVO.cust_Schedule_Name}</span>
                     </div>
@@ -540,6 +551,12 @@ pageContext.setAttribute("list", lists);
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 <span>請輸入email：</span><input id="email" type="text" style="width: 75%;">
                                 <button id="invite" type="button" style="width: 50px;">邀請</button>
+                                <div style="margin-top: 10px;">
+                                    <hr id="loading" style="border-color: #E0DFDF !important;">
+                                    <ul id="firend" style="text-align: center;">
+                                    <!--------------- 動態新增 --------------->
+                                    </ul>
+                                </div>
                                 </div>
                                 <!-- <button id="btn_share" type="button" class="btn btn-primary btn-lg">分享行程</button> -->
                                 <input type="hidden" name="action" value="edit_schedule">
@@ -833,7 +850,6 @@ pageContext.setAttribute("list", lists);
                                 </div>
                             </div>
                         </div>
-
                         <!-- <div class="ad_content">
                         <div class="ad_title">
                             <p>廣告</p>
@@ -902,6 +918,55 @@ pageContext.setAttribute("list", lists);
                     gestureHandling: 'greedy'
                 });
             }
+
+            /*==================================================發送mail邀請編輯==================================================*/
+            $("button#invite").on("click", function(e){
+            let email = $("input#email").val();
+            let cust_schedule_id = $("div.top_navbar").attr("data-schedule-id");
+            if(email.trim().length == 0 || email == ""){
+                $("input#email").attr("placeholder", "請輸入email帳號");
+                return;
+            }
+            console.log(email)
+            $.ajax({
+                url: "<%=request.getContextPath()%>/InviteEditScheduleController",
+                type: "POST",
+                data: {
+                        "email": email,
+                        "cust_schedule_id": cust_schedule_id
+                    },
+                dataType: "json",
+                beforeSend: function(){
+                    $("hr#loading").html('<li style="text-align: center;"><i class="fas fa-spinner fa-spin fa-1x"></i></li>'); //讀取動畫
+                },
+                statusCode: {                 // 狀態碼
+                    404: function (res) {
+                    },
+                    500: function (res) {
+                        $("input#email").val("");
+                        $("hr#loading").html("");
+                        $("input#email").attr("placeholder", "輸入的email錯誤");
+                    }
+                },
+                success: function (data) {
+                    if(data.result === "success"){
+                        swal({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '已發送邀請',
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
+                        $("input#email").val("");
+                        $("hr#loading").html("");
+                        $("ul#firend").append(`<li style="margin-top:5px;">`+email+`</li>`);
+                    }
+                    },
+                    error: function () {
+                    console.log("fail")
+                    }
+                });
+            });
 
             /*----------------------------選購明細的操作--------------------------------*/
             $("div.select_block").on("change", function () {
@@ -1169,19 +1234,24 @@ pageContext.setAttribute("list", lists);
             /*----------------------------顯示路線google API--------------------------------*/
             function calculateAndDisplayRoute(current_sessiontorage) {
                 initMap();
-                var directionsRenderer = new google.maps.DirectionsRenderer;
+                var directionsRenderer = new google.maps.DirectionsRenderer({polylineOptions: {
+                                                                                      strokeColor: "blue",  //路線顏色
+                                                                                      strokeWeight: 5       //線的寬度
+                                                                                    }
+                                                                            });
                 var directionsService = new google.maps.DirectionsService;
                 directionsRenderer.setMap(map);
                 // let travel_mode = travelMode == null ? 'DRIVING' : travelMode;
+                let insertHtml = [];
                 let waypts = [];
                 $.each(current_sessiontorage, function (i, value) {
+                    insertHtml.push(tempHtml= `<div class="map_img">`+value.product_name+`<br><img src="<%=request.getContextPath()%>/ImageController?action=printImage_product_id&product_id=`+value.product_id+`"></div>`);
                     if (i == (current_sessiontorage.length - 1)) {
                         user_destination = {lat: value.lat, lng: value.lng};
                     } else {
                         let temp = {
                             location: {lat: value.lat, lng: value.lng}, //使用者選的地點經緯度
                             stopover: true
-                            // type: ('location_'+ (i+1))        //用哪一個icon
                         }
                         waypts.push(temp);
                     }
@@ -1194,7 +1264,19 @@ pageContext.setAttribute("list", lists);
                     travelMode: google.maps.TravelMode['DRIVING']
                 }, function (response, status) {
                     if (status == 'OK') {
-                        console.log(response.routes[0]);
+                        let legs = response.routes[0].legs;
+                        for(let i = 0; i < legs.length; i++){
+                            if(i == 0){
+                                legs[i].start_address = "<div class='map_img' style='font-size: 20px; text-align: center;'>出發點</div>";
+                                legs[i].end_address = insertHtml[i];
+                            }else if(i == legs.length - 1){
+                                legs[i].start_address = insertHtml[i - 1];
+                                legs[i].end_address = insertHtml[i];
+                            }else{
+                                legs[i].start_address = insertHtml[i - 1];
+                                legs[i].end_address = insertHtml[i];
+                            }
+                        }
                         directionsRenderer.setDirections(response);
                     } else {
                         console.log('Directions request failed due to ' + status);
