@@ -579,7 +579,14 @@ div.sidebar a.nav-link:hover{
 						'use_qty': use_qty
 				}
 				let form_dataString = JSON.stringify(form_data);
-				$.ajax({
+				let path = "<%=request.getServerName() + ":" + request.getServerPort() + request.getContextPath()%>" ;
+				let param = '/order_detail/UpdateOrder_Detail.Api?action=use_ticket&order_Detail_ID=' + order_Detail_ID.toString() + '&use_qty=' + use_qty.toString();
+				let final = path + param;
+				console.log(path);
+				console.log(param);
+				console.log(final);
+				this_button.closest('div.modal-content').find('div.modal-footer').prepend(`<img class="img" src="<%=request.getContextPath()%>/util/ShowTicketBarcode?path=` + final + `" height="200px" ">`);
+<%-- 				$.ajax({
 					url:'<%=request.getContextPath()%>/order_detail/UpdateOrder_Detail.Api',
 					type: 'POST',
 					dataType: 'json',
@@ -608,7 +615,7 @@ div.sidebar a.nav-link:hover{
 						this_button.closest('td').html(node);	
 						}
 					}
-				})
+				}) --%>
 			}
 		}
 	});
