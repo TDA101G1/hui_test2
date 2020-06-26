@@ -1,9 +1,13 @@
 package com.customerize.websocket.controller;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.websocket.CloseReason;
 import javax.websocket.OnClose;
@@ -14,11 +18,16 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/TogetherWS/{userName}")
+import com.google.gson.Gson;
+
+@ServerEndpoint("/TogetherWS/{roomName}/{userName}")
 public class WebSocketEditSchedule {
 
 	private static final Set<Session> connectedSessions = Collections.synchronizedSet(new HashSet<>());
-
+	private static Map<String, Session> sessionMap = new ConcurrentHashMap<>();
+	private static Map<String, Map<String, Session>> roomMap = new HashMap<>();
+	private static int roomNumber = 1;
+	Gson gson = new Gson();
 	/*
 	 * 如果想取得HttpSession與ServletContext必須實作
 	 * ServerEndpointConfig.Configurator.modifyHandshake()，
@@ -26,9 +35,28 @@ public class WebSocketEditSchedule {
 	 * httpsession-in-onmessage-of-a-jsr-356-serverendpoint
 	 */
 	@OnOpen
-	public void onOpen(@PathParam("userName") String userName, Session userSession) throws IOException {
-		connectedSessions.add(userSession);
-		String text = String.format("Session ID = %s, connected; userName = %s", userSession.getId(), userName);
+	public void onOpen(@PathParam("userName") String userName, @PathParam("roomName") String roomName, Session userSession) throws IOException {
+		if("null".equals(roomName)) {
+			roomName = "ScheduleRoom" + this.roomNumber;
+			System.out.println(roomName);
+			this.roomNumber++;
+		}
+		sessionMap.put(userName, userSession);
+		roomMap.put(roomName, sessionMap);
+		
+//		Set<String> key = roomMap.get(roomName).keySet();	
+		Collection<Session> sessions = roomMap.get(roomName).values();
+		Map<String, String> json = new HashMap<>();
+		json.put("roomName", roomName);
+		String roomNameJson = gson.toJson(roomName);
+		for(Session session: sessions) {
+			if(session.isOpen()) {
+				session.getAsyncRemote().sendText(roomNameJson);
+				System.out.println(session);
+			}
+		}
+//		connectedSessions.add(userSession);
+		String text = String.format("Session ID = %s, connected; , roomName = %s, userName = %s", userSession.getId(), roomName, userName);
 		System.out.println(text);
 	}
 

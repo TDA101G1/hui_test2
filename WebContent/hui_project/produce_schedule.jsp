@@ -998,7 +998,7 @@ pageContext.setAttribute("list", lists);
                 }
                 a_day_spent();
             });
-            /*----------------------------選購明細的操作--------------------------------*/
+            /*----------------------------加入購物車--------------------------------*/
             $("button#btn_buy").on("click", function(){
                 let member_ID = $("div.top_navbar").data("member-id");
                 let cart = []

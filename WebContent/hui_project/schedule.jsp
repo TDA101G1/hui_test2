@@ -883,7 +883,7 @@
       <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3" style="padding: 0;">
         <div class="input_title" data-schedule-id="${custVO.cust_Schedule_ID}" data-member-id="${custVO.member_ID}"
           data-quantity="${custVO.cust_Quantity}" data-position="${custVO.cust_Position}"
-          data-selected-county="${custVO.cust_Selected_County}">
+          data-selected-county="${custVO.cust_Selected_County}" data-roomName="">
           <div class="text_title">
             <p class="text_title"><%=custVO.getCust_Schedule_Name() == null?"請輸入標題 ":custVO.getCust_Schedule_Name()%> </p>
           </div>
@@ -1289,7 +1289,11 @@
     
     /*==================================================WebSocket共同編輯行程==================================================*/
       var userName = $("div.input_title").attr("data-member-id");
-      var Mypoint = "/TogetherWS/MID000000";
+      var roomName = $("div.input_title").attr("data-roomName");
+      if(roomName.length == 0){
+        roomName = null;
+      }
+      var Mypoint = "/TogetherWS/" + roomName + "/" + userName;
       var host = window.location.host;
       var path = window.location.pathname;
       var webCtx = path.substring(0, path.indexOf('/', 1));
@@ -1305,6 +1309,7 @@
         
         webSocket.onopen = function(e){
           console.log("連線成功");
+          console.log(e.data)
         };
         webSocket.onmessage = function(e){
           let current_day = $("div.schedule_header p").html();

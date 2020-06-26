@@ -21,7 +21,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="<%=request.getContextPath()%>/product/vendors/jquery/jquery-3.4.1.min.js"></script>
     <script src="<%=request.getContextPath()%>/product/vendors/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> -->
     <link rel=stylesheet type="text/css" href="<%=request.getContextPath()%>/vendors/css/footer.css">
 
   </head>
@@ -399,6 +399,7 @@
 
     <script src="<%=request.getContextPath()%>/product/js/productDetail.js"></script>
     <script src="<%=request.getContextPath()%>/vendors/js/footer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script type="text/javascript">
  //寫信   
     $(function(){
@@ -432,7 +433,7 @@
 				}, */
 				data : form_dataString,
 				beforeSend: function(){
-					let timerInterval
+					let timerInterval;
 					Swal.fire({
 					  title: 'Auto close alert!',
 					  html: 'I will close in <b></b> milliseconds.',
