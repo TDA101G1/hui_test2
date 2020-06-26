@@ -258,7 +258,6 @@ div.sidebar a.nav-link:hover{
 								      	  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 										    <a class="dropdown-item" data-toggle="modal" data-target="#${om.order_Master_ID }" href="#">看明細</a>
 										    <a class="cancel_order dropdown-item" data-order_master_id="${om.order_Master_ID }" href="#">取消訂單	</a>
-										    <a class="dropdown-item" href="#">訂單留言</a>
 										  </div>
 								      </div>
 							      </td>
@@ -411,8 +410,7 @@ div.sidebar a.nav-link:hover{
 			      	<div class="p-2 bg-warning text-dark">優惠金額總計：${totalprice * discount }</div>
 				</c:if>
 			</c:forEach>
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
 	      </div>
 	    </div>
 	  </div>

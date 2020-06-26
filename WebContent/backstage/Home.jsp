@@ -4,9 +4,11 @@
 <%@ page import="java.util.*"%>
 <%
 	EmployeeVO in_empVO = (EmployeeVO) request.getAttribute("in_empVO");
-
-
-	session.setAttribute("in_empVO", in_empVO);
+	if (in_empVO != null) {
+		session.setAttribute("in_empVO", in_empVO);
+	} else {
+		in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
+	}
 %>
 
 

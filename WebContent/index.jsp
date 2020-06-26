@@ -326,11 +326,11 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide slider-bg-position"
           style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/swiper3.jpg')" data-hash="slide1">
-          <h2>It is health that is real wealth and not pieces of gold and silver</h2>
+          <h2>九份風情</h2>
         </div>
         <div class="swiper-slide slider-bg-position"
           style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/swiper4.jpg')" data-hash="slide2">
-          <h2>Happiness is nothing more than good health and a bad memory</h2>
+          <h2>國家音樂廳</h2>
         </div>
       </div>
       <!-- Add Pagination -->
