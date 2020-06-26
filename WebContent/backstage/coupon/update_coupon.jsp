@@ -580,9 +580,9 @@ to get the desired effect
 														<span class="input-group-text" id="basic-addon1">創立員工:</span>
 													</div>
 
-													<select size="1" name="cp_EID" class="form-control col-2 ">
+													<select size="1" name="cp_EID" class="form-control col-3 ">
 														<c:forEach var="empVO" items="${empSvc.all}">
-															<option value="${empVO.emp_ID}">${empVO.emp_ID}
+															<option value="${empVO.emp_ID}">${empVO.emp_ID}${empVO.emp_Name}
 														</c:forEach>
 													</select>
 
@@ -598,9 +598,9 @@ to get the desired effect
 														<span class="input-group-text" id="basic-addon1">專屬會員:</span>
 													</div>
 
-													<select size="1" name="cp_MID" class="form-control col-2 ">
+													<select size="1" name="cp_MID" class="form-control col-3 ">
 														<c:forEach var="memVO" items="${memSvc.all}">
-															<option value="${memVO.member_ID}">${memVO.member_ID}
+															<option value="${memVO.member_ID}">${memVO.member_ID}${memVO.member_Name}
 														</c:forEach>
 													</select>
 													<p style="color: red">${errorMsgs.cp_MID}</p>
