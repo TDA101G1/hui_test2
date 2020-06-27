@@ -42,7 +42,7 @@ public class ShowTicketBarcode extends HttpServlet {
 		String path = request.getParameter("path");
 		String order_Detail_ID = request.getParameter("order_Detail_ID");
 		String use_qty = request.getParameter("use_qty");
-		String text = new StringBuilder().append("http://").append(path).append("&").append("order_Detail_ID=" + order_Detail_ID).append("&").append("use_qty=" + use_qty).toString();
+		String text = new StringBuilder().append(path).append("&").append("order_Detail_ID=" + order_Detail_ID).append("&").append("use_qty=" + use_qty).toString();
 		System.out.println(text);
 		int width = 200;
 		int height = 200;
