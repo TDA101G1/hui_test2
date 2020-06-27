@@ -8,7 +8,7 @@ $(window).on("load", function(){
 });
 
 $(document).on("change", function(){
-  changeOption();
+//  changeOption();
   subtotal();
   prepareCheckout();
   reverseCheckbox();
@@ -60,12 +60,15 @@ $("select").on("change", function(){
 //選項變動時價格即時更新
 function changeOption(){
 	$("option:checked").each(function(){
-	if($(this).attr("data-instock") < $(this).closest("tr").find(".input_quantity").val()){
+	let instock = parseInt($(this).attr("data-instock"));
+	let quantity = $(this).closest("tr").find(".input_quantity").val();
+	
+	if(instock < quantity){
 		console.log("警告!!目前數量" + $(this).closest("tr").find(".input_quantity").val() + " > 庫存量" + $(this).attr("data-instock"));
-		$(this).closest("tr").find(".input_quantity").val($(this).attr("data-instock"));
-		console.log("修改後的數量" + $(this).closest("tr").find(".input_quantity").val());
-	}  
-	  
+		console.log("修改後的數量" + $(this).closest("tr").find(".input_quantity").val()); 
+		$(this).closest("tr").find(".input_quantity").val(instock);
+	}
+
     let price = $(this).attr("data-price");
     $(this).closest("tr").find(".price p").html(price);
     let stock = "庫存"+$(this).attr("data-instock");
