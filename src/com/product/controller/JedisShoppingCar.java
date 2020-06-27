@@ -23,10 +23,6 @@ public class JedisShoppingCar {
 		Jedis jedis = new Jedis("localhost", 6379);
 		jedis.auth("123456");
 		
-		System.out.println(productDetail_ID);
-		System.out.println(price);
-		System.out.println(price);
-		
 		String replaceID = member_ID.replace("MID", "");
 		Map<String, String> map = new HashMap<>();
 		JSONArray jsonArray = new JSONArray(jedis.lrange("member:"+replaceID+":shoppingCar", 0, -1).toString());

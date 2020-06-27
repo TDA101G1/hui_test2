@@ -35,7 +35,7 @@
 
     <!-- container -->
     </div>
-
+<%@include file="../frontstage_member/pages/footer.file" %>
     <script src="<%=request.getContextPath()%>/product/js/denyPage.js"></script>
   </body>
 </html>

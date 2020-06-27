@@ -192,7 +192,7 @@
         <div class="row productArea">
 <c:forEach items="${productList.all}" var="product">
 	<c:choose>
-		<c:when test="${product.product_Class=='套裝行程'}">
+		<c:when test="${product.product_Class=='套裝行程' && product.product_State==1}">
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100" data-product_ID="${product.product_ID}" data-product_Class="${product.product_Class}">
               <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT" width="100%" height="120px"></a>
@@ -215,7 +215,7 @@
             </div>
           </div>
 		</c:when>
-		<c:when test="${product.product_Class!='套裝行程'}">
+		<c:when test="${product.product_Class!='套裝行程' && product.product_State==1}">
           	<div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100"  data-product_ID="${product.product_ID}"  data-product_Class="${product.product_Class}">
               <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT" width="100%" height="120px"></a>
@@ -245,18 +245,18 @@
         </div>
         <!-- /.row -->
 
-        <div class="row justify-content-center">
-          <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a class="active" href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
-          </div>
-        </div>
+<!--         <div class="row justify-content-center"> -->
+<!--           <div class="pagination"> -->
+<!--             <a href="#">&laquo;</a> -->
+<!--             <a href="#">1</a> -->
+<!--             <a class="active" href="#">2</a> -->
+<!--             <a href="#">3</a> -->
+<!--             <a href="#">4</a> -->
+<!--             <a href="#">5</a> -->
+<!--             <a href="#">6</a> -->
+<!--             <a href="#">&raquo;</a> -->
+<!--           </div> -->
+<!--         </div> -->
 
 
       </div>

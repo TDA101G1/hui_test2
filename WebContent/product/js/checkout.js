@@ -79,10 +79,10 @@ $(".btn_order").on("click", function(){
 	    		swal({
 	    		    position: 'top-end',
 	    		    icon: 'error',
-	    		    title: '購物車資料比對失敗，請聯絡客服人員，或請稍後再試一次',
+	    		    title: '購物車資料比對失敗，請聯絡客服人員或請稍後再試一次',
 	    		    text: "我們即將為您返回到購物車頁面",
 	    		    showConfirmButton: false,
-	    		    timer: 8000
+	    		    timer: 6000
 	    		})
 	    		.then((willDelete) => {
 	    		    window.location.href = contextPath_fileName+"/shoppingCar.jsp";
@@ -196,8 +196,10 @@ $(".confirm").on("click", function(){
   console.log($("input.radioCoupon:checked").next("a").html());
   if($("input.radioCoupon:checked").length>0){
     $(".selectedCoupon").html("已選取: "+$("input.radioCoupon:checked").next("a").html());
+    $(".selectedCoupon").css("background-color", "lightgray").css("border-radius", "10px").css("padding", "8px 18px");
     let discount = $("input.radioCoupon:checked").attr("data-discount")
     $(".discount").html(Math.ceil($(".tottleAmount").html()-$(".tottleAmount").html()*discount));
+    $(".discountPercentage").html(" (" + discount*100 + "折)");
     $(".shouldPay").html($(".tottleAmount").html()-$(".discount").html());
   }
   modal.style.display = "none";
@@ -212,38 +214,35 @@ $(window).on("keyup", function(e){
   }
 });
 
-// 燈箱2==============================================
-let modal1 = document.getElementById('myModal1');
+// 燈箱2=====原信用卡新增頁，改成連結到博文的信用卡新增頁================
+//let modal1 = document.getElementById('myModal1');
+//$(document).on("click", ".addCreditcard", function(){
+//  modal1.style.display = "block";
+//});
+//
+//$(".box").click(function(e){
+//	e.stopPropagation();
+//})
+//
+//$(".modal1").click(function(){
+//  modal1.style.display = "none";
+//});
+//
+//$(".cancel").click(function(){
+//  modal1.style.display = "none";
+//  $(".couponDetail").css("display","none");
+//});
+//
+//$(window).on("keyup", function(e){
+//  // console.log("鍵盤對應的ASCII: " + e.which);
+//  if (e.which == 27) {
+//    modal1.style.display = "none";
+//  }
+//});
+
 $(document).on("click", ".addCreditcard", function(){
-  modal1.style.display = "block";
+	window.open(contextPath+"/frontstage_member/member_Credit_Card/Member_Credit_Card.jsp")
 });
-
-$(".box").click(function(e){
-	e.stopPropagation();
-})
-
-$(".modal1").click(function(){
-  modal1.style.display = "none";
-});
-
-$(".cancel").click(function(){
-  modal1.style.display = "none";
-  $(".couponDetail").css("display","none");
-});
-
-$(window).on("keyup", function(e){
-  // console.log("鍵盤對應的ASCII: " + e.which);
-  if (e.which == 27) {
-    modal1.style.display = "none";
-  }
-});
-
-//註冊新增信用卡
-$(".registerCreditcard").on("click", function(){
-
-
-});
-
 
 
 //自動切換信用卡icon

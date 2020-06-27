@@ -312,20 +312,20 @@
 	</div>
 </c:forEach>
 
-      <div class="row justify-content-center">
-        <div class="col-fluid">
-            <div class="pagination">
-              <a href="#">&laquo;</a>
-              <a href="#">1</a>
-              <a class="active" href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#">6</a>
-              <a href="#">&raquo;</a>
-            </div>
-        </div>
-      </div>
+<!--       <div class="row justify-content-center"> -->
+<!--         <div class="col-fluid"> -->
+<!--             <div class="pagination"> -->
+<!--               <a href="#">&laquo;</a> -->
+<!--               <a href="#">1</a> -->
+<!--               <a class="active" href="#">2</a> -->
+<!--               <a href="#">3</a> -->
+<!--               <a href="#">4</a> -->
+<!--               <a href="#">5</a> -->
+<!--               <a href="#">6</a> -->
+<!--               <a href="#">&raquo;</a> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--       </div> -->
 
     </div>
 
@@ -422,7 +422,7 @@
 		    };
 		    let form_dataString = JSON.stringify(form_data);		//後端接收參數為String type的JSON
 
-			alert('begin ajax');
+// 			alert('begin ajax');
 			$.ajax({
 				url: "<%=request.getContextPath()%>/inbox/Inbox.Api",
 				type : 'POST',
@@ -433,61 +433,87 @@
 				}, */
 				data : form_dataString,
 				beforeSend: function(){
-					let timerInterval;
-					Swal.fire({
-					  title: 'Auto close alert!',
-					  html: 'I will close in <b></b> milliseconds.',
-					  timer: 2000,
-					  timerProgressBar: true,
-					  onBeforeOpen: () => {
-					    Swal.showLoading()
-					    timerInterval = setInterval(() => {
-					      const content = Swal.getContent()
-					      if (content) {
-					        const b = content.querySelector('b')
-					        if (b) {
-					          b.textContent = Swal.getTimerLeft()
-					        }
-					      }
-					    }, 100)
-					  },
-					  onClose: () => {
-					    clearInterval(timerInterval)
-					  }
-					}).then((result) => {
-					  /* Read more about handling dismissals below */
-					  if (result.dismiss === Swal.DismissReason.timer) {
-					    console.log('I was closed by the timer')
-					  }
-					})
+// 					let timerInterval;
+// 					Swal.fire({
+// 					  title: 'Auto close alert!',
+// 					  html: 'I will close in <b></b> milliseconds.',
+// 					  timer: 2000,
+// 					  timerProgressBar: true,
+// 					  onBeforeOpen: () => {
+// 					    Swal.showLoading()
+// 					    timerInterval = setInterval(() => {
+// 					      const content = Swal.getContent()
+// 					      if (content) {
+// 					        const b = content.querySelector('b')
+// 					        if (b) {
+// 					          b.textContent = Swal.getTimerLeft()
+// 					        }
+// 					      }
+// 					    }, 100)
+// 					  },
+// 					  onClose: () => {
+// 					    clearInterval(timerInterval)
+// 					  }
+// 					}).then((result) => {
+// 					  /* Read more about handling dismissals below */
+// 					  if (result.dismiss === Swal.DismissReason.timer) {
+// 					    console.log('I was closed by the timer')
+// 					  }
+// 					})
 				},
 				success: function(res){
-					console.log(res);
-					if(res.result === 'OK'){
-						Swal.fire({
-							  icon: 'success',
-							  title: '成功',
-							  text: res.resultDetail,
-							})
-						/* $('select#write_name').val(""); */
-						$('input#write_title').val("");
-						$('textarea#write_message').val("");
-
+// 					console.log(res);
+					if(res.result == "OK"){
+					    swal({
+					        position: 'top-end',
+					        icon: 'success',
+					        title: '成功',
+					        text: res.resultDetail,
+					        showConfirmButton: false,
+					        timer: 1500
+					    })
+					    .then((value) => {
+							$(".btn-secondary").click();
+						});
 					}else{
-						let error = "";
-/* 						for(var prop in res.resultDetail){
-							error.push(res.resultDetail[prop])
-						} */
+						let error;
 						$.each(res.resultDetail, function(index, value){
 							error += value +"\n";
 						});
-						console.log(error);
-						Swal.fire({
-							  icon: 'error',
-							  title: '失敗',
-							  html: '<pre class="text-danger text-uppercase font-weight-bold">' + error + '</pre>',
-							});
+// 						console.log(error);
+						swal({
+					        position: 'top-end',
+					        icon: 'error',
+					        title: '錯誤',
+					        text: error,
+					        showConfirmButton: false,
+					        timer: 1500
+					    });
 					}
+// 					if(res.result === 'OK'){
+// 						Swal.fire({
+// 							  icon: 'success',
+// 							  title: '成功',
+// 							  text: res.resultDetail,
+// 							})
+// 						/* $('select#write_name').val(""); */
+// 						$('input#write_title').val("");
+// 						$('textarea#write_message').val("");
+// 					}else{
+// 						let error = "";
+// /* 						for(var prop in res.resultDetail){
+// 							error.push(res.resultDetail[prop])
+// 						} */
+// 						$.each(res.resultDetail, function(index, value){
+// 							error += value +"\n";
+// 						});
+// 						console.log(error);
+// 						Swal.fire({
+// 							  icon: 'error',
+// 							  title: '失敗',
+// 							  html: '<pre class="text-danger text-uppercase font-weight-bold">' + error + '</pre>',
+// 							});
+// 					}
 					
 				}
 				

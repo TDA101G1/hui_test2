@@ -84,6 +84,7 @@ public class ProductService {
 		List<ProductVO> productList = new ProductService().getAll();
 		List<ProductVO> productListFilted = productList.stream()
 				.filter(p -> p.getProduct_Class() != null && p.getProduct_Class().equals(product_Class))
+				.filter(p -> p.getProduct_State() != null && p.getProduct_State() == 1)
 				.collect(Collectors.toList());
 
 //		productListFilted.forEach(System.out::println);

@@ -58,6 +58,7 @@
 
             <!-- =======================商品======================= -->
 <c:forEach items="${JedisShoppingCar.getMemberCar(member.member_ID)}" var="productVO">
+	<c:if test="${productVO.product_State == 1}">
             <tr class="oneProduct">
               <td><input class="selectOne" type="checkbox" name="goods" value="1"></td>
               <td>
@@ -100,6 +101,7 @@
                 </button>
               </td>
             </tr>
+	</c:if>
 </c:forEach>
 
             <!-- ========================失效商品==================== -->
@@ -259,6 +261,7 @@
     		    		let addTime = $(this)[0].addTime;
 	    		    	
 	    		    	let oneProduct = $(".oneProduct")[index];
+	    		    	console.log(oneProduct);
 	    		    	$(oneProduct).find("option").each(function(){
 	    		    		if($(this).attr("id") == productDetail_ID){
 	    		    			if($(this).html() == spc && $(this).attr("data-price") == price){
@@ -272,11 +275,17 @@
 	    		    		}
 	    		    	});
 	    		    	if(product_Name != $(oneProduct).find(".productName").html()){
-	    		    		console.log("產品失效");
+// 	    		    		console.log("產品失效1");
+// 	    		    		console.log($(oneProduct).find(".productName").html());
+// 	    		    		console.log(product_Name);
+	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
+	    		    		failure.push(oneProduct);
 	    		    	}
 	    		    	
 	    		    	if(new Date(start).getTime() < new Date().getTime() || new Date(end).getTime() < new Date().getTime()){
-	    		    		console.log("產品失效");
+// 	    		    		console.log("產品失效2");
+	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
+	    		    		failure.push(oneProduct);
 	    		    	}
 	    		    	
 	    		    	$(oneProduct).find(".start").html(start);

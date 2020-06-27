@@ -91,6 +91,11 @@ div.checkout{
 	background: gray;
 }
 
+label{
+	width: 100%;
+}
+
+
 label a{
   position: relative;
   bottom: 4px;

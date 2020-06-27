@@ -18,7 +18,7 @@ public class DBGifReader2 extends HttpServlet {
 		
 		res.setContentType("image/gif");
 		ServletOutputStream out = res.getOutputStream();
-		System.out.println("近來");
+//		System.out.println("近來");
 		try {
 //			Statement stmt = con.createStatement();
 //			String product_ID = req.getParameter("product_ID");
@@ -29,7 +29,7 @@ public class DBGifReader2 extends HttpServlet {
 			String conditions = req.getParameter("conditions");
 			String whichImg = req.getParameter("whichImg");
 			String tName = req.getParameter("tName");
-			System.out.println("測試 ================="+conditions + whichImg+tName );
+//			System.out.println("測試 ================="+conditions + whichImg+tName );
 			ResultSet rs = null;
 			if(tName.equals("PRODUCT")) {
 //				System.out.println("到PRODUCT搜尋圖片");

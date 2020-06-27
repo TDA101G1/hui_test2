@@ -595,12 +595,12 @@ function addFailureItemDOM(product_ID, product_Name, product_Class, index, addTi
 		<td></td>
 		<td>
 		  <div class="img_area">
-		    <a href="/TDA101G1/ProductServlet.do?action=goDetailPage&product_ID=`+product_ID+`&product_Class=`+product_Class+`">
-		      <img class="img_Preview" src="/TDA101G1/DBGifReader2?conditions=`+product_ID+`&whichImg=PRODUCT_IMG1&tName=PRODUCT" alt="">
+		    <a href="`+contextPath+`/ProductServlet.do?action=goDetailPage&product_ID=`+product_ID+`&product_Class=`+product_Class+`">
+		      <img class="img_Preview" src="`+contextPath+`/DBGifReader2?conditions=`+product_ID+`&whichImg=PRODUCT_IMG1&tName=PRODUCT" alt="">
 		    </a>
 		  </div>
 		</td>
-		<td colspan="4"><a class="productName" data-addTime="`+addTime+`" data_index="`+index+`" data-product_ID="`+product_ID+`" href="/TDA101G1/ProductServlet.do?action=goDetailPage&product_ID=`+product_ID+`&product_Class=`+product_Class+`">`+product_Name+`</a></td>
+		<td colspan="4"><a class="productName" data-addTime="`+addTime+`" data_index="`+index+`" data-product_ID="`+product_ID+`" href="/TDA101G1/ProductServlet.do?action=goDetailPage&product_ID=`+product_ID+`&product_Class=`+product_Class+`" style="text-decoration:line-through;">`+product_Name+`</a></td>
 		<td>
 		  <button class="ask" type="button" name="button" data-toggle="modal" data-target="#exampleModal">
 		    <i class="far fa-envelope" style="font-size:1.5em"></i>

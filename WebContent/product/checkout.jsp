@@ -100,7 +100,7 @@
         <div class="col-12 col-md-9">
           <button class="btn_payments credicard" type="button" name="button">信用卡</button>
           <button class="btn_payments transfer" type="button" name="button" disabled>銀行轉帳</button>
-          <button class="btn_payments mobilePay" type="button" name="button">手機支付</button>
+          <button class="btn_payments mobilePay" type="button" name="button" disabled>手機支付</button>
         </div>
       </div>
 
@@ -170,7 +170,7 @@
       <div class="row justify-content-end checkout">
         <div class="col-12 col-md-4">
           <p>商品總額: <span class="tottleAmount"></span></p>
-          <p>折抵金額: <span class="discount">0</span></p>
+          <p>折抵金額: <span class="discount">0</span><span class="discountPercentage"></span></p>
           <h5>應付金額: <span class="shouldPay"></span></h5>
           <button class="btn_order" type="button" name="button">下訂單</button>
         </div>
