@@ -61,7 +61,9 @@ $("select").on("change", function(){
 function changeOption(){
 	$("option:checked").each(function(){
 	if($(this).attr("data-instock") < $(this).closest("tr").find(".input_quantity").val()){
+		console.log("警告!!目前數量" + $(this).closest("tr").find(".input_quantity").val() + " > 庫存量" + $(this).attr("data-instock"));
 		$(this).closest("tr").find(".input_quantity").val($(this).attr("data-instock"));
+		console.log("修改後的數量" + $(this).closest("tr").find(".input_quantity").val());
 	}  
 	  
     let price = $(this).attr("data-price");
@@ -154,8 +156,8 @@ function updateMemberCar(product_Name, product_ID, productDetail_ID, spc, quanti
 	    },
 	    // request 成功取得回應後執行
 	    success: function(data) {
-		    	console.log(data);
-		    	console.log("goBack");
+//		    	console.log(data);
+//		    	console.log("goBack");
 		}
 	});
 }
