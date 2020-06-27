@@ -1,3 +1,4 @@
+<%@page import="com.member.model.MemberVO"%>
 <%@page import="com.productcmt.model.ProductCmtService"%>
 <%@page import="com.productcmt.model.ProductCmtVO"%>
 <%@page import="com.customerizedetail.model.CustDetailVO"%>
@@ -10,15 +11,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-//ProductCmtService dao = new ProductCmtService();
-//List<ProductCmtVO> cmtVOs = dao.getProductCmt();
-//pageContext.setAttribute("cmtVOs", cmtVOs); 
+
   CustomerizeVO custVO = (CustomerizeVO) request.getAttribute("custVO");
-//   pageContext.setAttribute("custVO", custVO);
-//   List<ProductVO> list = (List<ProductVO>) request.getAttribute("products");
-//   pageContext.setAttribute("list", list);
-//   List<CustDetailVO> lists = (List<CustDetailVO>) request.getAttribute("custDetailVOs");
-//   pageContext.setAttribute("CustDetailVO", lists);
+  MemberVO member = (MemberVO) request.getSession().getAttribute("member");
+  pageContext.setAttribute("member", member);
+
 %>
 <!doctype html>
 <html lang="en">
@@ -881,9 +878,9 @@
   <div class="container-fluid">
     <div class="row align-items-center" id="first_row">
       <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3" style="padding: 0;">
-        <div class="input_title" data-schedule-id="${custVO.cust_Schedule_ID}" data-member-id="${custVO.member_ID}"
-          data-quantity="${custVO.cust_Quantity}" data-position="${custVO.cust_Position}"
-          data-selected-county="${custVO.cust_Selected_County}" data-roomName="">
+        <div class="input_title" data-schedule-id="${custVO.cust_Schedule_ID}" data-quantity="${custVO.cust_Quantity}" data-position="${custVO.cust_Position}"
+          data-selected-county="${custVO.cust_Selected_County}" data-roomName="" 
+          data-owner-member="${custVO.member_ID}" data-current-member="${member.member_ID}" data-member-email="${member.member_Mail}">
           <div class="text_title">
             <p class="text_title"><%=custVO.getCust_Schedule_Name() == null?"請輸入標題 ":custVO.getCust_Schedule_Name()%> </p>
           </div>
@@ -1288,12 +1285,15 @@
     });
     
     /*==================================================WebSocket共同編輯行程==================================================*/
-      var userName = $("div.input_title").attr("data-member-id");
-      var roomName = $("div.input_title").attr("data-roomName");
+      let cust_schedule_id = $("div.input_title").attr("data-schedule-id");
+      let owner_member_id = $("div.input_title").attr("data-owner-member");
+      let current_member_id = $("div.input_title").attr("data-current-member");
+      let roomName = $("div.input_title").attr("data-roomName");
       if(roomName.length == 0){
         roomName = null;
       }
-      var Mypoint = "/TogetherWS/" + roomName + "/" + userName;
+      var Mypoint = "/TogetherWS/"+ cust_schedule_id + "/" + current_member_id + "/" + owner_member_id;
+      // var Mypoint = "/TogetherWS/"+ cust_schedule_id + "/" + roomName + "/" + userName;
       var host = window.location.host;
       var path = window.location.pathname;
       var webCtx = path.substring(0, path.indexOf('/', 1));
@@ -1309,11 +1309,12 @@
         
         webSocket.onopen = function(e){
           console.log("連線成功");
-          console.log(e.data)
         };
+
         webSocket.onmessage = function(e){
           let current_day = $("div.schedule_header p").html();
           let jsonObj = JSON.parse(e.data);
+          // $("div.input_title").attr("data-roomname", jsonObj);
           console.log(jsonObj)
           if(jsonObj[0].action === "update_title"){
             $("p.text_title").text(jsonObj[1].title); //將輸入的文字，加入到p標籤，更改文字

@@ -52,7 +52,7 @@ public class InviteEditSchedule extends HttpServlet {
 
 			try {
 				StringBuilder str = new StringBuilder();
-				str.append(req.getServerName()).append("'&#58;'").append(req.getServerPort()).append(req.getContextPath()).append("/CustomerizeController?action=produce_schedule&cust_schedule_id=").append(cust_schedule_id);
+				str.append(req.getServerName()).append("/:").append(req.getServerPort()).append(req.getContextPath()).append("/CustomerizeController?action=produce_schedule&cust_schedule_id=").append(cust_schedule_id);
 				System.out.println(str);
 				Message message = new MimeMessage(session);
 				message.setFrom(new InternetAddress(username, "Tourism")); // 自己的帳號

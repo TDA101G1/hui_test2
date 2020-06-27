@@ -43,13 +43,13 @@ public class LoginFilter implements Filter {
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		if(member == null) {
 			String action =req.getParameter("action");
-			String schedule_id = req.getParameter("schedule_id");
+			String cust_schedule_id = req.getParameter("cust_schedule_id");
 			System.out.println("====================================");
-			System.out.println(action + schedule_id);
+			System.out.println(action + cust_schedule_id);
 			if(action != null) {
-				if(schedule_id != null) {
+				if(cust_schedule_id != null) {
 					StringBuilder path = new StringBuilder();
-					path.append(req.getRequestURI()).append("?action=").append(action).append("&schedule_id=").append(schedule_id);
+					path.append(req.getRequestURI()).append("?action=").append(action).append("&cust_schedule_id=").append(cust_schedule_id);
 					System.out.println("================================");
 					System.out.println("我要去這邊" + path);
 					session.setAttribute("location", path.toString());
