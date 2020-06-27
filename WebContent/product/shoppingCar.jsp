@@ -283,12 +283,12 @@
 	    		    		failure.push(oneProduct);
 	    		    	}
 	    		    	
-	    		    	if(new Date(start).getTime() < new Date().getTime()-1*60*60*24*1000 || new Date(end).getTime() < new Date().getTime()){
+	    		    	if(new Date(start).getTime() < new Date().getTime()-(1*60*60*24*1000) || new Date(end).getTime() < new Date().getTime()){
 	    		    		console.log("產品失效2");
-	    		    		console.log("start: " + new Date(start).getTime());
-	    		    		console.log("昨天: " + new Date().getTime()-1*60*60*24*1000);
-	    		    		console.log("end: " + new Date(end).getTime());
-	    		    		console.log("今天: " + new Date().getTime());
+	    		    		console.log(new Date(start).getTime() + " < start");
+	    		    		console.log(new Date().getTime()-(1*60*60*24*1000) + " < yesterday");
+	    		    		console.log(new Date(end).getTime() + " < end");
+	    		    		console.log(new Date().getTime() + " < today");
 	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
 	    		    		failure.push(oneProduct);
 	    		    	}

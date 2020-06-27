@@ -81,14 +81,17 @@ public class ProductService {
 	
 	
 	public List<ProductVO> getFilterClass(String product_Class) {
-		long start = new java.util.Date().getTime();
-		List<ProductVO> productListFilted = dao.getAll().stream()
+//		long start = new java.util.Date().getTime();
+//		List<ProductVO> productListFilted = dao.getAll().stream()
+//				.filter(p -> p.getProduct_Class() != null && p.getProduct_Class().equals(product_Class))
+//				.filter(p -> p.getProduct_State() != null && p.getProduct_State() == 1)
+//				.collect(Collectors.toList());
+//		long end = new java.util.Date().getTime();
+//		System.out.println(end - start + "ms");
+		return dao.getAll().stream()
 				.filter(p -> p.getProduct_Class() != null && p.getProduct_Class().equals(product_Class))
 				.filter(p -> p.getProduct_State() != null && p.getProduct_State() == 1)
 				.collect(Collectors.toList());
-		long end = new java.util.Date().getTime();
-		System.out.println(end - start + "ms");
-		return productListFilted;
 	}
 
 	public static void main(String[] args) {

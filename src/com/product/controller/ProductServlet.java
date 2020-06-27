@@ -2,7 +2,6 @@ package com.product.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -47,7 +46,7 @@ public class ProductServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		System.out.println(new java.util.Date().getTime());
+//		System.out.println(new java.util.Date().getTime());
 		res.setContentType("text/html;charset=UTF-8");
 		
 		req.setCharacterEncoding("UTF-8");
@@ -71,17 +70,15 @@ public class ProductServlet extends HttpServlet {
 		
 		//new servlet
 		if("getRating".equals(action)) {
-			JSONArray product_ID_Array = null;
-				product_ID_Array = new JSONArray(req.getParameter("product_ID"));
-				res.getWriter().write(new JSONObject().put(
-						"rating", new ProductCmtService().getRating(product_ID_Array)).toString());
+			res.getWriter().write(new JSONObject().put(
+					"rating", new ProductCmtService()
+					.getRating(new JSONArray(req.getParameter("product_ID")))).toString());
 		}
 
 		if("getPriceRange".equals(action)) {
-			JSONArray product_ID_Array = null;
-				product_ID_Array = new JSONArray(req.getParameter("product_ID"));
-				res.getWriter().write(new JSONObject().put(
-						"priceRange", new ProductDetailService().getPriceRange(product_ID_Array)).toString());
+			res.getWriter().write(new JSONObject().put(
+					"priceRange", new ProductDetailService()
+					.getPriceRange(new JSONArray(req.getParameter("product_ID")))).toString());
 		}
 		
 		if("filterClass".equals(action)) {
@@ -92,11 +89,10 @@ public class ProductServlet extends HttpServlet {
 		
 		if("goDetailPage".equals(action)) {
 			String product_ID = req.getParameter("product_ID");
-			ProductVO product = new ProductService().select(product_ID);
 			List<ProductDetailVO> oneProductDetailInfo = new ProductDetailService().getOneProductInfo(product_ID);
 			List<ProductCmtVO> productCmtFilted = new ProductCmtService().getComment(product_ID);
+			ProductVO product = new ProductService().select(product_ID);
 			String scheduleArr[] = product.getProduct_Total_Schedule().split("Dayys");
-
 			req.setAttribute("product", product);
 			req.setAttribute("oneProductDetailInfo", oneProductDetailInfo);
 			req.setAttribute("productCmtFilted", productCmtFilted);
@@ -107,13 +103,8 @@ public class ProductServlet extends HttpServlet {
 		if("addCollection".equals(action)) {
 			MemberVO member = (MemberVO)session.getAttribute("member");
 			if(member != null) {
-				String product_ID = req.getParameter("product_ID");
-				String reply = new CollectionService().addCollection(member.getMember_ID(), product_ID);
-				try {
-					res.getWriter().write(new JSONObject().put("reply", reply).toString());
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+				String reply = new CollectionService().addCollection(member.getMember_ID(), req.getParameter("product_ID"));
+				res.getWriter().write(new JSONObject().put("reply", reply).toString());
 			}else {
 				String location = req.getParameter("location");
 				System.out.println(location);
@@ -126,13 +117,8 @@ public class ProductServlet extends HttpServlet {
 			MemberVO member = (MemberVO)session.getAttribute("member");
 			if(member != null) {
 				System.out.println("執行getCollections");
-				System.out.println(new java.util.Date().getTime());
 				Set<CollectionVO> collectionByMemberID = new CollectionService().getCollectionByMemberID(member.getMember_ID());
-				try {
-					res.getWriter().write(new JSONObject().put("collectionByMemberID", collectionByMemberID).toString());
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+				res.getWriter().write(new JSONObject().put("collectionByMemberID", collectionByMemberID).toString());
 			}
 		}
 		
@@ -158,13 +144,9 @@ public class ProductServlet extends HttpServlet {
 					end = req.getParameter("end");
 				}
 				System.out.println(product_ID+product_Name);
-				try {
-					String reply = new JedisShoppingCar().add(member_ID, product_ID, 
-							product_Name, productDetail_ID, quantity, spc, start, end, price);
-					res.getWriter().write(new JSONObject().put("reply", reply).toString());
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+				String reply = new JedisShoppingCar().add(member_ID, product_ID, 
+						product_Name, productDetail_ID, quantity, spc, start, end, price);
+				res.getWriter().write(new JSONObject().put("reply", reply).toString());
 //				Set<CollectionVO> collectionByMemberID = new CollectionService().getCollectionByMemberID(member.getMember_ID());
 //				res.getWriter().write(new JSONObject().put("collectionByMemberID", collectionByMemberID).toString());
 			}

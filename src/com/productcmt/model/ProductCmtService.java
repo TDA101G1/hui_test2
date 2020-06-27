@@ -65,7 +65,7 @@ public class ProductCmtService {
 		return productCmtFilted;
 	}
 	public Map<String, String> getRating(JSONArray product_ID_Array) throws JSONException {
-		List<ProductCmtVO> productCmtList = new ProductCmtService().getAll();
+		List<ProductCmtVO> productCmtList = dao.getAll();
 		Map<String, String> map = new HashMap<>();
 		for(int i=0; i<product_ID_Array.length(); i++) {
 			String product_ID = product_ID_Array.getString(i);

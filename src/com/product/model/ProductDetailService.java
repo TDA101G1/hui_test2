@@ -71,7 +71,7 @@ public class ProductDetailService {
 					.sorted(Comparator.comparing(ProductDetailVO::getProduct_Detail_Money))
 					.collect(Collectors.toList());
 			
-			if(list.size()>0) {
+			if(list.size()>0 && list != null) {
 				String min = String.valueOf(list.get(0).getProduct_Detail_Money());
 				String max = String.valueOf(list.get(list.size()-1).getProduct_Detail_Money());
 				if(min.equals(max)) {
@@ -88,17 +88,18 @@ public class ProductDetailService {
 	}
 	
 	public List<ProductDetailVO> getOneProductInfo(String product_ID) {
-		List<ProductDetailVO> all = new ProductDetailService().getAll();
-		List<ProductDetailVO> oneProductDetailInfo = all.stream()
-		.filter(e -> e.getProduct_ID().equals(product_ID))
-		.collect(Collectors.toList());
+//		List<ProductDetailVO> oneProductDetailInfo = dao.getAll().stream()
+//				.filter(e -> e.getProduct_ID().equals(product_ID))
+//				.collect(Collectors.toList());
 		
-		ProductService productService = new ProductService();
-		ProductVO productVO = productService.select(product_ID);
-		int click_Rec = productVO.getProduct_Click_Rec();
-		productVO.setProduct_Click_Rec(click_Rec++);
+		//瀏覽次數+1
+		ProductVO productVO = new ProductService().select(product_ID);
+		Integer click_Rec = productVO.getProduct_Click_Rec();
+		productVO.setProduct_Click_Rec(++click_Rec);
 		
-		return oneProductDetailInfo;
+		return dao.getAll().stream()
+				.filter(e -> e.getProduct_ID().equals(product_ID))
+				.collect(Collectors.toList());
 	}
 	
 	
