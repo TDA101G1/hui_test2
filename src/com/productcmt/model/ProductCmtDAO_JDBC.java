@@ -39,11 +39,14 @@ public class ProductCmtDAO_JDBC implements ProductCmtDAO {
 			+ ", PRODUCT_CMT_INFO, PRODUCT_CMT_IMG1, PRODUCT_CMT_IMG2, PRODUCT_CMT_TIMESTAMP "
 			+ "FROM PRODUCT_CMT WHERE MEMBER_ID=?";
 	
-	private static final String select_by_product = "SELECT PRODUCT_CMT_ID, PRODUCT_ID, MEMBER_ID, PRODUCT_CMT_GRADE"
-			+ ", PRODUCT_CMT_INFO, PRODUCT_CMT_IMG1, PRODUCT_CMT_IMG2, PRODUCT_CMT_TIMESTAMP "
-			+ "FROM PRODUCT_CMT WHERE PRODUCT_ID=?";
+//耀升為了加速註解的，包含下面的getAll方法圖片被註解
+//	private static final String select_by_product = "SELECT PRODUCT_CMT_ID, PRODUCT_ID, MEMBER_ID, PRODUCT_CMT_GRADE"
+//			+ ", PRODUCT_CMT_INFO, PRODUCT_CMT_IMG1, PRODUCT_CMT_IMG2, PRODUCT_CMT_TIMESTAMP "
+//			+ "FROM PRODUCT_CMT WHERE PRODUCT_ID=?";
+	
+	private static final String select_by_product = "SELECT PRODUCT_CMT_ID, PRODUCT_ID, MEMBER_ID, PRODUCT_CMT_GRADE , PRODUCT_CMT_INFO, PRODUCT_CMT_TIMESTAMP FROM PRODUCT_CMT WHERE PRODUCT_ID=?";
 
-//耀升為了加速註解的，包含下面的getAll方法
+//耀升為了加速註解的，包含下面的getAll方法圖片被註解
 //	private static final String getAll = "SELECT PRODUCT_CMT_ID, PRODUCT_ID, MEMBER_ID, PRODUCT_CMT_GRADE, PRODUCT_CMT_INFO, PRODUCT_CMT_IMG1, PRODUCT_CMT_IMG2, PRODUCT_CMT_TIMESTAMP FROM PRODUCT_CMT";
 	private static final String getAll = "SELECT PRODUCT_CMT_ID, PRODUCT_ID, MEMBER_ID, PRODUCT_CMT_GRADE, PRODUCT_CMT_INFO, PRODUCT_CMT_TIMESTAMP FROM PRODUCT_CMT";
 	
@@ -340,9 +343,10 @@ public class ProductCmtDAO_JDBC implements ProductCmtDAO {
 				cmtVO.setMember_ID(rs.getString(3));
 				cmtVO.setProduct_Cmt_Grade(rs.getDouble(4));
 				cmtVO.setProduct_Cmt_Info(rs.getString(5));
-				cmtVO.setProduct_Cmt_Img1(rs.getBytes(6));
-				cmtVO.setProduct_Cmt_Img2(rs.getBytes(7));
-				cmtVO.setProduct_Cmt_Timestamp(rs.getTimestamp(8));
+//				cmtVO.setProduct_Cmt_Img1(rs.getBytes(6));
+//				cmtVO.setProduct_Cmt_Img2(rs.getBytes(7));
+//				cmtVO.setProduct_Cmt_Timestamp(rs.getTimestamp(8));
+				cmtVO.setProduct_Cmt_Timestamp(rs.getTimestamp(6));
 				lists.add(cmtVO);
 			}
 		} catch (SQLException e) {
@@ -400,6 +404,7 @@ public class ProductCmtDAO_JDBC implements ProductCmtDAO {
 				cmtVO.setProduct_Cmt_Info(rs.getString(5));
 //				cmtVO.setProduct_Cmt_Img1(rs.getBytes(6));
 //				cmtVO.setProduct_Cmt_Img2(rs.getBytes(7));
+//				cmtVO.setProduct_Cmt_Timestamp(rs.getTimestamp(8));
 				cmtVO.setProduct_Cmt_Timestamp(rs.getTimestamp(6));
 				cmtVOs.add(cmtVO);
 			}

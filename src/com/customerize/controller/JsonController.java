@@ -134,6 +134,7 @@ public class JsonController extends HttpServlet {
 			
 		/*==============================載入單個產品的評價==============================*/		
 		if(action.equals("load_productCmt")) {
+//			System.out.println(new java.util.Date().getTime() + " < start");
 			String product_id = req.getParameter("product_id");
 			MemberService memberDao = new MemberService();
 			List<ProductCmtVO> listProductCmts = new ArrayList<>();
@@ -165,6 +166,8 @@ public class JsonController extends HttpServlet {
 			product_cmt.put("product_cmt", listProductCmts);
 			JSONObject json = new JSONObject(product_cmt);
 			out.println(json);
+//			res.getWriter().write(json.toString());
+//			System.out.println(new java.util.Date().getTime() + " < end");
 //			System.out.println(listProductCmts);
 		}
 			
