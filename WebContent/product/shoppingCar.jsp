@@ -261,12 +261,13 @@
     		    		let addTime = $(this)[0].addTime;
 	    		    	
 	    		    	let oneProduct = $(".oneProduct")[index];
-	    		    	console.log(oneProduct);
+// 	    		    	console.log(oneProduct);
 	    		    	$(oneProduct).find("option").each(function(){
 	    		    		if($(this).attr("id") == productDetail_ID){
 	    		    			if($(this).html() == spc && $(this).attr("data-price") == price){
 	    		    				$(this).attr("selected", "true");
 	    		    			}else{
+	    		    				console.log("產品失效0");
 	    		    				console.log("失效的產品規格: "+productDetail_ID+spc+" 售價:"+price);
 		    		    			console.log($(this).attr("data-price"));
 		    		    			addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
@@ -275,15 +276,19 @@
 	    		    		}
 	    		    	});
 	    		    	if(product_Name != $(oneProduct).find(".productName").html()){
-// 	    		    		console.log("產品失效1");
-// 	    		    		console.log($(oneProduct).find(".productName").html());
-// 	    		    		console.log(product_Name);
+	    		    		console.log("產品失效1");
+	    		    		console.log($(oneProduct).find(".productName").html());
+	    		    		console.log(product_Name);
 	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
 	    		    		failure.push(oneProduct);
 	    		    	}
 	    		    	
-	    		    	if(new Date(start).getTime() < new Date().getTime() || new Date(end).getTime() < new Date().getTime()){
-// 	    		    		console.log("產品失效2");
+	    		    	if(new Date(start).getTime() < new Date().getTime()-1*60*60*24*1000 || new Date(end).getTime() < new Date().getTime()){
+	    		    		console.log("產品失效2");
+	    		    		console.log("start: " + new Date(start).getTime());
+	    		    		console.log("昨天: " + new Date().getTime()-1*60*60*24*1000);
+	    		    		console.log("end: " + new Date(end).getTime());
+	    		    		console.log("今天: " + new Date().getTime());
 	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
 	    		    		failure.push(oneProduct);
 	    		    	}

@@ -600,11 +600,11 @@ function addFailureItemDOM(product_ID, product_Name, product_Class, index, addTi
 		    </a>
 		  </div>
 		</td>
-		<td colspan="4"><a class="productName" data-addTime="`+addTime+`" data_index="`+index+`" data-product_ID="`+product_ID+`" href="/TDA101G1/ProductServlet.do?action=goDetailPage&product_ID=`+product_ID+`&product_Class=`+product_Class+`" style="text-decoration:line-through;">`+product_Name+`</a></td>
+		<td colspan="4"><a class="productName" data-addTime="`+addTime+`" data_index="`+index+`" data-product_ID="`+product_ID+`" href="`+contextPath+`/ProductServlet.do?action=goDetailPage&product_ID=`+product_ID+`&product_Class=`+product_Class+`" style="text-decoration:line-through;">`+product_Name+`</a></td>
 		<td>
 		  <button class="ask" type="button" name="button" data-toggle="modal" data-target="#exampleModal">
 		    <i class="far fa-envelope" style="font-size:1.5em"></i>
-		  </button>
+		  </button>	
 		  <button class="removeOne" type="button" name="button">
 		    <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
 		  </button>
