@@ -62,7 +62,7 @@ public class ProductDetailService {
 	}
 	
 	public Map<String, String> getPriceRange(JSONArray product_ID_Array) throws JSONException {
-		List<ProductDetailVO> productDetailList = new ProductDetailService().getAll();
+		List<ProductDetailVO> productDetailList = dao.getAll();
 		Map<String, String> map = new HashMap<>();
 		for(int i=0; i<product_ID_Array.length(); i++) {
 			String product_ID = product_ID_Array.getString(i);
@@ -83,7 +83,7 @@ public class ProductDetailService {
 				map.put(product_ID, "0");
 			}
 		}
-		System.out.println(map);
+//		System.out.println(map);
 		return map;
 	}
 	

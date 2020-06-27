@@ -47,6 +47,7 @@ public class ProductServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println(new java.util.Date().getTime());
 		res.setContentType("text/html;charset=UTF-8");
 		
 		req.setCharacterEncoding("UTF-8");
@@ -85,12 +86,8 @@ public class ProductServlet extends HttpServlet {
 		
 		if("filterClass".equals(action)) {
 			String product_Class = req.getParameter("product_Class");
-			try {
-				res.getWriter().write(new JSONObject().put(
-						"filtedClass", new ProductService().getFilterClass(product_Class)).toString());
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+			res.getWriter().write(new JSONObject().put(
+					"filtedClass", new ProductService().getFilterClass(product_Class)).toString());
 		}
 		
 		if("goDetailPage".equals(action)) {
@@ -129,6 +126,7 @@ public class ProductServlet extends HttpServlet {
 			MemberVO member = (MemberVO)session.getAttribute("member");
 			if(member != null) {
 				System.out.println("執行getCollections");
+				System.out.println(new java.util.Date().getTime());
 				Set<CollectionVO> collectionByMemberID = new CollectionService().getCollectionByMemberID(member.getMember_ID());
 				try {
 					res.getWriter().write(new JSONObject().put("collectionByMemberID", collectionByMemberID).toString());

@@ -15,7 +15,7 @@ public class DBGifReader2 extends HttpServlet {
 	Connection con;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
+//		System.out.println(new java.util.Date().getTime());
 		res.setContentType("image/gif");
 		ServletOutputStream out = res.getOutputStream();
 //		System.out.println("近來");
@@ -44,7 +44,7 @@ public class DBGifReader2 extends HttpServlet {
 			
 			if (rs.next()) {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream(whichImg));
-				byte[] buf = new byte[4 * 1024]; // 4K buffer
+				byte[] buf = new byte[8 * 1024]; // 4K buffer
 				int len;
 				while ((len = in.read(buf)) != -1) {
 					out.write(buf, 0, len);

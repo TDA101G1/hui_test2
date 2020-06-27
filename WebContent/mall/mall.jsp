@@ -365,7 +365,7 @@
 
 	    // request 成功取得回應後執行
 	    success: function(data) {
-	      console.log(data);
+// 	      console.log(data);
 	    $(".price").each(function(){
 	        let product_ID = $(this).closest(".card").attr("data-product_ID");
 	        $(this).children("span").html(data.priceRange[product_ID]);
