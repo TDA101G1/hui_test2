@@ -579,8 +579,8 @@ div.sidebar a.nav-link:hover{
 						'use_qty': use_qty
 				}
 				let form_dataString = JSON.stringify(form_data);
-<%-- 				let path = "<%=request.getServerName() + ":" + request.getServerPort() + request.getContextPath()%>" ;
- --%>				let path = "<%=request.getRequestURL()%>" ;
+ 				let path = "<%=request.getServerName() + ":" + request.getServerPort() + request.getContextPath()%>" ;
+ 				<%-- let path = "<%=request.getRequestURL()%>" ; --%>
 				let param = '/order_detail/UpdateOrder_Detail.Api?action=use_ticket&order_Detail_ID=' + order_Detail_ID.toString() + '&use_qty=' + use_qty.toString();
 				let final = path + param;
 				console.log(path);
