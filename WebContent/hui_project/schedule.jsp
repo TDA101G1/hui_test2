@@ -1,3 +1,6 @@
+<%@page import="com.customerize.websocket.controller.MemberDetail"%>
+<%@page import="java.util.Set"%>
+<%@page import="com.customerize.websocket.controller.JedisEditSchedule"%>
 <%@page import="com.member.model.MemberVO"%>
 <%@page import="com.productcmt.model.ProductCmtService"%>
 <%@page import="com.productcmt.model.ProductCmtVO"%>
@@ -15,6 +18,10 @@
   CustomerizeVO custVO = (CustomerizeVO) request.getAttribute("custVO");
   MemberVO member = (MemberVO) request.getSession().getAttribute("member");
   pageContext.setAttribute("member", member);
+  
+  JedisEditSchedule jedis = new JedisEditSchedule();
+  Set<MemberDetail> JedismemberDetail = jedis.getRoomMembers(custVO.getCust_Schedule_ID());
+  pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
 
 %>
 <!doctype html>
@@ -916,6 +923,9 @@
               <div style="margin-top: 10px;">
                 <hr id="loading" style="border-color: #E0DFDF !important;">
                 <ul id="firend" style="text-align: center;">
+                	<c:forEach var="member" items="${JedismemberDetail}">
+                		<li style="margin-top:5px;">${member.member_email}</li>
+                	</c:forEach>
                   <!--------------- 動態新增 --------------->
                 </ul>
               </div>
@@ -1277,7 +1287,7 @@
         alert("Input a message");
         insertMessage.focus();
       }else{
-        var jsonObj = [{"action": "chatMessage"},{"userName" : userName,"message" : message,}] //為了配合推播的判斷式
+        var jsonObj = [{"action": "chatMessage"},{"userName" : current_member_id,"message" : message,}] //為了配合推播的判斷式
         webSocket.send(JSON.stringify(jsonObj));
         insertMessage.val("");
         insertMessage.focus();
@@ -1288,8 +1298,9 @@
       let cust_schedule_id = $("div.input_title").attr("data-schedule-id");
       let owner_member_id = $("div.input_title").attr("data-owner-member");
       let current_member_id = $("div.input_title").attr("data-current-member");
+      let current_member_email = $("div.input_title").attr("data-member-email");
 
-      var Mypoint = "/TogetherWS/"+ cust_schedule_id + "/" + current_member_id + "/" + owner_member_id;
+      var Mypoint = "/TogetherWS/"+ cust_schedule_id + "/" + current_member_id + "/" + owner_member_id + "/" + current_member_email;
       var host = window.location.host;
       var path = window.location.pathname;
       var webCtx = path.substring(0, path.indexOf('/', 1));

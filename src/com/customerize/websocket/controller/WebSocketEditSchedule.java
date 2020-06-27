@@ -21,13 +21,13 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
 
-@ServerEndpoint("/TogetherWS/{cust_schedule_id}/{current_member_id}/{owner_member_id}")
+@ServerEndpoint("/TogetherWS/{cust_schedule_id}/{current_member_id}/{owner_member_id}/{member_email}")
 public class WebSocketEditSchedule {
 
-	private static final Set<Session> connectedSessions = Collections.synchronizedSet(new HashSet<>());
+//	private static final Set<Session> connectedSessions = Collections.synchronizedSet(new HashSet<>());
 	private static Map<String, Session> sessionMap = new ConcurrentHashMap<>();
-	private static Map<String, Map<String, Session>> roomMap = new HashMap<>();
-	private static int roomNumber = 1;
+//	private static Map<String, Map<String, Session>> roomMap = new HashMap<>();
+//	private static int roomNumber = 1;
 	Gson gson = new Gson();
 	/*
 	 * 如果想取得HttpSession與ServletContext必須實作
@@ -37,9 +37,11 @@ public class WebSocketEditSchedule {
 	 */
 	@OnOpen
 	public void onOpen(@PathParam("current_member_id") String current_member_id, @PathParam("owner_member_id") String owner_member_id,
-			@PathParam("cust_schedule_id") String cust_schedule_id, Session userSession) throws IOException {
+			@PathParam("member_email") String member_email, @PathParam("cust_schedule_id") String cust_schedule_id, Session userSession) throws IOException {
 		
-		JedisEditSchedule.setRoomMembers(cust_schedule_id, current_member_id);
+		MemberDetail member = new MemberDetail(current_member_id, member_email);
+		JedisEditSchedule.setRoomMembers(cust_schedule_id, member);
+//		JedisEditSchedule.setRoomMembers(cust_schedule_id, current_member_id);
 		if(!owner_member_id.equals(current_member_id)) {
 			JedisEditSchedule.setShareSchedule(current_member_id, cust_schedule_id);
 		}
@@ -79,15 +81,14 @@ public class WebSocketEditSchedule {
 	@OnMessage
 	public void onMessage(Session userSession, @PathParam("cust_schedule_id") String cust_schedule_id, String message) {
 //		List<ScheduleRoom> master_scheduleRoom = JedisEditSchedule.getRoomName(cust_schedule_id);       //先檢查此行程主檔ID有沒有創建過房間
-		Set<String> rooms = JedisEditSchedule.getRoomMembers(cust_schedule_id);
+		Set<MemberDetail> rooms = JedisEditSchedule.getRoomMembers(cust_schedule_id);
 		Set<String> member_ids = sessionMap.keySet();
-		for(String room : rooms) {
+		for(MemberDetail room : rooms) {
 			for(String member_id : member_ids) {
-				if(room.equals(member_id)) {
+				if(room.getMember_id().equals(member_id)) {
 					Session session = sessionMap.get(member_id);
 					if(session.isOpen()) {
 						session.getAsyncRemote().sendText(message);
-						System.out.println(session);
 					}
 				}
 			}
@@ -109,7 +110,7 @@ public class WebSocketEditSchedule {
 
 	@OnClose
 	public void onClose(Session userSession, CloseReason reason) {
-		connectedSessions.remove(userSession);
+//		connectedSessions.remove(userSession);
 		String text = String.format("session ID = %s, disconnected; close code = %d; reason phrase = %s",
 				userSession.getId(), reason.getCloseCode().getCode(), reason.getReasonPhrase());
 		System.out.println(text);

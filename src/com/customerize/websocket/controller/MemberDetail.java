@@ -1,26 +1,18 @@
 package com.customerize.websocket.controller;
 
-public class ScheduleRoom {
-	private String roomName;
+public class MemberDetail {
 	private String member_id;
 	private String member_email;
 	
-	public ScheduleRoom() {
+	public MemberDetail() {
 		
 	}
 	
-	public ScheduleRoom(String roomName, String member_id) {
-		this.roomName = roomName;
+	public MemberDetail(String member_id, String member_email) {
 		this.member_id = member_id;
-//		this.member_email = member_email;
+		this.member_email = member_email;
 	}
 	
-	public String getRoomName() {
-		return roomName;
-	}
-	public void setRoomName(String roomName) {
-		this.roomName = roomName;
-	}
 	public String getMember_id() {
 		return member_id;
 	}
@@ -36,9 +28,9 @@ public class ScheduleRoom {
 
 	@Override
 	public String toString() {
-		return "ScheduleRoom [roomName=" + roomName + ", member_id=" + member_id + ", member_email=" + member_email
-				+ "]";
+		return "MemberDetail [member_id=" + member_id + ", member_email=" + member_email + "]";
 	}
+
 	
 	
 }
