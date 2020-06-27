@@ -18,7 +18,7 @@
 	List<ProductDetailVO> list = pdSvc.getAll().stream().filter(p -> p.getProduct_ID().equals(pVO.getProduct_ID()))
 			.collect(Collectors.toList());
 	pageContext.setAttribute("list", list);
-
+	
 	int length = 0;
 	int count = 0;
 	int number = 0;
@@ -631,13 +631,9 @@ to get the desired effect
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>信件查詢</p>
+										<p>信箱</p>
 								</a></li>
-								<li class="nav-item"><a
-									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>新增信件</p>
-								</a></li>
+							
 
 							</ul></li>
 
@@ -789,7 +785,7 @@ to get the desired effect
 							<div class="card-header">
 
 								<%@ include file="pages/page1.file"%>
-
+										<h3>商品狀態:<%=(pVO.getProduct_State()==1)?"上架中":"下架中"%></h3>
 							</div>
 							<div class="card-title">
 								<div class="col"></div>

@@ -422,14 +422,10 @@ pageContext.setAttribute("memAll", memAll);
 							<ul class="nav nav-treeview">
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>信件查詢</p>
+									class="nav-link active"> <i class="far fa-circle nav-icon"></i>
+										<p>信箱</p>
 								</a></li>
-								<li class="nav-item"><a
-									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>新增信件</p>
-								</a></li>
+							
 
 							</ul></li>
 
@@ -822,8 +818,8 @@ pageContext.setAttribute("memAll", memAll);
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
           <input type="hidden" name="state" id="write_state" value="3">
           <input type="hidden" id="write_id" value="${employee.emp_ID }">
-          <button type="submit" name="action" value="writeMail" class="btn btn-primary">送出</button>
-          <button class="writeMail btn btn-primary" type="button">送出Ajax</button>
+<!--           <button type="submit" name="action" value="writeMail" class="btn btn-primary">送出</button> -->
+          <button class="writeMail btn btn-primary" type="button">送出</button>
         </div>
           </form>
       </div>

@@ -1,19 +1,59 @@
+<%@page import="com.product.model.ProductDetailService"%>
+<%@page import="com.order_master.model.Order_MasterService"%>
+<%@page import="com.member.model.MemberService"%>
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="com.order.model.OrderDetailVO"%>
+<%@page import="com.order.model.OrderDetailService"%>
 <%@page import="com.order_master.model.Order_MasterVO"%>
 <%@page import="com.member.model.MemberVO"%>
+<%@page import="com.product.model.*"%>
 <%@page import="sun.security.jgss.spi.MechanismFactory"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.coupon.model.*"%>
 <%@ page import="com.employee.model.*"%>
 <%@ page import="java.util.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.stream.Collectors"%>
 
 <%
 	Order_MasterVO omVO = (Order_MasterVO) request.getAttribute("omVO");
-	CouponVO cpVO = (CouponVO) request.getAttribute("cpVO");
-	EmployeeVO empVO = (EmployeeVO) request.getAttribute("empVO");
-	MemberVO memVO = (MemberVO) request.getAttribute("memVO");
-
+	
 	EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
+	// 	取得訂單中明細資料
+
+	OrderDetailService odSvc = new OrderDetailService();
+
+	List<OrderDetailVO> getOD = odSvc.getAll().stream()
+			.filter(p -> p.getOrder_Master_ID().equals(omVO.getOrder_Master_ID())).collect(Collectors.toList());
+	// 	取得所有會員資料
+	MemberService mSvc = new MemberService();
+
+	List<MemberVO> AllmVO = mSvc.getAll();
+	// 取得商品明細資料	
+	ProductDetailService pdSvc = new ProductDetailService();
+
+	List<ProductDetailVO> AllpdVO = pdSvc.getAll();
+	//  取得所有商品資料	
+	ProductService pSvc = new ProductService();
+
+	List<ProductVO> AllpVO = pSvc.getAll();
+	
+	//取得優惠券資料
+	CouponService cpSvc = new CouponService();
+
+	List<CouponVO> AllcpVO = cpSvc.getAll().stream()
+			.filter(p -> p.getCoupon_ID().equals(omVO.getCoupon_ID())).collect(Collectors.toList());
+	
+	
+	int count = 0;
+	int Total = 0 ;
+	pageContext.setAttribute("getOD", getOD);
+	pageContext.setAttribute("AllmVO", AllmVO);
+	pageContext.setAttribute("AllpdVO", AllpdVO);
+	pageContext.setAttribute("AllpVO", AllpVO);
+	pageContext.setAttribute("AllcpVO", AllcpVO);
+
 %>
 
 <jsp:useBean id="empSvc" scope="page"
@@ -92,7 +132,19 @@ div.pagination {
 
 
 
+
+
+
+
+
+
 :hover
+
+
+
+
+
+
 
 
 
@@ -112,7 +164,13 @@ div.pagination {
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -127,7 +185,13 @@ div.pagination {
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -148,7 +212,16 @@ background-color
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -162,7 +235,16 @@ background-color
 
 
 
+
+
+
 #ddd
+
+
+
+
+
+
 
 
 
@@ -451,13 +533,9 @@ to get the desired effect
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>信件查詢</p>
+										<p>信箱</p>
 								</a></li>
-								<li class="nav-item"><a
-									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>新增信件</p>
-								</a></li>
+
 
 							</ul></li>
 
@@ -566,7 +644,7 @@ to get the desired effect
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1 class="m-0 text-dark">修改優惠券</h1>
+							<h1 class="m-0 text-dark">修改訂單</h1>
 
 							<!-- Left navbar links -->
 
@@ -601,13 +679,80 @@ to get the desired effect
 								<div class="col">
 									<div class="card  card-tabs">
 										<div class="card-header ">
-											<h2>請填入相關資料</h2>
+											<h2>訂單相關明細</h2>
 										</div>
 									</div>
 								</div>
 
 								<div class="card-body" style="overflow: auto">
 									<div class="col-lg">
+
+
+										<!-- 												訂單明細 -->
+										<div class="card-body" style="overflow: auto">
+											<div class="col-lg">
+												<table class="table table-sm-12 ">
+
+													<thead>
+														<tr>
+															<th scope="col">商品項數</th>
+															<th scope="col">購買商品名稱</th>
+															<th scope="col">商品規格</th>
+															<th scope="col">購買數量</th>
+															<th scope="col">使用數量</th>
+															<th scope="col">購買金額</th>
+
+															<!-- 													<th scope="col">信箱</th> -->
+															<!-- 													<th scope="col">手機</th> -->
+															<!-- 													<th scope="col">地址</th> -->
+															<!-- 													<th scope="col">入職時間</th> -->
+															<!-- 													<th scope="col">狀態</th> -->
+															<!-- 													<th scope="col">修改</th> -->
+															<!-- 				<th scope="col">刪除員工</th> -->
+														</tr>
+													</thead>
+													<tbody>
+								<c:set var="Total" value="0"/>
+
+														<c:forEach var="odVO" items="${getOD}">
+
+															<% count= count + 1;%>
+
+
+															<tr>
+																<td><%=count%></td>
+																
+																<c:forEach var="pdVO" items="${AllpdVO}">
+																	<c:if
+																		test="${odVO.product_Detail_ID eq pdVO.product_Detail_ID}">
+																		<c:forEach var="pVO" items="${AllpVO}">
+																			<c:if test="${pdVO.product_ID eq pVO.product_ID}">
+																		
+																			
+																			<td>${pVO.product_Name}</td>
+																			<td>${pdVO.product_Detail_Spc}</td>
+																			<td>${odVO.order_Detail_Qty}</td>
+																			<td>${odVO.order_Detail_Used_Qty}</td>
+																			<td>${pdVO.product_Detail_Money}</td>
+																				<c:set var="Total" value="${Total+pdVO.product_Detail_Money}"/>
+																			
+																			</c:if>
+																		</c:forEach>
+																	</c:if>
+
+																</c:forEach>
+
+
+
+																<td></td>
+														</c:forEach>
+																	<h3>總金額:${Total}</h3>
+													</tbody>
+												</table>
+
+											</div>
+										</div>
+										<!-- 										訂單明細結束 -->
 
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">訂單編號:<%=omVO.getOrder_Master_ID()%>
@@ -620,7 +765,9 @@ to get the desired effect
 
 
 										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon1">下單時間:<%=omVO.getOrder_Master_TimeStamp()%>
+											<span class="input-group-text" id="basic-addon1">下單時間:<fmt:formatDate
+													type="both" value="<%=omVO.getOrder_Master_TimeStamp()%>"
+													pattern="yyyy-MM-dd HH:mm:ss" />
 											</span>
 										</div>
 										<br>
@@ -628,11 +775,21 @@ to get the desired effect
 
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">會員編號:<%=omVO.getMember_ID()%>
+												<c:forEach var="mVO" items="${AllmVO}">
+													<c:if test="${omVO.member_ID eq mVO.member_ID}">
+														${mVO.member_Name}
+													</c:if>
+												</c:forEach>
 											</span>
 										</div>
 										<br>
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">優惠券編號:<%=omVO.getCoupon_ID()%>
+											<c:forEach var="cpVO" items="${AllcpVO}">
+													<c:if test="${omVO.coupon_ID eq cpVO.coupon_ID}">
+														${cpVO.coupon_Name}
+													</c:if>
+												</c:forEach>
 											</span>
 										</div>
 

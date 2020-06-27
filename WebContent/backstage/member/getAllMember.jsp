@@ -335,13 +335,13 @@ to get the desired effect
 						<!-- 									 <span class="right badge badge-danger">New</span> 新訊息提示 -->
 						<!-- 								</p> -->
 						<!-- 						</a></li> -->
-						<li class="nav-item has-treeview"><a href="#"
-							class="nav-link"> <i class="fas fa-users"></i>
+						<li class="nav-item has-treeview menu-open"><a href="#"
+							class="nav-link active"> <i class="fas fa-users"></i>
 								<p>
 									會員 <i class="fas fa-angle-left right"></i>
 								</p>
 						</a>
-							<ul class="nav nav-treeview menu-open">
+							<ul class="nav nav-treeview ">
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/member/getAllMember.jsp"
 									class="nav-link active"> <i class="far fa-circle nav-icon"></i>
@@ -360,14 +360,9 @@ to get the desired effect
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>信件查詢</p>
+										<p>信箱</p>
 								</a></li>
-								<li class="nav-item"><a
-									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>新增信件</p>
-								</a></li>
-
+					
 							</ul></li>
 
 						<li class="nav-item has-treeview"><a href="#"
@@ -522,23 +517,7 @@ to get the desired effect
 								<%@ include file="pages/page1.file"%>
 							</div>
 							<div class="card-title">
-								<div class="col">
-									<div class="card card-primary card-tabs">
-										<br> <br>
-										<div class="card-header p-0 pt-1">
-											<ul class="nav nav-tabs" id="custom-tabs-one-tab"
-												role="tablist">
-												<li class="nav-item"><a class="nav-link active"
-													href="<%=request.getContextPath()%>/backstage/member/getAllMember.jsp">使用中</a></li>
-												<li class="nav-item"><a class="nav-link"
-													href="<%=request.getContextPath()%>/backstage/member/getAllMemberNowork.jsp">停用中</a></li>
-
-											</ul>
-
-
-										</div>
-									</div>
-								</div>
+								
 
 								<div class="card-body" style="overflow: auto">
 									<div class="col-lg">
