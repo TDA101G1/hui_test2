@@ -43,7 +43,7 @@
           <div class="descrpit">
             <h3>您請求的表單已經失效了</h3>
             <p><span class="seconds">10</span>秒後將幫助您回到首頁</p>
-            <p>如果沒有自動跳轉您可以<a href="#">點擊這裡</a>回到首頁</p>
+            <p>如果沒有自動跳轉您可以<a href="<%=request.getContextPath()%>/index.jsp">點擊這裡</a>回到首頁</p>
           </div>
         </div>
       </div>

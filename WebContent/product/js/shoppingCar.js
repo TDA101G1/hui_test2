@@ -24,6 +24,7 @@ $("select").on("change", function(){
 	console.log($(this).find("option:selected").html());
 	console.log($(this).find("option:selected").attr("data-productdetail_id"));
 	console.log($(this).find("option:selected").attr("data-price"));
+	changeOption();
 //	clearTimeout(a);
 	
 	let product_Name = $(this).closest("tr").find(".productName").html();
@@ -58,13 +59,17 @@ $("select").on("change", function(){
 
 //選項變動時價格即時更新
 function changeOption(){
-  $("option:checked").each(function(){
+	$("option:checked").each(function(){
+	if($(this).attr("data-instock") < $(this).closest("tr").find(".input_quantity").val()){
+		$(this).closest("tr").find(".input_quantity").val($(this).attr("data-instock"));
+	}  
+	  
     let price = $(this).attr("data-price");
     $(this).closest("tr").find(".price p").html(price);
     let stock = "庫存"+$(this).attr("data-instock");
     $(this).closest("tr").find(".quantity i").html(stock);
     $(this).closest("tr").find(".input_quantity").attr("max", $(this).attr("data-instock"));
-  });
+	});
 }
 
 //查詢並將庫存小於1的按鈕設定為disabled
