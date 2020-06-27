@@ -13,7 +13,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>商品詳情</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/product/css/productDetail.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/product/vendors/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
@@ -382,8 +382,8 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
             <input type="hidden" name="state" id="write_state" value="1">
             <input type="hidden" id="write_id" value="${member.member_ID }">
-            <button type="submit" name="action" value="writeMail" class="btn btn-primary">送出</button>
-            <button class="writeMail btn btn-primary" type="button">送出Ajax</button>
+<!--             <button type="submit" name="action" value="writeMail" class="btn btn-primary">送出</button> -->
+            <button class="writeMail btn btn-primary" type="button">送出</button>
           </div>
           </form>
         </div>

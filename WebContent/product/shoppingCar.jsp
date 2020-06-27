@@ -9,7 +9,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>購物車</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/product/css/shoppingCar.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/product/vendors/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
@@ -158,9 +158,9 @@
           	<form action="<%=request.getContextPath()%>/ProductServlet.do" method="post">
           		<input type="hidden" name="action" value="goCheckout">
           		<input class="goods" type="hidden" name="goods" value="">
-          		<input class="checkout" type="submit" name="" value="確認結帳2">
+          		<input class="checkout" type="submit" name="" value="確認結帳">
           	</form>
-            <button class="checkout" type="button" name="button">確認結帳1</button>
+<!--             <button class="checkout" type="button" name="button">確認結帳1</button> -->
             <hr>
           </div>
         </div>

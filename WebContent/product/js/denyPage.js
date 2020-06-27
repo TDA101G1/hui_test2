@@ -1,3 +1,5 @@
+const contextPath = "/"+location.pathname.split("/")[1];
+
 //倒數計時與返回上一頁=====================================================
 if(window.Worker){
   console.log("此瀏覽器有支援Worker");
@@ -6,7 +8,7 @@ if(window.Worker){
     // console.log(e.data); //從背景執行緒取得訊息
     $(".seconds").html(e.data);
     if(e.data == 0){
-      window.location.href="#";
+    	window.location.href = contextPath + "/index.jsp";
       // history.back();
     }
   }
