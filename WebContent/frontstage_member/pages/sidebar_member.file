@@ -9,6 +9,7 @@
 					<a class="nav-link mx-auto" href="<%=request.getContextPath()%>/frontstage_member/MemberUpdate.jsp"><h5 class="font-weight-bold">個人中心</h4></a> 
 					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Order/Member_Order.jsp"><h5 class="font-weight-bold">管理訂單</h4></a>
 					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Schedule/Member_Schedule.jsp"><h5 class="font-weight-bold">我的行程</h4></a> 
+					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Schedule/Member_Share_Schedule.jsp"><h5 class="font-weight-bold">我的共享行程</h4></a> 
 					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Calendar/Member_Calendar.jsp"><h5 class="font-weight-bold">我的日曆</h4></a>
 					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/frontstage_member/member_Inbox/Member_Inbox.jsp"><h5 class="font-weight-bold">我的信箱</h4></a> 
 					<a class="nav-link font-weight-bold mx-auto" href="<%=request.getContextPath()%>/product/shoppingCar.jsp"><h5 class="font-weight-bold">我的購物車</h5></a> 
