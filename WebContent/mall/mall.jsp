@@ -192,7 +192,7 @@
         <div class="row productArea">
 <c:forEach items="${productList.all}" var="product">
 	<c:choose>
-		<c:when test="${product.product_Class=='套裝行程' && product.product_State==1}">
+		<c:when test="${product.product_Class=='套裝行程' && product.product_State==1 && param.action == null}">
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100" data-product_ID="${product.product_ID}" data-product_Class="${product.product_Class}">
               <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT" width="100%" height="120px"></a>
@@ -204,6 +204,7 @@
                 <p class="days"><i class="far fa-calendar-alt"></i>安排天數: ${i}</p>
                 <p class="price"><i class="fas fa-dollar-sign"></i>金額: <span></span></p>
                 <p class=""><i class="fab fa-gripfire"></i>瀏覽次數: ${product.product_Click_Rec}</p>
+                <p>13213213${product.product_State == 1 ? 上架中 : 下架中}</p>
                 <p class=""><i class="fas fa-map-marker-alt"></i>安排景點: ${product.product_Address}</p>
               </div>
               <div class="card-footer">
@@ -215,7 +216,7 @@
             </div>
           </div>
 		</c:when>
-		<c:when test="${product.product_Class!='套裝行程' && product.product_State==1}">
+		<c:when test="${product.product_Class!='套裝行程' && product.product_State==1 && param.action == null}">
           	<div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100"  data-product_ID="${product.product_ID}"  data-product_Class="${product.product_Class}">
               <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT" width="100%" height="120px"></a>
