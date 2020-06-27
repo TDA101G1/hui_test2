@@ -5,8 +5,6 @@
 <%
 EmployeeVO empVO = (EmployeeVO) request.getAttribute("empVO");
 
-
-
 EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
 
 
@@ -371,13 +369,9 @@ to get the desired effect
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>信件查詢</p>
+										<p>信箱</p>
 								</a></li>
-								<li class="nav-item"><a
-									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>新增信件</p>
-								</a></li>
+							
 
 							</ul></li>
 
@@ -718,7 +712,7 @@ to get the desired effect
 							<div class="input-group-prepend">
 								<span class="input-group-text">上傳檔案</span>
 							</div>
-							<div class="custom-file col-2">
+							<div class="custom-file ">
 								<input type="file" class="custom-file-input" name="emp_img"
 									accept="image/*" id="p_file"> <label
 									class="custom-file-label" for="p_file">Choose file</label>
@@ -852,7 +846,7 @@ to get the desired effect
 	//disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
 	//startDate:	            '2017/07/10',  // 起始日
 	//minDate:               '-1970-01-01', // 去除今日(不含)之前
-	//maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+	maxDate:               '+1970-01-01'  // 去除今日(不含)之後
 	});
 
 	// ----------------------------------------------------------以下用來排定無法選擇的日期-----------------------------------------------------------

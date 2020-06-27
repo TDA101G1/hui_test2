@@ -21,6 +21,10 @@ EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
 
 	List<ProductVO> list = pSvc.getAll().stream().filter(p -> p.getProduct_State() == 1)
 			.collect(Collectors.toList());
+	  Collections.reverse(list);
+      for (int i=0;i<list.size();i++){
+        
+      }
 	pageContext.setAttribute("AllpdVO", AllpdVO);
 	pageContext.setAttribute("list", list);
 

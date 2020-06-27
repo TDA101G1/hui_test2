@@ -41,7 +41,7 @@ public class EmployeeServlet extends HttpServlet {
 		if ("insert".equals(action)) { // 來自add.jsp的請求
 
 			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
-		
+
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
@@ -70,13 +70,6 @@ public class EmployeeServlet extends HttpServlet {
 					errorMsgs.put("emp_Pwd", "密碼請勿空白");
 				} else if (!emp_Pwd.trim().matches(emp_PwdReg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.put("emp_Pwd", "員工密碼: 只能是英文字母和數字 , 且長度必需在2到10之間");
-				} else if (emp_Pwd.trim().matches(emp_PwdReg)) {
-					EmployeeService empSvc = new EmployeeService();
-					List<EmployeeVO> list = empSvc.getAll().stream().filter(e -> e.getEmp_Pwd().equals(emp_Pwd))
-							.collect(Collectors.toList());
-					if (list.size() != 0) {
-						errorMsgs.put("emp_Pwd", "密碼已經被人註冊過囉!");
-					}
 				}
 
 				String emp_Name = req.getParameter("emp_Name").trim();
@@ -189,6 +182,11 @@ public class EmployeeServlet extends HttpServlet {
 
 				/*************************** 2.開始新增資料 ***************************************/
 				EmployeeService empSvc = new EmployeeService();
+				if (empVO.getEmp_Grade().equals("0")) {
+					empVO.setEmp_Name("客服人員-" + emp_Name);
+				} else {
+					empVO.setEmp_Name("主管-" + emp_Name);
+				}
 				empVO = empSvc.insert(empVO);
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String url = "/backstage/employee/getAllEMP.jsp";
@@ -222,6 +220,19 @@ public class EmployeeServlet extends HttpServlet {
 					errorMsgs.put("emp_Account", "帳號請勿空白");
 				} else if (!emp_Account.trim().matches(emp_AccountReg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.put("emp_Account", "員工帳號: 只能是英文字母和數字 , 且長度必需在2到10之間");
+				} else if (emp_Account.trim().matches(emp_AccountReg)) {
+					EmployeeService empSvc = new EmployeeService();
+					EmployeeVO empVO = new EmployeeVO();
+					empVO = empSvc.getOne(emp_ID);
+					if (!(empVO.getEmp_Account().equals(emp_Account))) {
+						List<EmployeeVO> list = empSvc.getAll().stream()
+								.filter(e -> e.getEmp_Account().equals(emp_Account)).collect(Collectors.toList());
+						if (list.size() != 0) {
+							errorMsgs.put("emp_Account", "帳號已經被人註冊過囉!");
+
+						}
+					}
+
 				}
 
 				String emp_Pwd = req.getParameter("emp_Pwd").trim();
@@ -345,6 +356,13 @@ public class EmployeeServlet extends HttpServlet {
 
 				/*************************** 2.開始修改資料 ***************************************/
 				EmployeeService empSvc = new EmployeeService();
+
+				if (empVO.getEmp_Grade().equals("0")) {
+					emp_Name = "客服人員-" + emp_Name;
+				} else {
+					emp_Name = "主管-" + emp_Name;
+				}
+
 				empVO = empSvc.update(emp_ID, emp_Account, emp_Pwd, emp_Grade, emp_Name, emp_Sex, emp_Birth, emp_Mail,
 						emp_Phone, emp_Address, emp_Est_Time, emp_img, emp_State);
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
@@ -378,9 +396,9 @@ public class EmployeeServlet extends HttpServlet {
 				} else if (!emp_ID.trim().matches(emp_IDReg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.put("emp_ID", "格式錯誤，員編號碼只能是EID開頭加上六個數字");
 				}
-				
+
 				req.setAttribute("emp_ID", emp_ID);
-				
+
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/backstage/employee/getAllEMP.jsp");
@@ -430,6 +448,20 @@ public class EmployeeServlet extends HttpServlet {
 
 				EmployeeService empSvc = new EmployeeService();
 				EmployeeVO empVO = empSvc.getOne(emp_ID);
+
+				String realName = "";
+
+				if (empVO.getEmp_Grade().equals("0")) {
+					String Name = empVO.getEmp_Name();
+					String[] parts = Name.split("客服人員-");
+					realName = parts[1];
+					empVO.setEmp_Name(realName);
+				} else {
+					String Name = empVO.getEmp_Name();
+					String[] parts = Name.split("主管-");
+					realName = parts[1];
+					empVO.setEmp_Name(realName);
+				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("empVO", empVO); // 資料庫取出的empVO物件,存入req

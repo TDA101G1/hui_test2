@@ -378,13 +378,9 @@ to get the desired effect
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>信件查詢</p>
+										<p>信箱</p>
 								</a></li>
-								<li class="nav-item"><a
-									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>新增信件</p>
-								</a></li>
+						
 
 							</ul></li>
 

@@ -1,7 +1,7 @@
 <%@page import="com.employee.model.EmployeeVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.order_master.model.*"%>
 <%@ page import="com.member.model.*"%>
 <%@ page import="java.util.*"%>
@@ -73,27 +73,41 @@ div.pagination {
 .paginationa
 
 
+
+
 :hover
+
+
 
 
 :not
 
+
  
+
 
 (
 .active
 
+
  
+
 
 ){
 background-color
 
 
+
+
 :
+
 
  
 
+
 #ddd
+
+
 
 
 ;
@@ -289,8 +303,8 @@ to get the desired effect
 
 	List<MemberVO> AllmVO = mSvc.getAll();
 
-	List<Order_MasterVO> list = omSvc.getAll().stream().filter(p -> p.getOrder_Master_ID().equals(omVO.getOrder_Master_ID()))
-			.collect(Collectors.toList());
+	List<Order_MasterVO> list = omSvc.getAll().stream()
+			.filter(p -> p.getOrder_Master_ID().equals(omVO.getOrder_Master_ID())).collect(Collectors.toList());
 
 	pageContext.setAttribute("list", list);
 	pageContext.setAttribute("AllmVO", AllmVO);
@@ -388,13 +402,9 @@ to get the desired effect
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>信件查詢</p>
+										<p>信箱</p>
 								</a></li>
-								<li class="nav-item"><a
-									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>新增信件</p>
-								</a></li>
+
 
 							</ul></li>
 
@@ -527,9 +537,8 @@ to get the desired effect
 								ACTION="<%=request.getContextPath()%>/backstage/order_master/order_master.do">
 
 								<input type="text" id="search" name="order_Master_ID"
-									placeholder="請輸入訂單編號"
-									value="${order_Master_ID}" />
-								<input type="hidden" name="action" value="getOne"> <span
+									placeholder="請輸入訂單編號" value="${order_Master_ID}" /> <input
+									type="hidden" name="action" value="getOne"> <span
 									class="searchIcon"><button class="btn btn-navbar"
 										type="submit">
 										<i class="fas fa-search"></i>
@@ -543,14 +552,9 @@ to get the desired effect
 
 						<div class="card col-12">
 
-							<div class="card-header">
-
-
-							</div>
+							<div class="card-header"></div>
 							<div class="card-title">
-								<div class="col">
-							
-								</div>
+								<div class="col"></div>
 
 								<div class="card-body" style="overflow: auto">
 									<div class="col-lg">
@@ -579,9 +583,9 @@ to get the desired effect
 											<tbody>
 
 
-												<c:forEach var="omVO" items="${list}" >
+												<c:forEach var="omVO" items="${list}">
 
-											
+
 
 
 													<tr>
@@ -613,7 +617,9 @@ to get the desired effect
 															</c:if>
 
 														</c:forEach>
-														<td><fmt:formatDate type="both" value="${omVO.order_Master_TimeStamp}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+														<td><fmt:formatDate type="both"
+																value="${omVO.order_Master_TimeStamp}"
+																pattern="yyyy-MM-dd HH:mm:ss" /></td>
 
 														<td>
 															<FORM METHOD="post"
@@ -629,9 +635,8 @@ to get the desired effect
 
 											</tbody>
 										</table>
-
-
-
+														
+								
 									</div>
 
 								</div>

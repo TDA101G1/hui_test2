@@ -388,13 +388,9 @@ to get the desired effect
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>信件查詢</p>
+										<p>信箱</p>
 								</a></li>
-								<li class="nav-item"><a
-									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>新增信件</p>
-								</a></li>
+							
 
 							</ul></li>
 
@@ -556,9 +552,9 @@ to get the desired effect
 											<ul class="nav nav-tabs" id="custom-tabs-one-tab"
 												role="tablist">
 												<li class="nav-item"><a class="nav-link "
-													href="<%=request.getContextPath()%>/backstage/Order_Master/getAllOrder_Master.jsp">使用中</a></li>
+													href="<%=request.getContextPath()%>/backstage/Order_Master/getAllOrder_Master.jsp">正常</a></li>
 												<li class="nav-item"><a class="nav-link active"
-													href="<%=request.getContextPath()%>/backstage/Order_Master/getAllOrder_MasterNobuy.jsp">停用中</a></li>
+													href="<%=request.getContextPath()%>/backstage/Order_Master/getAllOrder_MasterNobuy.jsp">老闆無情退單</a></li>
 
 											</ul>
 
