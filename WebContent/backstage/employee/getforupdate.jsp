@@ -3,7 +3,7 @@
 <%@ page import="com.employee.model.*"%>
 <%@ page import="java.util.*"%>
 <%
-	EmployeeVO empVO = (EmployeeVO) request.getAttribute("empVO");
+EmployeeVO empVO = (EmployeeVO) request.getAttribute("empVO");
 EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
  %>
 <!DOCTYPE html>
@@ -366,13 +366,9 @@ to get the desired effect
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>信件查詢</p>
+										<p>信箱</p>
 								</a></li>
-								<li class="nav-item"><a
-									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>新增信件</p>
-								</a></li>
+							
 
 							</ul></li>
 
@@ -481,7 +477,7 @@ to get the desired effect
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1 class="m-0 text-dark">新增員工</h1>
+							<h1 class="m-0 text-dark">修改員工</h1>
 
 							<!-- Left navbar links -->
 

@@ -5,7 +5,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>您的請求已經失效</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/product/css/denyPage.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/product/vendors/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
@@ -14,8 +14,23 @@
     <script src="<%=request.getContextPath()%>/product/vendors/jquery/jquery-3.4.1.min.js"></script>
     <script src="<%=request.getContextPath()%>/product/vendors/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel=stylesheet type="text/css" href="<%=request.getContextPath()%>/vendors/css/footer.css">
+  <style>
+  	body{
+  		padding-top: 0;
+  	}
+  	
+  	.navbar-light .navbar-nav .nav-link {
+    color: rgba(0,0,0,.5) !important;
+	}
+	
+	.nav-link{
+		display:inline-block !important;
+	}
+  </style>
   </head>
   <body>
+  <%@include file="../frontstage_member/pages/header.file" %>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-6 col-md-3">
@@ -36,6 +51,7 @@
     <!-- container -->
     </div>
 <%@include file="../frontstage_member/pages/footer.file" %>
+	<script src="<%=request.getContextPath()%>/vendors/js/footer.js"></script>
     <script src="<%=request.getContextPath()%>/product/js/denyPage.js"></script>
   </body>
 </html>

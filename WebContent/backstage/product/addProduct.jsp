@@ -6,10 +6,8 @@
 <%
 	ProductVO pVO = (ProductVO) request.getAttribute("pVO");
 	ProductDetailVO pdVO = (ProductDetailVO) request.getAttribute("pdVO");
-	
-	
-	EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
 
+	EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,7 +114,19 @@ div.pagination {
 
 
 
+
+
+
+
+
+
 :hover
+
+
+
+
+
+
 
 
 
@@ -178,7 +188,13 @@ div.pagination {
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -221,7 +237,13 @@ div.pagination {
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -284,7 +306,16 @@ background-color
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -326,7 +357,16 @@ background-color
 
 
 
+
+
+
 #ddd
+
+
+
+
+
+
 
 
 
@@ -739,13 +779,9 @@ to get the desired effect
 								<li class="nav-item"><a
 									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>信件查詢</p>
+										<p>信箱</p>
 								</a></li>
-								<li class="nav-item"><a
-									href="<%=request.getContextPath()%>/backstage/inbox/Email.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>新增信件</p>
-								</a></li>
+
 
 							</ul></li>
 
@@ -909,23 +945,23 @@ to get the desired effect
 
 												<input type="file" id="p_file1" accept="image/*"
 													name="product_Img2" class="col-2">
-												
+
 												<input type="file" id="p_file2" accept="image/*"
 													name="product_Img3" class="col-2">
 												<input type="file" id="p_file3" accept="image/*"
 													name="product_Img4" class="col-2">
 												<input type="file" id="p_file4" accept="image/*"
 													name="product_Img5" class="col-2">
-												
-												
-												
+
+
+
 												<br>
 												<p style="color: red">${errorMsgs.product_Img1}</p>
 												<p style="color: red">${errorMsgs.product_Img2}</p>
 												<p style="color: red">${errorMsgs.product_Img3}</p>
 												<p style="color: red">${errorMsgs.product_Img4}</p>
 												<p style="color: red">${errorMsgs.product_Img5}</p>
-												
+
 												<br>
 												<div class="row">
 
@@ -970,7 +1006,7 @@ to get the desired effect
 													<p style="color: red">${errorMsgs.product_Name}</p>
 
 
-						<div class="input-group mb-3">
+													<div class="input-group mb-3">
 														<div class="input-group-prepend">
 															<span class="input-group-text" id="basic-addon1">景點類別:</span>
 														</div>
@@ -1036,187 +1072,185 @@ to get the desired effect
 															<option value="連江縣">連江縣</option>
 															<option value="澎湖縣">澎湖縣</option>
 														</select>
-													</div>
-
-													<p style="color: red">${errorMsgs.product_County}</p>
 
 
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">景點地址:</span>
+														<p style="color: red">${errorMsgs.product_County}</p>
+
+														<br>
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">景點地址:</span>
+															</div>
+
+															<input type="text" class="form-control col-6 "
+																placeholder="Address" aria-describedby="basic-addon1"
+																id="Address"
+																value="<%=(pVO == null) ? "吳鳳路81巷20號1樓" : pVO.getProduct_Address()%>"
+																name="product_Address" />
+
+															<p style="color: red">${errorMsgs.product_Address}</p>
+
+															<button type="button" id="getGPS"
+																class="btn btn-secondary ">取得經緯度</button>
+
+															</button>
+
+
+														</div>
+														<div>
+															<p style="color: red">${errorMsgs.emp_Address}</p>
 														</div>
 
-														<input type="text" class="form-control col-6 "
-															placeholder="Address" aria-describedby="basic-addon1"
-															id="Address"
-															value="<%=(pVO == null) ? "吳鳳路81巷20號1樓" : pVO.getProduct_Address()%>"
-															name="product_Address" />
-
-														<p style="color: red">${errorMsgs.product_Address}</p>
-
-														<button type="button" id="getGPS"
-															class="btn btn-secondary ">取得經緯度</button>
-
-														</button>
 
 
-													</div>
-													<div>
-														<p style="color: red">${errorMsgs.emp_Address}</p>
-													</div>
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">經度:</span>
+															</div>
+
+															<input type="text" class="form-control col-1 "
+																placeholder="log" aria-describedby="basic-addon1"
+																id="lng"
+																value="<%=(pVO == null) ? "" : pVO.getProduct_Longitude()%>"
+																name="product_Longitude" />
+														</div>
+														<p style="color: red">${errorMsgs.product_Longitude}</p>
 
 
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">緯度:</span>
+															</div>
 
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">經度:</span>
+															<input type="text" class="form-control col-1 "
+																placeholder="lat" aria-describedby="basic-addon1"
+																id="lat"
+																value="<%=(pVO == null) ? "" : pVO.getProduct_Latitutde()%>"
+																name="product_Latitutde" />
+														</div>
+														<p style="color: red">${errorMsgs.product_Latitutde}</p>
+
+
+														<div id="googleMap">
+															<iframe width="600" height="450" frameborder="0"
+																style="border: 0"
+																src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBPJRhviSK2E8-7hm5IIc1HLh0PbmPeTEA&q=台灣省"
+																allowfullscreen> </iframe>
 														</div>
 
-														<input type="text" class="form-control col-1 "
-															placeholder="log" aria-describedby="basic-addon1"
-															id="lng"
-															value="<%=(pVO == null) ? "" : pVO.getProduct_Longitude()%>"
-															name="product_Longitude" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Longitude}</p>
+														<br>
 
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">平均停留時間:</span>
+															</div>
 
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">緯度:</span>
+															<input type="text" class="form-control col-1 "
+																placeholder="Staytime" aria-describedby="basic-addon1"
+																value="<%=pVO == null ? 0.0 : pVO.getProduct_Staytime()%>"
+																name="product_Staytime" />
 														</div>
-
-														<input type="text" class="form-control col-1 "
-															placeholder="lat" aria-describedby="basic-addon1"
-															id="lat"
-															value="<%=(pVO == null) ? "" : pVO.getProduct_Latitutde()%>"
-															name="product_Latitutde" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Latitutde}</p>
+														<p style="color: red">${errorMsgs.product_Staytime}</p>
 
 
-													<div id="googleMap">
-														<iframe width="600" height="450" frameborder="0"
-															style="border: 0"
-															src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBPJRhviSK2E8-7hm5IIc1HLh0PbmPeTEA&q=台灣省"
-															allowfullscreen> </iframe>
-													</div>
 
-													<br>
 
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">平均停留時間:</span>
+
+
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">景點簡介:</span>
+															</div>
+
+															<input type="text" class="form-control col-6 "
+																placeholder="Name" aria-describedby="basic-addon1"
+																value="<%=(pVO == null) ? "123" : pVO.getProduct_Intro()%>"
+																name="product_Intro" />
 														</div>
-
-														<input type="text" class="form-control col-1 "
-															placeholder="Staytime" aria-describedby="basic-addon1"
-															value="<%=pVO == null ? 0.0 : pVO.getProduct_Staytime()%>"
-															name="product_Staytime" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Staytime}</p>
+														<p style="color: red">${errorMsgs.product_Intro}</p>
 
 
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">行程總覽:</span>
+															</div>
+															<textarea class="form-control"
+																name="product_Total_Schedule"
+																id="exampleFormControlTextarea1" rows="1"><%=(pVO == null) ? "123" : pVO.getProduct_Total_Schedule()%></textarea>
 
-
-
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">景點簡介:</span>
 														</div>
-
-														<input type="text" class="form-control col-6 "
-															placeholder="Name" aria-describedby="basic-addon1"
-															value="<%=(pVO == null) ? "123" : pVO.getProduct_Intro()%>"
-															name="product_Intro" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Intro}</p>
+														<p style="color: red">${errorMsgs.product_Total_Schedule}</p>
 
 
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">行程總覽:</span>
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">景點詳情:</span>
+															</div>
+															<textarea class="form-control" name="product_Info"
+																id="exampleFormControlTextarea1" rows="3"><%=(pVO == null) ? "123" : pVO.getProduct_Info()%></textarea>
+
 														</div>
-														<textarea class="form-control"
-															name="product_Total_Schedule"
-															id="exampleFormControlTextarea1" rows="1"
-															><%=(pVO == null) ? "123" : pVO.getProduct_Total_Schedule()%></textarea>
+														<p style="color: red">${errorMsgs.product_Info}</p>
 
-													</div>
-													<p style="color: red">${errorMsgs.product_Total_Schedule}</p>
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">景點規格:</span>
+															</div>
 
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">景點詳情:</span>
+															<input type="text" class="form-control col-2 "
+																placeholder="Spc" aria-describedby="basic-addon1"
+																value="<%=(pdVO == null) ? "" : pdVO.getProduct_Detail_Spc()%>"
+																name="product_Detail_Spc" />
 														</div>
-														<textarea class="form-control" name="product_Info"
-															id="exampleFormControlTextarea1" rows="3"
-															><%=(pVO == null) ? "123" : pVO.getProduct_Info()%></textarea>
+														<p style="color: red">${errorMsgs.product_Detail_Spc}</p>
 
-													</div>
-													<p style="color: red">${errorMsgs.product_Info}</p>
 
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">景點規格:</span>
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">商品價錢:</span>
+															</div>
+
+															<input type="number" min="0" max="99999"
+																class="form-control col-1 " placeholder="Money"
+																aria-describedby="basic-addon1"
+																value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Money()%>"
+																name="product_Detail_Money" />
 														</div>
-
-														<input type="text" class="form-control col-2 "
-															placeholder="Spc" aria-describedby="basic-addon1"
-															value="<%=(pdVO == null) ? "" : pdVO.getProduct_Detail_Spc()%>"
-															name="product_Detail_Spc" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Detail_Spc}</p>
+														<p style="color: red">${errorMsgs.product_Detail_Money}</p>
 
 
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">商品價錢:</span>
+
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">商品庫存量:</span>
+															</div>
+
+															<input type="number" min="0" max="999"
+																class="form-control col-1 " placeholder="INSTOCK"
+																aria-describedby="basic-addon1"
+																value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Instock()%>"
+																name="product_Detail_Instock" />
 														</div>
-
-														<input type="number" min="0" max="99999"
-															class="form-control col-1 " placeholder="Money"
-															aria-describedby="basic-addon1"
-															value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Money()%>"
-															name="product_Detail_Money" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Detail_Money}</p>
+														<p style="color: red">${errorMsgs.product_Detail_Instock}</p>
 
 
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<span class="input-group-text" id="basic-addon1">商品安全量:</span>
+															</div>
 
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">商品庫存量:</span>
+															<input type="number" min="0" max="999"
+																class="form-control col-1 " placeholder="SAFTYSTOCK"
+																aria-describedby="basic-addon1"
+																value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Saftystock()%>"
+																name="product_Detail_Saftystock" />
 														</div>
-
-														<input type="number" min="0" max="999"
-															class="form-control col-1 " placeholder="INSTOCK"
-															aria-describedby="basic-addon1"
-															value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Instock()%>"
-															name="product_Detail_Instock" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Detail_Instock}</p>
-
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">商品安全量:</span>
-														</div>
-
-														<input type="number" min="0" max="999"
-															class="form-control col-1 " placeholder="SAFTYSTOCK"
-															aria-describedby="basic-addon1"
-															value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Saftystock()%>"
-															name="product_Detail_Saftystock" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Detail_Saftystock}</p>
+														<p style="color: red">${errorMsgs.product_Detail_Saftystock}</p>
 											</table>
 
 
 											<button type="button" class="btn">
-												
+
 												<input type="hidden" name="action" value="insert"> <input
 													class="btn btn-secondary active" type="submit" value="送出">
 

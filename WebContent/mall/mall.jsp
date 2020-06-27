@@ -26,8 +26,7 @@
   <link href="css/shop-homepage.css" rel="stylesheet">
   <script src="./vendor/jquery/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-  <link rel=stylesheet type="text/css"
-	href="<%=request.getContextPath()%>/vendors/css/footer.css">
+  <link rel=stylesheet type="text/css" href="<%=request.getContextPath()%>/vendors/css/footer.css">
   <style>
   	body{
   		padding-top: 0;

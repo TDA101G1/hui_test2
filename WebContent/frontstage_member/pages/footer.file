@@ -1,5 +1,9 @@
- <div class="contain-fliud">
-        <footer class="footer">
+<body class="d-flex flex-column">
+  <div id="page-content">
+
+  </div>
+  <footer id="sticky-footer" class="">
+ <div class="contain">
             <div class="row justify-content-center">
                 <div class="col col-md-2">
                     <div class="">
@@ -9,38 +13,39 @@
 
                 <div class="col col-md-2 offset">
                     <div class="back">
-                        <img src="https://picsum.photos/200/200/?random=5" class="turn_over">
+                        <img src="" class="turn_over">
                     </div>
                     <div class="front">
-                        <a href="#"><img src="https://picsum.photos/200/200/?random=1"></a>
+                        <a href="#"><img src=""></a>
                     </div>
                 </div>
                 <div class="col col-md-2 offset">
                     <div class="back">
-                        <img src="https://picsum.photos/200/200/?random=5" class="turn_over">
+                        <img src="" class="turn_over">
                     </div>
                     <div class="front">
-                        <a href="#"><img src="https://picsum.photos/200/200/?random=1"></a>
+                        <a href="#"><img src=""></a>
                     </div>
                 </div>
                 <div class="col col-md-2 offset">
                     <div class="back">
-                        <img src="https://picsum.photos/200/200/?random=5" class="turn_over">
+                        <img src="" class="turn_over">
                     </div>
                     <div class="front">
-                        <a href="#"><img src="https://picsum.photos/200/200/?random=1"></a>
+                        <a href="#"><img src=""></a>
                     </div>
                 </div>
                 <div class="col col-md-2 offset">
                     <div class="back">
-                        <img src="https://picsum.photos/200/200/?random=5" class="turn_over">
+                        <img src="" class="turn_over">
                     </div>
                     <div class="front">
-                        <a href="#"><img src="https://picsum.photos/200/200/?random=1"></a>
+                        <a href="#"><img src=""></a>
                     </div>
                 </div>
                 
                 
             </div>
-        </footer>
     </div>
+  </footer>
+</body>
