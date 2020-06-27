@@ -364,8 +364,8 @@ div.tab-content{
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
           <input type="hidden" name="state" id="write_state" value="1">
           <input type="hidden" id="write_id" value="${member.member_ID }">
-          <button type="submit" name="action" value="writeMail" class="btn btn-primary">送出</button>
-          <button class="writeMail btn btn-primary" type="button">送出Ajax</button>
+         <!--  <button type="submit" name="action" value="writeMail" class="btn btn-primary">送出</button> -->
+          <button class="writeMail btn btn-primary" type="button">送出</button>
         </div>
           </form>
       </div>

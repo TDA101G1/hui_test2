@@ -101,7 +101,7 @@ public class Member_CalendarApi extends HttpServlet {
 					}
 					System.out.println(finalSchedule.size());
 					ob.put("schedule", finalSchedule);
-					out.print(ob);
+					out.write(ob.toString());
 					out.close();
 
 				}
@@ -146,7 +146,7 @@ public class Member_CalendarApi extends HttpServlet {
 						
 						ob.put("result", true);
 						ob.put("update", new JSONObject(updateBean));
-						out.print(ob);
+						out.write(ob.toString());
 						out.close();
 					}
 				}

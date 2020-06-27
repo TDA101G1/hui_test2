@@ -313,7 +313,7 @@
 /* 			        		    alert(info.event.title + " was dropped on " + info.event.start.toISOString());
 			        		    alert(info.event.title + " was dropped on " + info.event.end); */
 
-			        		    if (!confirm("Are you sure about this change?")) {
+			        		    if (!confirm("確認進行修改嗎?")) {
 			        		      info.revert();
 			        		    }else{
 			        		    	$.ajax({
@@ -325,7 +325,19 @@
 			        						console.log("update schedule");
 			        					},
 			        					success: function(res){
-			        						console.log(res);
+			        						if(res.result == true){
+			        							Swal.fire({
+			        								icon: 'success',
+			        								title: '更新成功',
+			        								text: res.update.cust_Schedule_Name + '更新至' + res.update.cust_Schedule_Start_Time + " ~ " + res.update.cust_Schedule_End_Time
+			        							});
+			        						}else{
+			        							Swal.fire({
+			        								icon: 'error',
+			        								title: '更新失敗',
+			        								text: '請聯繫管理員'
+			        							});
+			        						}
 			        					}
 			        		    	})
 			        		    }

@@ -86,11 +86,14 @@ div.sidebar a.nav-link:hover{
 	CustomerizeService cService = new CustomerizeService();
 	List<CustomerizeVO> custs = new ArrayList<CustomerizeVO>();
 	
-	for(String cust_ID : cust_IDs){
-		CustomerizeVO cust = new CustomerizeVO();
-		cust.setCust_Schedule_ID(cust_ID);
-		cust = cService.select(cust);
-		custs.add(cust);
+	if(cust_IDs != null){
+		for(String cust_ID : cust_IDs){
+			CustomerizeVO cust = new CustomerizeVO();
+			cust.setCust_Schedule_ID(cust_ID);
+			cust = cService.select(cust);
+			custs.add(cust);
+		}
+		
 	}
 	pageContext.setAttribute("custsMaster", custs);
 	
