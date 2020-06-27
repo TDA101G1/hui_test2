@@ -1,10 +1,9 @@
-package com.customerize.controller;
+package com.customerize.websocket.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.customerize.websocket.controller.ScheduleRoom;
 import com.google.gson.Gson;
 
 import redis.clients.jedis.Jedis;

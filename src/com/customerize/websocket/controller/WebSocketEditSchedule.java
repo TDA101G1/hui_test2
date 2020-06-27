@@ -19,7 +19,6 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-import com.customerize.controller.JedisEditSchedule;
 import com.google.gson.Gson;
 
 @ServerEndpoint("/TogetherWS/{cust_schedule_id}/{current_member_id}/{owner_member_id}")

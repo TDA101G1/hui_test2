@@ -878,8 +878,8 @@
   <div class="container-fluid">
     <div class="row align-items-center" id="first_row">
       <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3" style="padding: 0;">
-        <div class="input_title" data-schedule-id="${custVO.cust_Schedule_ID}" data-quantity="${custVO.cust_Quantity}" data-position="${custVO.cust_Position}"
-          data-selected-county="${custVO.cust_Selected_County}" data-roomName="" 
+        <div class="input_title" data-schedule-id="${custVO.cust_Schedule_ID}" data-quantity="${custVO.cust_Quantity}"
+        data-position="${custVO.cust_Position}" data-selected-county="${custVO.cust_Selected_County}"
           data-owner-member="${custVO.member_ID}" data-current-member="${member.member_ID}" data-member-email="${member.member_Mail}">
           <div class="text_title">
             <p class="text_title"><%=custVO.getCust_Schedule_Name() == null?"請輸入標題 ":custVO.getCust_Schedule_Name()%> </p>
@@ -1288,12 +1288,8 @@
       let cust_schedule_id = $("div.input_title").attr("data-schedule-id");
       let owner_member_id = $("div.input_title").attr("data-owner-member");
       let current_member_id = $("div.input_title").attr("data-current-member");
-      let roomName = $("div.input_title").attr("data-roomName");
-      if(roomName.length == 0){
-        roomName = null;
-      }
+
       var Mypoint = "/TogetherWS/"+ cust_schedule_id + "/" + current_member_id + "/" + owner_member_id;
-      // var Mypoint = "/TogetherWS/"+ cust_schedule_id + "/" + roomName + "/" + userName;
       var host = window.location.host;
       var path = window.location.pathname;
       var webCtx = path.substring(0, path.indexOf('/', 1));
