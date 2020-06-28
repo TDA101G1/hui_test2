@@ -240,7 +240,7 @@
 	                                    <span class="input-group-addon"><i class="fas fa-credit-card"></i></span>
 	                                    <select class="form-control" name="creditcard" id="creditcard" >
 	                                    	<c:forEach var="card" items="${creditcard }">
-	                                    		<option value="${card.credit_Card_Number }">${card.credit_Card_Number }</option>
+	                                    		<option class="creditcard" value="${card.credit_Card_Number }">${card.credit_Card_Number }</option>
 	                                    	</c:forEach>
 	                                    </select>
 	                                <a class= "btn btn-primary" href="<%=request.getContextPath() %>/frontstage_member/member_Credit_Card/Member_Credit_Card.jsp" type="button">新增</a>
@@ -287,6 +287,19 @@
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 		<script src="<%=request.getContextPath()%>/vendors/addressZip/twzipcode.js"></script>
 		<script type="text/javascript">
+		
+		$(window).on("load", function(){
+			  creditCardReplace();
+			});
+		
+		function creditCardReplace(){
+			$(".creditcard").each(function(){
+				let origin = $(this).val();
+				let foo = origin.substring(0,4)+"-xxxx-xxxx-"+origin.slice(-4);
+				$(this).html(foo);
+			});
+		}
+		
 		
 		$("#birthday").flatpickr({
 		    altInput: true,

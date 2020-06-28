@@ -257,13 +257,16 @@
 							$(detail).each(function(index, value){
 								finalDetail += ((index+1) + "." + value + "\n")
 							});
-							console.log(finalDetail);
+/* 							console.log(finalDetail);
+							console.log('endtime=' + custMaster.cust_Schedule_End_Time); */
+							let endtime = flatpickr.parseDate(custMaster.cust_Schedule_End_Time, 'Y-m-d');
+							let endtime_hour = endtime.setTime(endtime.setHours(endtime.getHours() + 20));
 							let singleEvent = {
 									id: custMaster.cust_Schedule_ID,
 									title: custMaster.cust_Schedule_Name,
 									description: finalDetail,
 									start: custMaster.cust_Schedule_Start_Time,
-									end: custMaster.cust_Schedule_End_Time
+									end: endtime_hour
 							}
 							schedule_data.push(singleEvent);
 						});
@@ -296,6 +299,7 @@
 					        },
 				
 					        eventTextColor: 'white',
+					        displayEventTime: false,
 					        eventDurationEditable: false,
 			        		eventDrop: function(info) {
 			        			let startdate = flatpickr.formatDate(info.event.start, 'Y-m-d');
