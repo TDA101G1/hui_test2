@@ -41,7 +41,7 @@ public class CustomerizeDAO_JDBC implements CustomerizeDAO {
 	private static final String getAll = "SELECT CUST_SCHEDULE_ID, MEMBER_ID, CUST_SCHEDULE_NAME"
 			+ ", CUST_SCHEDULE_CLICK_RECORD, CUST_SCHEDULE_START_TIME, CUST_SCHEDULE_END_TIME"
 			+ ", CUST_SCHEDULE_TOTAL_DAY, CUST_SCHEDULE_SHARE, CUST_SCHEDULE_STATE, CUST_SCHEDULE_LAST_TIMESTAMP"
-			+ ", CUST_POSITION, CUST_QUANTITY, CUST_SELECTED_COUNTY, CUST_SCHEDULE_IMG FROM CUSTOMERIZE_SCHEDULE";
+			+ ", CUST_POSITION, CUST_QUANTITY, CUST_SELECTED_COUNTY FROM CUSTOMERIZE_SCHEDULE";
 	
 	@Override
 	public CustomerizeVO insert(CustomerizeVO custVO) {
@@ -280,7 +280,7 @@ public class CustomerizeDAO_JDBC implements CustomerizeDAO {
 				cust.setCust_Position(rs.getString(11));
 				cust.setCust_Quantity(rs.getInt(12));
 				cust.setCust_Selected_County(rs.getString(13));
-				cust.setCust_Schedule_Img(rs.getBytes(14));
+//				cust.setCust_Schedule_Img(rs.getBytes(14));        
 				custs.add(cust);
 			}
 		} catch (SQLException e) {

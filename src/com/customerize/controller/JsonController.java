@@ -180,8 +180,8 @@ public class JsonController extends HttpServlet {
 				ProductService productDao = new ProductService();
 				CustomerizeVO customerizeVO = new CustomerizeVO();
 				ProductVO productVO = new ProductVO();
-				Map<String, List<CustDetailVO>> details = new HashMap<>();
-				List<CustDetailVO> CustDetailVOs = new ArrayList<>();
+				Map<String, CustomerizeVO> customerize = new HashMap<>();
+//				List<CustDetailVO> CustDetailVOs = new ArrayList<>();
 				String cust_schedule_data = req.getParameter("cust_schedule_data");
 				String cust_schedule_detail_data = req.getParameter("cust_schedule_detail_data");
 				System.out.println("cust_schedule_data = " +cust_schedule_data);
@@ -222,7 +222,7 @@ public class JsonController extends HttpServlet {
 								customerizeVO.setCust_Schedule_End_Time(Date.valueOf(last_day));
 								customerizeVO.setCust_Schedule_Total_Day(Integer.parseInt(total_day));
 								customerizeVO.setCust_Schedule_Img(productDao.select(productVO).getProduct_Img1());
-								customerizeDao.update(customerizeVO);
+								customerizeVO = customerizeDao.update(customerizeVO);
 							}
 						}
 						bean.setProduct_ID(json_obj.getString("product_ID"));
@@ -231,13 +231,13 @@ public class JsonController extends HttpServlet {
 						bean.setCust_Schedule_Detail_Seq(Integer.parseInt(json_obj.getString("sort")));
 						bean.setCust_Schedule_Detail_Date(Date.valueOf(json_obj.getString("date")));
 
-						CustDetailVO result = new CustDetailVO();
-						result = custDetailDao.insert(bean);
-						CustDetailVOs.add(result);
-						details.put("result", CustDetailVOs);
+//						CustDetailVO result = new CustDetailVO();
+						custDetailDao.insert(bean);			//insert行程細節
+//						CustDetailVOs.add(result);
+						customerize.put("result", customerizeVO);    //為了傳回最後修改時間
 					}
 				}
-				JSONObject json = new JSONObject(details);
+				JSONObject json = new JSONObject(customerize);
 				out.println(json);
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -246,6 +246,7 @@ public class JsonController extends HttpServlet {
 		
 		/*==============================載入使用者的行程細節==============================*/	
 		if(action.equals("load_schedule")) {
+			System.out.println("進來了123");
 			String cust_schedule_id = req.getParameter("cust_schedule_id");
 			String selected_county = req.getParameter("selected_county");
 			Map<String, String[]> map = new TreeMap<>();
