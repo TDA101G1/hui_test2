@@ -175,16 +175,16 @@ public class ProductVO implements Serializable, Comparable<ProductVO>{
 	public void setProduct_Img5(byte[] product_Img5) {
 		this.product_Img5 = product_Img5;
 	}
-//	@Override
-//	public String toString() {
-//		return "ProductVO [product_ID=" + product_ID + ", product_Name=" + product_Name + ", product_Intro="
-//				+ product_Intro + ", product_Staytime=" + product_Staytime + ", product_Address=" + product_Address
-//				+ ", product_Latitutde=" + product_Latitutde + ", product_Longitude=" + product_Longitude
-//				+ ", product_County=" + product_County + ", product_Class=" + product_Class + ", product_Style="
-//				+ product_Style + ", product_Seq=" + product_Seq + ", product_State=" + product_State
-//				+ ", product_Sale_Rec=" + product_Sale_Rec + ", product_Click_Rec=" + product_Click_Rec
-//				+ ", product_Info=" + product_Info + ", product_Total_Schedule=" + product_Total_Schedule;
-//	}
+	@Override
+	public String toString() {
+		return "ProductVO [product_ID=" + product_ID + ", product_Name=" + product_Name + ", product_Intro="
+				+ product_Intro + ", product_Staytime=" + product_Staytime + ", product_Address=" + product_Address
+				+ ", product_Latitutde=" + product_Latitutde + ", product_Longitude=" + product_Longitude
+				+ ", product_County=" + product_County + ", product_Class=" + product_Class + ", product_Style="
+				+ product_Style + ", product_Seq=" + product_Seq + ", product_State=" + product_State
+				+ ", product_Sale_Rec=" + product_Sale_Rec + ", product_Click_Rec=" + product_Click_Rec
+				+ ", product_Info=" + product_Info + ", product_Total_Schedule=" + product_Total_Schedule;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
