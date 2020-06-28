@@ -270,7 +270,7 @@
 							}
 							schedule_data.push(singleEvent);
 						});
-						console.log(schedule_data);
+						/* console.log(schedule_data); */
 					      var calendarEl = document.getElementById('calendar');
 					  	
 					      var calendar = new FullCalendar.Calendar(calendarEl, {
