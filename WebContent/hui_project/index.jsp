@@ -562,6 +562,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
+        function initMap(){}
         $(function () {
             /*==================================================若輸入資料有錯誤，原本選取的地點回復==================================================*/
             let return_county = $("input#return_bean").val()
