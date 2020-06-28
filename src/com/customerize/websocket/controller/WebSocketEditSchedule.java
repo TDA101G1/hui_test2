@@ -80,7 +80,6 @@ public class WebSocketEditSchedule {
 
 	@OnMessage
 	public void onMessage(Session userSession, @PathParam("cust_schedule_id") String cust_schedule_id, String message) {
-//		List<ScheduleRoom> master_scheduleRoom = JedisEditSchedule.getRoomName(cust_schedule_id);       //先檢查此行程主檔ID有沒有創建過房間
 		Set<MemberDetail> rooms = JedisEditSchedule.getRoomMembers(cust_schedule_id);
 		Set<String> member_ids = sessionMap.keySet();
 		for(MemberDetail room : rooms) {
