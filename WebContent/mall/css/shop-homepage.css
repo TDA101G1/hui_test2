@@ -3,6 +3,14 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
+@media (max-width: 991px){
+    	  label.label_area{
+    	    display:inline-block !important;
+    	  }
+    	}
+ 
+ 
+ 
 body {
   padding-top: 0;
   font-size: 16;

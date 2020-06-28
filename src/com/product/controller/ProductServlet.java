@@ -83,8 +83,18 @@ public class ProductServlet extends HttpServlet {
 		
 		if("filterClass".equals(action)) {
 			String product_Class = req.getParameter("product_Class");
+			System.out.println(product_Class);
+			JSONArray jsonArray = new JSONArray(req.getParameter("checkedArr"));
 			res.getWriter().write(new JSONObject().put(
-					"filtedClass", new ProductService().getFilterClass(product_Class)).toString());
+					"filtedClass", new ProductService().getFilterClass(product_Class, jsonArray)).toString());
+		}
+		
+		if("findKeyword".equals(action)) {
+			String keyword = req.getParameter("keyword");
+			if(keyword!=null) {
+				res.getWriter().write(new JSONObject().put(
+				"reply", new ProductService().findKeyword(keyword)).toString());
+			}
 		}
 		
 		if("goDetailPage".equals(action)) {

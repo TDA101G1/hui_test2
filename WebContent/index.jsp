@@ -353,32 +353,32 @@
       </div>
     </div>
     <div class="row">
-      <div class="location_img col-12 col-lg-8 col-sm-12" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/taipei.jpg'); height: 300px; ">
-        <div class="img_location"><h4>台北</h4></div>
+      <div class="location_img col-12 col-lg-8 col-sm-12" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/taipei.jpg'); height: 300px;" onclick="window.location.href='mall/mall.jsp?county=Taipei'">
+        <div class="img_location"><h3>台北</h3></div>
       </div>
       <div class="col-12 col-lg-4">
         <div class="row">
-          <div class="location_img col col-lg-12 col-sm-6 " style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/kaohsiung.jpg'); height: 150px;">
+          <div class="location_img col col-lg-12 col-sm-6 " style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/kaohsiung.jpg'); height: 150px;" onclick="window.location.href='mall/mall.jsp?county=Kaohsiung'">
             <div class="img_location"><h5>高雄</h5></div>
           </div>
-          <div class=" location_img col col-lg-12 col-sm-6" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/hsinchu.jpg'); height: 150px;">
-            <div class="img_location"><h5>新竹</h5></div>
+          <div class=" location_img col col-lg-12 col-sm-6" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/hsinchu.jpg'); height: 150px;" onclick="window.location.href='mall/mall.jsp?county=Chiayi'">
+            <div class="img_location"><h5>嘉義</h5></div>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="location_img col col-lg-3 d-none d-sm-flex" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/tainan.jpg'); height: 150px;">
-        <div class="img_location"><h5>苗栗</h5></div>
+      <div class="location_img col col-lg-3 d-none d-sm-flex" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/tainan.jpg'); height: 150px;" onclick="window.location.href='mall/mall.jsp?county=Tainan'">
+        <div class="img_location"><h5>台南</h5></div>
       </div>
-      <div class="location_img col col-lg-3 d-none d-sm-flex" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/taoyuan.jpg'); height: 150px;">
+      <div class="location_img col col-lg-3 d-none d-sm-flex" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/taoyuan.jpg'); height: 150px;" onclick="window.location.href='mall/mall.jsp?county=Taoyuan'">
         <div class="img_location"><h5>桃園</h5></div>
       </div>
-      <div class="location_img col col-lg-3 d-none d-sm-flex" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/taichung.jpg'); height: 150px;">
+      <div class="location_img col col-lg-3 d-none d-sm-flex" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/taichung.jpg'); height: 150px;" onclick="window.location.href='mall/mall.jsp?county=Taichung'">
         <div class="img_location"><h5>台中</h5></div>
       </div>
-      <div class="location_img col col-lg-3 d-none d-sm-flex" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/taroko.jpg'); height: 150px;">
-        <div class="img_location"><h5>花蓮</h5></div>
+      <div class="location_img col col-lg-3 d-none d-sm-flex" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/taroko.jpg'); height: 150px;" onclick="window.location.href='mall/mall.jsp?county=Nantou'">
+        <div class="img_location"><h5>南投</h5></div>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -518,13 +518,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="location_img col col-lg-4 col-sm-12" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/food1.jpg'); height: 250px;">
+      <div class="location_img col col-lg-4 col-sm-12" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/food1.jpg'); height: 250px;" onclick="window.location.href='mall/mall.jsp?action=3&county=Taipei'">
         <div class="img_location"><h4>台北美食</h4></div>
       </div>
-      <div class="location_img col col-lg-4 col-sm-12" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/food2.jpg'); height: 250px;">
+      <div class="location_img col col-lg-4 col-sm-12" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/food2.jpg'); height: 250px;" onclick="window.location.href='mall/mall.jsp?action=3&county=Taichung'">
         <div class="img_location"><h4>台中美食</h4></div>
       </div>
-      <div class="d-sm-none d-md-flex location_img col col-lg-4" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/food6.jpg'); height: 250px;">
+      <div class="d-sm-none d-md-flex location_img col col-lg-4" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/food6.jpg'); height: 250px;" onclick="window.location.href='mall/mall.jsp?action=3&county=Tainan'">
         <div class="img_location"><h4>台南美食</h4></div>
       </div>
     </div>
@@ -546,16 +546,16 @@
       </div>
     </div>
     <div class="row">
-      <div class="location_img col col-lg-3 col-md-6 col-sm-12" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/hotel1.jpg'); height: 200px;">
+      <div class="location_img col col-lg-3 col-md-6 col-sm-12" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/hotel1.jpg'); height: 200px;"  onclick="window.location.href='mall/mall.jsp?action=4&county=Taipei'">
         <div class="img_location"><h5>台北住宿</h5></div>
       </div>
-      <div class="location_img col col-lg-3 col-md-6 col-sm-12" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/hotel2.jpg'); height: 200px;">
+      <div class="location_img col col-lg-3 col-md-6 col-sm-12" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/hotel2.jpg'); height: 200px;"  onclick="window.location.href='mall/mall.jsp?action=4&county=Nantou'">
         <div class="img_location"><h5>南投住宿</h5></div>
       </div>
-      <div class="d-sm-none d-md-flex location_img col col-lg-3 col-md-6" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/hotel3.jpg'); height: 200px;">
-        <div class="img_location"><h5>台東住宿</h5></div>
+      <div class="d-sm-none d-md-flex location_img col col-lg-3 col-md-6" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/hotel3.jpg'); height: 200px;"  onclick="window.location.href='mall/mall.jsp?action=4&county=Tainan'">
+        <div class="img_location"><h5>台南住宿</h5></div>
       </div>
-      <div class="d-sm-none d-md-flex location_img col col-lg-3 col-md-6" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/hotel4.jpg'); height: 200px;">
+      <div class="d-sm-none d-md-flex location_img col col-lg-3 col-md-6" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/hotel4.jpg'); height: 200px;"  onclick="window.location.href='mall/mall.jsp?action=4&county=Taichung'">
         <div class="img_location"><h5>台中住宿</h5></div>
       </div>
     </div>

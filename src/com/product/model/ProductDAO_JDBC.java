@@ -190,8 +190,8 @@ public class ProductDAO_JDBC implements ProductDAO {
 		ProductVO productVO = null;
 		try (Connection conn = common.dataSource.getConnection();
 				PreparedStatement ps = conn.prepareStatement(GET_ALl_SQL)) {
-//			try (Connection conn = DriverManager.getConnection(common.URL, common.USERID, common.PASSWD);
-//					PreparedStatement ps = conn.prepareStatement(GET_ALl_SQL)) {
+//		try (Connection conn = DriverManager.getConnection(common.URL, common.USERID, common.PASSWD);
+//				PreparedStatement ps = conn.prepareStatement(GET_ALl_SQL)) {
 			try (ResultSet rs = ps.executeQuery();) {
 				while (rs.next()) {
 					productVO = new ProductVO();
