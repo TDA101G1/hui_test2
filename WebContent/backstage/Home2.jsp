@@ -1,7 +1,3 @@
-<%@page import="com.coupon.model.CouponVO"%>
-<%@page import="com.coupon.model.CouponService"%>
-<%@page import="com.order_master.model.Order_MasterVO"%>
-<%@page import="com.order_master.model.Order_MasterService"%>
 <%@page import="com.member.model.MemberVO"%>
 <%@page import="com.member.model.MemberService"%>
 <%@page import="java.util.stream.Collector"%>
@@ -23,28 +19,15 @@
 	//拿會員
 	MemberService mSvc = new MemberService();
 	List<MemberVO> AllmVO = mSvc.getAll();
-	int TotalMVO = AllmVO.size();
-	//拿訂單
-	Order_MasterService omSvc = new Order_MasterService();
-	List<Order_MasterVO> AllomVO = omSvc.getAll().stream().filter(p -> p.getOrder_Master_State() == 1)
-			.collect(Collectors.toList());
-	int TotalOMVO = AllomVO.size();
-	//拿優惠券
-	CouponService cpSvc = new CouponService();
-	List<CouponVO> AllcpVO = cpSvc.getAll().stream().filter(p ->p.getCoupon_State()==1)
-		.collect(Collectors.toList());
-	int TotalcpVO = AllcpVO.size();
-	
-	
+	int count = AllmVO.size();
+	System.out.println(count);
 	//取得商品
 	ProductDetailService pdSvc = new ProductDetailService();
 
 	ProductService pSvc = new ProductService();
 	List<ProductVO> list = pSvc.getAll();
-	int TotalpVO  = list.size();
 	//取得商品明細
 	List<ProductDetailVO> AllpdVO = pdSvc.getAll();
-	
 	//反排
 	Collections.reverse(list);
 
@@ -306,91 +289,48 @@ to get the desired effect
 				<!-- /.container-fluid -->
 			</div>
 			<!-- /.content-header -->
-			
-<!-- 			small-box相關 -->
-			<div class="card">
-				<div class="card-header border-0"></div>
-				<div class="card-body">
 
-
-					<div class="d-flex justify-content-between align-items-center mb-0">
-
-						<div class="col-lg-3 col-6">
-							<!-- small box -->
-							<div class="small-box bg-success">
-								<div class="inner">
-									<h3>
-										<%=TotalOMVO %>
-									</h3>
-
-									<p>成交訂單數</p>
-								</div>
-								<div class="icon">
-									<i class="ion ion-stats-bars"></i>
-								</div>
-								<a href="<%=request.getContextPath()%>/backstage/Order_Master/getAllOrder_Master.jsp" class="small-box-footer">查看更多 <i
-									class="fas fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-
-						<div class="col-lg-3 col-6">
-							<!-- small box -->
-							<div class="small-box bg-info">
-								<div class="inner">
-									<h3><%=TotalpVO %></h3>
-
-									<p>上架商品總數</p>
-								</div>
-								<div class="icon">
-									<i class="ion ion-bag"></i>
-								</div>
-								<a href="<%=request.getContextPath()%>/backstage/product/getAllproduct.jsp" class="small-box-footer">查看更多 <i
-									class="fas fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-
-						<div class="col-lg-3 col-6">
-							<!-- small box -->
-							<div class="small-box bg-warning">
-								<div class="inner">
-									<h3><%=TotalMVO %></h3>
-
-									<p>用戶總數</p>
-								</div>
-								<div class="icon">
-									<i class="ion ion-person-add"></i>
-								</div>
-								<a href="<%=request.getContextPath()%>/backstage/member/getAllMember.jsp" class="small-box-footer">查看更多 <i
-									class="fas fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-
-						<div class="col-lg-3 col-6">
-							<!-- small box -->
-							<div class="small-box bg-danger">
-								<div class="inner">
-									<h3><%=TotalcpVO %></h3>
-
-									<p>活動優惠券</p>
-								</div>
-								<div class="icon">
-									<i class="ion ion-pie-graph"></i>
-								</div>
-								<a href="<%=request.getContextPath()%>/backstage/coupon/getAllCoupon.jsp" class="small-box-footer">查看更多 <i
-									class="fas fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		<!-- 			small-box相關結束 -->
-			
 			<!-- Main content -->
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
+					
+					
+					
 						<div class="col-lg-6">
+							<div class="card">
+								<div class="card-header border-0">
+									<div class="d-flex justify-content-between">
+										<h3 class="card-title">用戶數量</h3>
+									
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="d-flex">
+										<p class="d-flex flex-column">
+											<span class="text-bold text-lg"><%=count%></span>
+										</p>
+										<p class="ml-auto d-flex flex-column text-right">
+											 <span class="text-muted">用戶比對</span>
+										</p>
+									</div>
+									<!-- /.d-flex -->
+
+									<div class="position-relative mb-4">
+										<canvas id="visitors-chart" height="200"></canvas>
+									</div>
+
+									<div class="d-flex flex-row justify-content-end">
+										<span class="mr-2"> <i
+											class="fas fa-square text-primary"></i> 本週
+										</span> <span> <i class="fas fa-square text-gray"></i> 上週
+										</span>
+									</div>
+								</div>
+							</div>
+							
+							<!-- /.card -->
+
 							<div class="card">
 								<div class="card-header border-0">
 									<h3 class="card-title">近期商品</h3>
@@ -445,9 +385,6 @@ to get the desired effect
 								</div>
 							</div>
 							<!-- /.card -->
-
-
-							<!-- /.card -->
 						</div>
 						<!-- /.col-md-6 -->
 						<div class="col-lg-6">
@@ -487,7 +424,56 @@ to get the desired effect
 							</div>
 							<!-- /.card -->
 
-
+							<div class="card">
+								<div class="card-header border-0">
+									<h3 class="card-title">Online Store Overview</h3>
+									<div class="card-tools">
+										<a href="#" class="btn btn-sm btn-tool"> <i
+											class="fas fa-download"></i>
+										</a> <a href="#" class="btn btn-sm btn-tool"> <i
+											class="fas fa-bars"></i>
+										</a>
+									</div>
+								</div>
+								<div class="card-body">
+									<div
+										class="d-flex justify-content-between align-items-center border-bottom mb-3">
+										<p class="text-success text-xl">
+											<i class="ion ion-ios-refresh-empty"></i>
+										</p>
+										<p class="d-flex flex-column text-right">
+											<span class="font-weight-bold"> <i
+												class="ion ion-android-arrow-up text-success"></i> 12%
+											</span> <span class="text-muted">CONVERSION RATE</span>
+										</p>
+									</div>
+									<!-- /.d-flex -->
+									<div
+										class="d-flex justify-content-between align-items-center border-bottom mb-3">
+										<p class="text-warning text-xl">
+											<i class="ion ion-ios-cart-outline"></i>
+										</p>
+										<p class="d-flex flex-column text-right">
+											<span class="font-weight-bold"> <i
+												class="ion ion-android-arrow-up text-warning"></i> 0.8%
+											</span> <span class="text-muted">SALES RATE</span>
+										</p>
+									</div>
+									<!-- /.d-flex -->
+									<div
+										class="d-flex justify-content-between align-items-center mb-0">
+										<p class="text-danger text-xl">
+											<i class="ion ion-ios-people-outline"></i>
+										</p>
+										<p class="d-flex flex-column text-right">
+											<span class="font-weight-bold"> <i
+												class="ion ion-android-arrow-down text-danger"></i> 1%
+											</span> <span class="text-muted">REGISTRATION RATE</span>
+										</p>
+									</div>
+									<!-- /.d-flex -->
+								</div>
+							</div>
 						</div>
 						<!-- /.col-md-6 -->
 					</div>

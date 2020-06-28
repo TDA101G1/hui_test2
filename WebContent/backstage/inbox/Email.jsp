@@ -563,13 +563,6 @@ pageContext.setAttribute("memAll", memAll);
 
 						<div class="card col-12">
 
-							<div class="card-header"></div>
-							<div class="card-title">
-								<div class="col">
-									<div class="card">
-										<div class="card-head "></div>
-									</div>
-								</div>
 
 								<div class="card-body" style="overflow: auto">
 								<div class="content col-lg-10 col-md-9 col-sm-8">
@@ -747,7 +740,7 @@ pageContext.setAttribute("memAll", memAll);
 				</div>
 			</div>
 		</div>
-	</div>
+
 								
 								
 								

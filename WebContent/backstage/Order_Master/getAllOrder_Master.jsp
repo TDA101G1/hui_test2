@@ -607,9 +607,10 @@ to get the desired effect
 													<tr>
 														<th scope="row"><%=number%></th>
 														<td>${omVO.order_Master_ID}</td>
-														<td>${omVO.member_ID}</td>
 														<c:forEach var="memVO" items="${AllmVO}">
 															<c:if test="${memVO.member_ID eq omVO.member_ID}">
+														<td>${omVO.member_ID}${memVO.member_Name}</td>
+														
 																<td><img id="myImg"
 																	src="<%=request.getContextPath()%>/member/ShowImage?member_ID=${omVO.member_ID}"
 																	alt="${memVO.member_Name}">
