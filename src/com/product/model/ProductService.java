@@ -1,7 +1,10 @@
 package com.product.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.json.JSONArray;
 
 public class ProductService {
 	private ProductDAO dao;
@@ -80,17 +83,27 @@ public class ProductService {
 	
 	
 	
-	public List<ProductVO> getFilterClass(String product_Class) {
-//		long start = new java.util.Date().getTime();
-//		List<ProductVO> productListFilted = dao.getAll().stream()
-//				.filter(p -> p.getProduct_Class() != null && p.getProduct_Class().equals(product_Class))
-//				.filter(p -> p.getProduct_State() != null && p.getProduct_State() == 1)
-//				.collect(Collectors.toList());
-//		long end = new java.util.Date().getTime();
-//		System.out.println(end - start + "ms");
+	public List<ProductVO> getFilterClass(String product_Class, JSONArray jsonArray) {
+		List<String> list = new ArrayList<>();
+		if(!jsonArray.isEmpty() || jsonArray.length()>0) {
+			for(int i=0; i<jsonArray.length(); i++) {
+				list.add(jsonArray.getString(i));
+			}
+		}
 		return dao.getAll().stream()
-				.filter(p -> p.getProduct_Class() != null && p.getProduct_Class().equals(product_Class))
+			.filter(p -> p.getProduct_State() != null && p.getProduct_State() == 1)
+			.filter(p -> p.getProduct_Class() != null && p.getProduct_Class().contains(product_Class))
+			.filter(p -> p.getProduct_County() != null && list.toString().contains(p.getProduct_County()))
+			.collect(Collectors.toList());
+	}
+	
+	public List<ProductVO> findKeyword(String keyword) {
+		return dao.getAll().stream()
 				.filter(p -> p.getProduct_State() != null && p.getProduct_State() == 1)
+				.filter(p -> p.getProduct_ID().contains(keyword) || p.getProduct_Name().contains(keyword) || 
+						p.getProduct_Intro().contains(keyword) || p.getProduct_Address().contains(keyword) || 
+						p.getProduct_County().contains(keyword) || p.getProduct_Class().contains(keyword) || 
+						p.getProduct_Style().contains(keyword) || p.getProduct_Total_Schedule().contains(keyword))
 				.collect(Collectors.toList());
 	}
 
@@ -118,7 +131,7 @@ public class ProductService {
 //		productVO.setProduct_Img4("123".getBytes());
 //		productVO.setProduct_Img5("123".getBytes());
 //		
-////		System.out.println(service.delete(productVO));
+////	System.out.println(service.delete(productVO));
 //		System.out.println(service.insert(productVO));
 //		System.out.println(service.update(productVO));
 //		System.out.println(service.select(productVO));

@@ -52,7 +52,7 @@
               <th style="width: 100px;">日期</th>
               <th style="width: 140px;">單價/數量</th>
               <th style="width: 80px;">小計</th>
-              <th style="width: 40px;">操作</th>
+              <th style="width: 40px;">刪除</th>
             </tr>
 
 
@@ -93,9 +93,9 @@
               </td>
               <td class="subtotal"></td>
               <td>
-                <button class="ask" type="button" name="button" data-toggle="modal" data-target="#exampleModal">
-                  <i class="far fa-envelope" style="font-size:1.5em;"></i>
-                </button>
+<!--                 <button class="ask" type="button" name="button" data-toggle="modal" data-target="#examplemodal"> -->
+<!--                   <i class="far fa-envelope" style="font-size:1.5em;"></i> -->
+<!--                 </button> -->
                 <button class="removeOne" type="button" name="button">
                   <i class="fas fa-trash-alt" style="font-size:1.5em;"></i>
                 </button>

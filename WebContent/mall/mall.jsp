@@ -82,41 +82,48 @@
         <div class="list-group">
           <h1 class="my-4">商城</h1>
           <p><i class="fas fa-map"></i>目前位置</p>
-          <button type="button" class="list-group-item" data-product_Class="套裝行程">套裝行程</button>
-          <button type="button" class="list-group-item" data-product_Class="景點">旅遊景點</button>
-          <button type="button" class="list-group-item" data-product_Class="餐廳">美食餐廳</button>
-          <button type="button" class="list-group-item" data-product_Class="住宿">旅館住宿</button>
+          <button type="button" class="list-group-item action1" data-product_Class="套裝行程">套裝行程</button>
+          <button type="button" class="list-group-item action2" data-product_Class="景點">旅遊景點</button>
+          <button type="button" class="list-group-item action3" data-product_Class="餐廳">美食餐廳</button>
+          <button type="button" class="list-group-item action4" data-product_Class="住宿">旅館住宿</button>
 
 
           <div class="filter_area">
             <p><i class="fas fa-filter"></i>偏好篩選</p>
             <label class="label_area">
-              <input type="checkbox" name="taipei" value="" class="checkbox_area">
-              <a>雙北</a>
+              <input type="checkbox" name="" value="" class="checkbox_area Taipei">
+              <a data-county="台北市_臺北市">台北</a>
             </label>
             <label class="label_area">
-              <input type="checkbox" name="taipei" value="" class="checkbox_area">
-              <a>桃園</a>
+              <input type="checkbox" name="" value="" class="checkbox_area new_Taipei">
+              <a data-county="新北市_台北縣">新北</a>
             </label>
             <label class="label_area">
-              <input type="checkbox" name="taipei" value="" class="checkbox_area">
-              <a>新竹</a>
+              <input type="checkbox" name="" value="" class="checkbox_area Taoyuan">
+              <a data-county="桃園市_桃園縣">桃園</a>
             </label>
             <label class="label_area">
-              <input type="checkbox" name="taipei" value="" class="checkbox_area">
-              <a>苗栗</a>
+              <input type="checkbox" name="" value="" class="checkbox_area Taichung">
+              <a data-county="台中市_臺中市_台中縣_臺中縣">台中</a>
             </label>
             <label class="label_area">
-              <input type="checkbox" name="taipei" value="" class="checkbox_area">
-              <a>台中</a>
+              <input type="checkbox" name="" value="" class="checkbox_area Nantou">
+              <a data-county="南投市_南投縣">南投</a>
             </label>
             <label class="label_area">
-              <input type="checkbox" name="taipei" value="" class="checkbox_area">
-              <a>彰化</a>
+              <input type="checkbox" name="" value="" class="checkbox_area Chiayi">
+              <a data-county="嘉義市_嘉義縣">嘉義</a>
+            </label>
+            <label class="label_area">
+              <input type="checkbox" name="" value="" class="checkbox_area Tainan">
+              <a data-county="台南市_臺南市_台南縣_臺南縣">台南</a>
+            </label>
+            <label class="label_area">
+              <input type="checkbox" name="" value="" class="checkbox_area Kaohsiung">
+              <a data-county="高雄市_高雄縣">高雄</a>
             </label>
           </div>
         </div>
-
 
       </div>
 
@@ -159,7 +166,7 @@
         <!-- https://webdesign.tutsplus.com/zh-hant/tutorials/css-experiments-with-a-search-form-input-and-button--cms-22069 -->
         <!-- <div class="box"> -->
           <div class="search_area">
-            <input type="search" id="search" placeholder="搜尋..." />
+            <input type="input" id="search" placeholder="搜尋..." />
             <span class="icon"><i class="fa fa-search"></i></span>
           </div>
         <!-- </div> -->
@@ -191,7 +198,7 @@
         <div class="row productArea">
 <c:forEach items="${productList.all}" var="product">
 	<c:choose>
-		<c:when test="${product.product_Class=='套裝行程' && product.product_State==1 && param.action == null}">
+		<c:when test="${product.product_Class=='套裝行程' && product.product_State==1 && param.action == null && param.county == null}">
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100" data-product_ID="${product.product_ID}" data-product_Class="${product.product_Class}">
               <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT" width="100%" height="120px"></a>
@@ -215,7 +222,7 @@
             </div>
           </div>
 		</c:when>
-		<c:when test="${product.product_Class!='套裝行程' && product.product_State==1 && param.action == null}">
+		<c:when test="${product.product_Class!='套裝行程' && product.product_State==1 && param.action == null && param.county == null}">
           	<div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100"  data-product_ID="${product.product_ID}"  data-product_Class="${product.product_Class}">
               <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT" width="100%" height="120px"></a>
@@ -287,26 +294,59 @@
   	$(window).on("load", function(){
 	  getRatingPriceRange();
 	  getCollections();
+	  
+	  console.log(location.href);
+	  console.log(location.protocol);
+	  console.log(location.hostname);
+	  console.log(location.host);
+	  console.log(location.port);
+	  console.log(location.pathname);
 	  console.log(location.search);
+	  console.log(location.hash);
+// 	  console.log(location.search);
 	  let action = "";
 	  if(location.search.indexOf('?') != -1){
-		  let ary1 = location.search.split('?action=')[1];
-		  if(ary1 == '1'){
-			  action = "套裝行程";
-		  }else if(ary1 == '2'){
-			  action = "景點";
-		  }else if(ary1 == '3'){
-			  action = "餐廳";
-		  }else{
-			  action = "住宿";
+// 		  let ary1 = location.search.split('action=')[1];
+		  let ary1 = location.search;
+		  if(ary1.includes('action=1')){
+			  $(".action1").click();
+// 			  action = "套裝行程";
+		  }else if(ary1.includes('action=2')){
+			  $(".action2").click();
+// 			  action = "景點";
+		  }else if(ary1.includes('action=3')){
+			  $(".action3").click();
+// 			  action = "餐廳";
+		  }else if(ary1.includes('action=4')){
+			  $(".action4").click();
+// 			  action = "住宿";
 		  }
-		  console.log(ary1);
-		  $('div.list-group').find('button.list-group-item').each(function(index, value){
-			  if($(value).data('product_class') == action){
-				  console.log(action);
-				  $(this).click();
-			  }
-		  });
+// 		  console.log(ary1);
+// 		  $('div.list-group').find('button.list-group-item').each(function(index, value){
+// 			  if($(value).data('product_class') == action){
+// 				  console.log(action);
+// 				  $(this).click();
+// 			  }
+// 		  });
+	  }
+	  
+	  if(location.search.indexOf('?') != -1){
+		  let ary1 = location.search;
+		  if(ary1.includes('Taipei')){
+			  $(".Taipei").click();
+		  }else if(ary1.includes('Kaohsiung')){
+			  $(".Kaohsiung").click();
+		  }else if(ary1.includes('Chiayi')){
+			  $(".Chiayi").click();
+		  }else if(ary1.includes('Tainan')){
+			  $(".Tainan").click();
+		  }else if(ary1.includes('Taoyuan')){
+			  $(".Taoyuan").click();
+		  }else if(ary1.includes('Taichung')){
+			  $(".Taichung").click();
+		  }else if(ary1.includes('Nantou')){
+			  $(".Nantou").click();
+		  }
 	  }
 	});
 
@@ -435,15 +475,38 @@
 	});
 	}
 	
-	
-  
-  
     //按鈕樣式切換
     $(".list-group-item").on("click", function(){
     	$(this).closest(".list-group").children(".list-group-item").attr("class","list-group-item");
     	$(this).toggleClass("-on");
-    	let product_Class = $(this).attr("data-product_Class");
+    	filterClassCounty();
+    });
+    
+    $("input[type=checkbox]").on("click", function(e){
+    	e.stopPropagation();
+		filterClassCounty();
+    });
+    
+    //篩選功能
+    function filterClassCounty(){
+    	let product_Class = null;
+    	let checkedArr = [];
+    	
+    	if($("input[type=checkbox]:checked").length == 0){
+    		$(".filter_area").find("input[type=checkbox]").each(function(index, item){
+        		checkedArr[index] = $(this).next("a").attr("data-county");
+        	});
+    	}else{
+    		$(".filter_area").find("input[type=checkbox]:checked").each(function(index, item){
+    			checkedArr[index] = $(this).next("a").attr("data-county");
+        	});
+    	}
+    	if($(".-on").length > 0){
+    		product_Class = $(".-on").attr("data-product_Class");
+    	}
 //     	console.log(product_Class);
+//     	console.log(checkedArr);
+    	
     	$.ajax({
 			// 資料請求的網址
     		url: "<%=request.getContextPath()%>/ProductServlet.do",
@@ -452,7 +515,78 @@
     		// 傳送資料到指定的 url
     		data: {
     			"action":"filterClass",
-    			"product_Class":product_Class
+    			"product_Class":product_Class,
+    			"checkedArr": JSON.stringify(checkedArr)
+    		},
+    		// 預期會接收到回傳資料的格式： json | xml | html
+    		dataType: "json",
+    		// request 可等待的毫秒數 | 0 代表不設定 timeout
+//     		timeout: 30000,
+    		// 在 request 發送之前執行
+    		beforeSend: function() {
+     		//	$("ul.task_list").html('<li style="text-align: center;"><i class="fas fa-spinner fa-spin fa-3x"></i></li>');
+    		},
+
+    		// request 成功取得回應後執行
+    		success: function(data) {
+//     			console.log(data);
+//     			console.log(data.filtedClass[0].product_Class);
+//     			console.log(data.filtedClass.length);
+    			
+    			$(".card").each(function(){
+    				$(this).closest(".col-lg-4").remove();
+    			});
+    			$(".noResultDOM").remove();
+    			
+    			if(data.filtedClass.length == 0){
+    				let noResultDOM = `<div class='noResultDOM' style="width:100%;">
+    					<h4 style="text-align:center;">噢噢~沒有搜尋到結果，請再試試其他搜尋條件</h4>
+    				</div>`
+    				$(".productArea").append(noResultDOM);
+    			}else{
+    				if(data.filtedClass[0].product_Class=="套裝行程"){
+        				$(data.filtedClass).each(function(index, item){
+//             				console.log(item);
+            				createNewSetCard(item.product_ID, item.product_Name, item.product_Staytime, item.product_Click_Rec, item.product_Address, item.product_Class);
+            			});
+        			}else{
+        				$(data.filtedClass).each(function(index, item){
+//             				console.log(item);
+    	    				createNewCard(item.product_ID, item.product_Name, item.product_Staytime, item.product_Click_Rec, item.product_Address, item.product_Class);
+            			});
+        			}
+        			getRatingPriceRange();
+        			getCollections()
+    			}
+    		}
+    	});
+    }
+    
+    
+    var a;
+    $("#search").on("keyup", function(){
+    	clearTimeout(a);
+//     	a = setTimeout(function(){
+//     		updateMemberCar(product_Name, product_ID, productDetail_ID, spc, quantity, start, end, price, index, addTime);
+//     	}, 200);
+    	
+    	a = setTimeout(function(){
+	    	let keyword = $("#search").val();
+	    	findKeyword(keyword);
+    	}, 600);
+    });
+    
+    function findKeyword(keyword){
+//     	console.log(keyword);
+    	$.ajax({
+			// 資料請求的網址
+    		url: "<%=request.getContextPath()%>/ProductServlet.do",
+    		// GET | POST | PUT | DELETE | PATCH
+    		type: "POST",
+    		// 傳送資料到指定的 url
+    		data: {
+    			"action":"findKeyword",
+    			"keyword":keyword
     		},
     		// 預期會接收到回傳資料的格式： json | xml | html
     		dataType: "json",
@@ -468,25 +602,32 @@
 //     			console.log(data);
     			$(".card").each(function(){
     				$(this).closest(".col-lg-4").remove();
-    			});    			
-//     			console.log(data.filtedClass[0].product_Class);
+    			});
+    			$(".noResultDOM").remove();
     			
-    			if(data.filtedClass[0].product_Class=="套裝行程"){
-    				$(data.filtedClass).each(function(index, item){
-//         				console.log(item);
-        				createNewSetCard(item.product_ID, item.product_Name, item.product_Staytime, item.product_Click_Rec, item.product_Address, item.product_Class);
-        			});
+    			if(data.reply.length == 0){
+    				let noResultDOM = `<div class='noResultDOM' style="width:100%;">
+    					<h4 style="text-align:center;">噢噢~沒有搜尋到結果，請再試試其他搜尋條件</h4>
+    				</div>`
+    				$(".productArea").append(noResultDOM);
     			}else{
-    				$(data.filtedClass).each(function(index, item){
-//         				console.log(item);
-	    				createNewCard(item.product_ID, item.product_Name, item.product_Staytime, item.product_Click_Rec, item.product_Address, item.product_Class);
-        			});
+    				if(data.reply[0].product_Class=="套裝行程"){
+        				$(data.reply).each(function(index, item){
+//             				console.log(item);
+            				createNewSetCard(item.product_ID, item.product_Name, item.product_Staytime, item.product_Click_Rec, item.product_Address, item.product_Class);
+            			});
+        			}else{
+        				$(data.reply).each(function(index, item){
+//             				console.log(item);
+    	    				createNewCard(item.product_ID, item.product_Name, item.product_Staytime, item.product_Click_Rec, item.product_Address, item.product_Class);
+            			});
+        			}
+        			getRatingPriceRange();
+        			getCollections()
     			}
-    			getRatingPriceRange();
-    			getCollections()
     		}
     	});
-    });
+    }
     
     
     function createNewSetCard(productID, product_Name, product_Staytime, product_Click_Rec, product_Address, product_Class){
@@ -578,7 +719,6 @@
     		}
     	});
     });
-    
     
   </script>
 
