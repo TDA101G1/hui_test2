@@ -1250,7 +1250,7 @@ public class ProductServletforbackstage extends HttpServlet {
 			
 				productVO = pSvc.updateWith(productVO, productDetailVO);
 
-				String url = "/backstage/product/getAllproduct.jsp";
+				String url = "/backstage/product/get_SPC.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 

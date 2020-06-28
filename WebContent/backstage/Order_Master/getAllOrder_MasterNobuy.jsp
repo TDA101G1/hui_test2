@@ -577,7 +577,7 @@ to get the desired effect
 													<th scope="col">付款方式</th>
 													<th scope="col">會員手機</th>
 													<th scope="col">下單時間</th>
-													<th scope="col">修改訂單</th>
+													<th scope="col">訂單詳情</th>
 
 													<!-- 													<th scope="col">信箱</th> -->
 													<!-- 													<th scope="col">手機</th> -->
@@ -641,7 +641,7 @@ to get the desired effect
 															<FORM METHOD="post"
 																ACTION="<%=request.getContextPath()%>/backstage/order_master/order_master.do"
 																style="margin-bottom: 0px;">
-																<input type="submit" value="修改"> <input
+																<input type="submit" value="查看"> <input
 																	type="hidden" name="order_Master_ID"
 																	value="${omVO.order_Master_ID}"> <input
 																	type="hidden" name="action" value="getOneforupdate">
