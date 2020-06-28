@@ -37,10 +37,10 @@
                 </div>
                 <div class="col col-md-2 offset">
                     <div class="back">
-                        <img src="" class="turn_over">
+                        <img src="<%=request.getContextPath()%>/img/profileCard/lin1.jpg" class="turn_over">
                     </div>
                     <div class="front">
-                        <a href="<%=request.getContextPath()%>/profilecard.jsp"><img src=""></a>
+                        <a href="<%=request.getContextPath()%>/profilecard.jsp"><img src="<%=request.getContextPath()%>/img/profileCard/lin2.jpg"></a>
                     </div>
                 </div>
                 

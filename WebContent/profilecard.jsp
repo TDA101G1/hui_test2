@@ -173,17 +173,17 @@
         <div class="col-md-3">
           <div class="card profile-card-2">
             <div class="card-img-block">
-              <img class="img-fluid" src="<%=request.getContextPath()%>/img/profileCard/IMG_5242.JPG" alt="Card image cap">
+              <img class="img-fluid" src="<%=request.getContextPath()%>/img/profileCard/lin3.jpg" alt="Card image cap">
             </div>
             <div class="card-body pt-5">
-              <img src="<%=request.getContextPath()%>/img/profileCard/IMG_6475.JPG" alt="profile-image" class="profile" />
-              <h5 class="card-title">楊博文</h5>
+              <img src="<%=request.getContextPath()%>/img/profileCard/lin2.jpg" alt="profile-image" class="profile" />
+              <h5 class="card-title">林鈺凱</h5>
               <h5 class="card-text">負責項目:</h5>
-              <p class="card-text">- 首頁</p>
-              <p class="card-text">- 前台整合</p>
-              <p class="card-text">- 會員功能</p>
-              <div class="icon-block"><a href="https://www.facebook.com/profile.php?id=100000119706380"><i class="fab fa-facebook fa-2x"></i></a><a href="#"> <i
-                    class="fab fa-github fa-2x"></i></a><a href="#"> <i class="fab fa-linkedin fa-2x"></i></a><a href="http://tda101g1.tk/TDA101G1_final_V3/index.jsp"><i
+              <p class="card-text">- 後台功能</p>
+              <p class="card-text">- sql語法建立資料表格</p>
+              <p class="card-text">- 後台首頁</p>
+              <div class="icon-block"><a href="https://www.facebook.com/profile.php?id=100002913804069"><i class="fab fa-facebook fa-2x"></i></a><a href="https://github.com/Ttaehee520"> <i
+                    class="fab fa-github fa-2x"></i></a><a href="https://www.linkedin.com/in/lin-kevin0323"> <i class="fab fa-linkedin fa-2x"></i></a><a href="http://tda101g1.tk/TDA101G1_final_V3/backstage/login.jsp"><i
                     class="fab fa-internet-explorer"></i></a></div>
             </div>
           </div>
