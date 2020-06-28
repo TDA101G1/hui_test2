@@ -235,7 +235,13 @@ public class Order_MasterServletforbackstage extends HttpServlet {
 				if (order_Master_ID == null || order_Master_ID.trim().length() == 0) {
 					errorMsgs.put("order_Master_ID", "訂單編號請勿空白");
 				} else if (!order_Master_ID.trim().matches(order_Master_IDReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.put("order_Master_ID", "格式錯誤，員編號碼只能是OMID開頭加上六個數字");
+					errorMsgs.put("order_Master_ID", "格式錯誤，訂單號碼只能是OMID開頭加上六個數字");
+				}
+				
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/backstage/Order_Master/getAllOrder_Master.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
 				}
 			
 				req.setAttribute("order_Master_ID", order_Master_ID);

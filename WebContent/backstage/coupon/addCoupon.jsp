@@ -86,7 +86,11 @@ div.pagination {
 
 
 
+
+
 :hover
+
+
 
 
 
@@ -100,7 +104,9 @@ div.pagination {
 
 
 
+
  
+
 
 
 
@@ -111,7 +117,9 @@ div.pagination {
 
 
 
+
  
+
 
 
 
@@ -126,7 +134,10 @@ background-color
 
 
 
+
+
 :
+
 
 
 
@@ -136,7 +147,10 @@ background-color
 
 
 
+
 #ddd
+
+
 
 
 
@@ -423,7 +437,7 @@ to get the desired effect
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>信箱</p>
 								</a></li>
-								
+
 
 							</ul></li>
 
@@ -689,19 +703,25 @@ to get the desired effect
 												<p style="color: red">${errorMsgs.cp_Number}</p>
 
 
+
+
+
+
+
 												<div class="input-group mb-3">
 													<div class="input-group-prepend">
 														<span class="input-group-text" id="basic-addon1">優惠券說明:</span>
 													</div>
-
-													<input type="text" class="form-control col-12 "
-														placeholder="Info" aria-describedby="basic-addon1"
-														value="<%=(cpVO == null)
+													<textarea class="form-control" name="cp_Info"
+														id="exampleFormControlTextarea1" rows="2"><%=(cpVO == null)
 					? "浪漫的七夕，就該來點不一樣的旅程，雙人遊完購買套裝行程即可享用情人優惠券，快與你的另一半留下一個折扣又美好的回憶吧!"
-					: cpVO.getCoupon_Info()%>"
-														name="cp_Info" />
+					: cpVO.getCoupon_Info()%></textarea>
+
 												</div>
 												<p style="color: red">${errorMsgs.cp_Info}</p>
+
+
+
 											</table>
 											<button type="button" class="btn">
 

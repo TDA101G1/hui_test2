@@ -120,7 +120,27 @@ div.pagination {
 
 
 
+
+
+
+
+
+
+
+
+
+
 :hover
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -191,7 +211,17 @@ div.pagination {
 
 
 
+
+
+
+
+
  
+
+
+
+
+
 
 
 
@@ -240,7 +270,17 @@ div.pagination {
 
 
 
+
+
+
+
+
  
+
+
+
+
+
 
 
 
@@ -312,7 +352,22 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
 
 
 
@@ -360,7 +415,22 @@ background-color
 
 
 
+
+
+
+
+
 #ddd
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1012,9 +1082,12 @@ to get the desired effect
 														</div>
 
 														<select name="product_Class" class="city">
-															<option value="景點">景點</option>
-															<option value="住宿">住宿</option>
-															<option value="餐廳">餐廳</option>
+															<option value="景點"
+																${(pVO.product_Class eq ('景點')) ? 'selected' : ''}>景點</option>
+															<option value="住宿"
+																${(pVO.product_Class eq ('住宿')) ? 'selected' : ''}>住宿</option>
+															<option value="餐廳"
+																${(pVO.product_Class eq ('餐廳')) ? 'selected' : ''}>餐廳</option>
 														</select>
 													</div>
 
@@ -1048,204 +1121,214 @@ to get the desired effect
 														</div>
 
 														<select name="product_County" class="city">
-															<option value="">縣市</option>
-															<option value="基隆市">基隆市</option>
-															<option value="臺北市">臺北市</option>
-															<option value="新北市">新北市</option>
-															<option value="宜蘭縣">宜蘭縣</option>
-															<option value="新竹市">新竹市</option>
-															<option value="新竹縣">新竹縣</option>
-															<option value="桃園市">桃園市</option>
-															<option value="苗栗縣">苗栗縣</option>
-															<option value="臺中市">臺中市</option>
-															<option value="彰化縣">彰化縣</option>
-															<option value="南投縣">南投縣</option>
-															<option value="嘉義市">嘉義市</option>
-															<option value="嘉義縣">嘉義縣</option>
-															<option value="雲林縣">雲林縣</option>
-															<option value="臺南市">臺南市</option>
-															<option value="高雄市">高雄市</option>
-															<option value="屏東縣">屏東縣</option>
-															<option value="臺東縣">臺東縣</option>
-															<option value="花蓮縣">花蓮縣</option>
-															<option value="金門縣">金門縣</option>
-															<option value="連江縣">連江縣</option>
-															<option value="澎湖縣">澎湖縣</option>
+															<option value="縣市"
+																${(pVO.product_County eq ('縣市')) ? 'selected' : ''}>縣市</option>
+															<option value="基隆市"
+																${(pVO.product_County eq ('基隆市')) ? 'selected' : ''}>基隆市</option>
+															<option value="新北市"
+																${(pVO.product_County eq ('新北市')) ? 'selected' : ''}>新北市</option>
+															<option value="臺北市"
+																${(pVO.product_County eq ('臺北市')) ? 'selected' : ''}>臺北市</option>
+															<option value="桃園市"
+																${(pVO.product_County eq ('桃園市')) ? 'selected' : ''}>桃園市</option>
+															<option value="新竹市"
+																${(pVO.product_County eq ('新竹市')) ? 'selected' : ''}>新竹市</option>
+															<option value="苗栗市"
+																${(pVO.product_County eq ('苗栗市')) ? 'selected' : ''}>苗栗市</option>
+															<option value="臺中市"
+																${(pVO.product_County eq ('臺中市')) ? 'selected' : ''}>臺中市</option>
+															<option value="南投市"
+																${(pVO.product_County eq ('南投市')) ? 'selected' : ''}>南投市</option>
+															<option value="雲林市"
+																${(pVO.product_County eq ('雲林市')) ? 'selected' : ''}>雲林市</option>
+															<option value="嘉義市"
+																${(pVO.product_County eq ('嘉義市')) ? 'selected' : ''}>嘉義市</option>
+															<option value="臺南市"
+																${(pVO.product_County eq ('臺南市')) ? 'selected' : ''}>臺南市</option>
+															<option value="高雄市"
+																${(pVO.product_County eq ('高雄市')) ? 'selected' : ''}>高雄市</option>
+															<option value="屏東市"
+																${(pVO.product_County eq ('屏東市')) ? 'selected' : ''}>屏東市</option>
+															<option value="宜蘭市"
+																${(pVO.product_County eq ('宜蘭市')) ? 'selected' : ''}>宜蘭市</option>
+															<option value="花蓮市"
+																${(pVO.product_County eq ('花蓮市')) ? 'selected' : ''}>花蓮市</option>
+															<option value="臺東市"
+																${(pVO.product_County eq ('臺東市')) ? 'selected' : ''}>臺東市</option>
 														</select>
 
-
 														<p style="color: red">${errorMsgs.product_County}</p>
+													</div>
 
-														<br>
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">景點地址:</span>
-															</div>
-
-															<input type="text" class="form-control col-6 "
-																placeholder="Address" aria-describedby="basic-addon1"
-																id="Address"
-																value="<%=(pVO == null) ? "吳鳳路81巷20號1樓" : pVO.getProduct_Address()%>"
-																name="product_Address" />
-
-															<p style="color: red">${errorMsgs.product_Address}</p>
-
-															<button type="button" id="getGPS"
-																class="btn btn-secondary ">取得經緯度</button>
-
-															</button>
-
-
-														</div>
-														<div>
-															<p style="color: red">${errorMsgs.emp_Address}</p>
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">景點地址:</span>
 														</div>
 
+														<input type="text" class="form-control col-6 "
+															placeholder="Address" aria-describedby="basic-addon1"
+															id="Address"
+															value="<%=(pVO == null) ? "吳鳳路81巷20號1樓" : pVO.getProduct_Address()%>"
+															name="product_Address" />
+
+														<p style="color: red">${errorMsgs.product_Address}</p>
+
+														<button type="button" id="getGPS"
+															class="btn btn-secondary ">取得經緯度</button>
+
+														</button>
 
 
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">經度:</span>
-															</div>
-
-															<input type="text" class="form-control col-1 "
-																placeholder="log" aria-describedby="basic-addon1"
-																id="lng"
-																value="<%=(pVO == null) ? "" : pVO.getProduct_Longitude()%>"
-																name="product_Longitude" />
-														</div>
-														<p style="color: red">${errorMsgs.product_Longitude}</p>
+													</div>
+													<div>
+														<p style="color: red">${errorMsgs.emp_Address}</p>
+													</div>
 
 
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">緯度:</span>
-															</div>
 
-															<input type="text" class="form-control col-1 "
-																placeholder="lat" aria-describedby="basic-addon1"
-																id="lat"
-																value="<%=(pVO == null) ? "" : pVO.getProduct_Latitutde()%>"
-																name="product_Latitutde" />
-														</div>
-														<p style="color: red">${errorMsgs.product_Latitutde}</p>
-
-
-														<div id="googleMap">
-															<iframe width="600" height="450" frameborder="0"
-																style="border: 0"
-																src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBPJRhviSK2E8-7hm5IIc1HLh0PbmPeTEA&q=台灣省"
-																allowfullscreen> </iframe>
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">經度:</span>
 														</div>
 
-														<br>
+														<input type="text" class="form-control col-1 "
+															placeholder="log" aria-describedby="basic-addon1"
+															id="lng"
+															value="<%=(pVO == null) ? "" : pVO.getProduct_Longitude()%>"
+															name="product_Longitude" />
+													</div>
+													<p style="color: red">${errorMsgs.product_Longitude}</p>
 
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">平均停留時間:</span>
-															</div>
 
-															<input type="text" class="form-control col-1 "
-																placeholder="Staytime" aria-describedby="basic-addon1"
-																value="<%=pVO == null ? 0.0 : pVO.getProduct_Staytime()%>"
-																name="product_Staytime" />
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">緯度:</span>
 														</div>
-														<p style="color: red">${errorMsgs.product_Staytime}</p>
+
+														<input type="text" class="form-control col-1 "
+															placeholder="lat" aria-describedby="basic-addon1"
+															id="lat"
+															value="<%=(pVO == null) ? "" : pVO.getProduct_Latitutde()%>"
+															name="product_Latitutde" />
+													</div>
+													<p style="color: red">${errorMsgs.product_Latitutde}</p>
 
 
+													<div id="googleMap">
+														<iframe width="600" height="450" frameborder="0"
+															style="border: 0"
+															src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBPJRhviSK2E8-7hm5IIc1HLh0PbmPeTEA&q=台灣省"
+															allowfullscreen> </iframe>
+													</div>
 
+													<br>
 
-
-
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">景點簡介:</span>
-															</div>
-
-															<input type="text" class="form-control col-6 "
-																placeholder="Name" aria-describedby="basic-addon1"
-																value="<%=(pVO == null) ? "123" : pVO.getProduct_Intro()%>"
-																name="product_Intro" />
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">平均停留時間:</span>
 														</div>
-														<p style="color: red">${errorMsgs.product_Intro}</p>
+
+														<input type="text" class="form-control col-1 "
+															placeholder="Staytime" aria-describedby="basic-addon1"
+															value="<%=pVO == null ? 0.0 : pVO.getProduct_Staytime()%>"
+															name="product_Staytime" />
+													</div>
+													<p style="color: red">${errorMsgs.product_Staytime}</p>
 
 
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">行程總覽:</span>
-															</div>
-															<textarea class="form-control"
-																name="product_Total_Schedule"
-																id="exampleFormControlTextarea1" rows="1"><%=(pVO == null) ? "123" : pVO.getProduct_Total_Schedule()%></textarea>
 
+
+
+
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">景點簡介:</span>
 														</div>
-														<p style="color: red">${errorMsgs.product_Total_Schedule}</p>
+
+														<input type="text" class="form-control col-6 "
+															placeholder="Name" aria-describedby="basic-addon1"
+															value="<%=(pVO == null) ? "123" : pVO.getProduct_Intro()%>"
+															name="product_Intro" />
+													</div>
+													<p style="color: red">${errorMsgs.product_Intro}</p>
 
 
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">景點詳情:</span>
-															</div>
-															<textarea class="form-control" name="product_Info"
-																id="exampleFormControlTextarea1" rows="3"><%=(pVO == null) ? "123" : pVO.getProduct_Info()%></textarea>
-
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">行程總覽:</span>
 														</div>
-														<p style="color: red">${errorMsgs.product_Info}</p>
+														<textarea class="form-control"
+															name="product_Total_Schedule"
+															id="exampleFormControlTextarea1" rows="1"><%=(pVO == null) ? "123" : pVO.getProduct_Total_Schedule()%></textarea>
 
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">景點規格:</span>
-															</div>
+													</div>
+													<p style="color: red">${errorMsgs.product_Total_Schedule}</p>
 
-															<input type="text" class="form-control col-2 "
-																placeholder="Spc" aria-describedby="basic-addon1"
-																value="<%=(pdVO == null) ? "" : pdVO.getProduct_Detail_Spc()%>"
-																name="product_Detail_Spc" />
+
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">景點詳情:</span>
 														</div>
-														<p style="color: red">${errorMsgs.product_Detail_Spc}</p>
+														<textarea class="form-control" name="product_Info"
+															id="exampleFormControlTextarea1" rows="3"><%=(pVO == null) ? "123" : pVO.getProduct_Info()%></textarea>
 
+													</div>
+													<p style="color: red">${errorMsgs.product_Info}</p>
 
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">商品價錢:</span>
-															</div>
-
-															<input type="number" min="0" max="99999"
-																class="form-control col-1 " placeholder="Money"
-																aria-describedby="basic-addon1"
-																value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Money()%>"
-																name="product_Detail_Money" />
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">景點規格:</span>
 														</div>
-														<p style="color: red">${errorMsgs.product_Detail_Money}</p>
+
+														<input type="text" class="form-control col-2 "
+															placeholder="Spc" aria-describedby="basic-addon1"
+															value="<%=(pdVO == null) ? "" : pdVO.getProduct_Detail_Spc()%>"
+															name="product_Detail_Spc" />
+													</div>
+													<p style="color: red">${errorMsgs.product_Detail_Spc}</p>
 
 
-
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">商品庫存量:</span>
-															</div>
-
-															<input type="number" min="0" max="999"
-																class="form-control col-1 " placeholder="INSTOCK"
-																aria-describedby="basic-addon1"
-																value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Instock()%>"
-																name="product_Detail_Instock" />
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">商品價錢:</span>
 														</div>
-														<p style="color: red">${errorMsgs.product_Detail_Instock}</p>
+
+														<input type="number" min="0" max="99999"
+															class="form-control col-1 " placeholder="Money"
+															aria-describedby="basic-addon1"
+															value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Money()%>"
+															name="product_Detail_Money" />
+													</div>
+													<p style="color: red">${errorMsgs.product_Detail_Money}</p>
 
 
-														<div class="input-group mb-3">
-															<div class="input-group-prepend">
-																<span class="input-group-text" id="basic-addon1">商品安全量:</span>
-															</div>
 
-															<input type="number" min="0" max="999"
-																class="form-control col-1 " placeholder="SAFTYSTOCK"
-																aria-describedby="basic-addon1"
-																value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Saftystock()%>"
-																name="product_Detail_Saftystock" />
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">商品庫存量:</span>
 														</div>
-														<p style="color: red">${errorMsgs.product_Detail_Saftystock}</p>
+
+														<input type="number" min="0" max="999"
+															class="form-control col-1 " placeholder="INSTOCK"
+															aria-describedby="basic-addon1"
+															value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Instock()%>"
+															name="product_Detail_Instock" />
+													</div>
+													<p style="color: red">${errorMsgs.product_Detail_Instock}</p>
+
+
+													<div class="input-group mb-3">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="basic-addon1">商品安全量:</span>
+														</div>
+
+														<input type="number" min="0" max="999"
+															class="form-control col-1 " placeholder="SAFTYSTOCK"
+															aria-describedby="basic-addon1"
+															value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Saftystock()%>"
+															name="product_Detail_Saftystock" />
+													</div>
+													<p style="color: red">${errorMsgs.product_Detail_Saftystock}</p>
 											</table>
 
 

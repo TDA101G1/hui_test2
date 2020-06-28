@@ -1114,34 +1114,45 @@ to get the desired effect
 														</div>
 
 														<select name="product_County" class="city">
-															<option value="">縣市</option>
-															<option value="基隆市">基隆市</option>
-															<option value="臺北市">臺北市</option>
-															<option value="新北市">新北市</option>
-															<option value="宜蘭縣">宜蘭縣</option>
-															<option value="新竹市">新竹市</option>
-															<option value="新竹縣">新竹縣</option>
-															<option value="桃園市">桃園市</option>
-															<option value="苗栗縣">苗栗縣</option>
-															<option value="臺中市">臺中市</option>
-															<option value="彰化縣">彰化縣</option>
-															<option value="南投縣">南投縣</option>
-															<option value="嘉義市">嘉義市</option>
-															<option value="嘉義縣">嘉義縣</option>
-															<option value="雲林縣">雲林縣</option>
-															<option value="臺南市">臺南市</option>
-															<option value="高雄市">高雄市</option>
-															<option value="屏東縣">屏東縣</option>
-															<option value="臺東縣">臺東縣</option>
-															<option value="花蓮縣">花蓮縣</option>
-															<option value="金門縣">金門縣</option>
-															<option value="連江縣">連江縣</option>
-															<option value="澎湖縣">澎湖縣</option>
+															<option value="縣市"
+																${(pVO.product_County eq ('縣市')) ? 'selected' : ''}>縣市</option>
+															<option value="基隆市"
+																${(pVO.product_County eq ('基隆市')) ? 'selected' : ''}>基隆市</option>
+															<option value="新北市"
+																${(pVO.product_County eq ('新北市')) ? 'selected' : ''}>新北市</option>
+															<option value="臺北市"
+																${(pVO.product_County eq ('臺北市')) ? 'selected' : ''}>臺北市</option>
+															<option value="桃園市"
+																${(pVO.product_County eq ('桃園市')) ? 'selected' : ''}>桃園市</option>
+															<option value="新竹市"
+																${(pVO.product_County eq ('新竹市')) ? 'selected' : ''}>新竹市</option>
+															<option value="苗栗市"
+																${(pVO.product_County eq ('苗栗市')) ? 'selected' : ''}>苗栗市</option>
+															<option value="臺中市"
+																${(pVO.product_County eq ('臺中市')) ? 'selected' : ''}>臺中市</option>
+															<option value="南投市"
+																${(pVO.product_County eq ('南投市')) ? 'selected' : ''}>南投市</option>
+															<option value="雲林市"
+																${(pVO.product_County eq ('雲林市')) ? 'selected' : ''}>雲林市</option>
+															<option value="嘉義市"
+																${(pVO.product_County eq ('嘉義市')) ? 'selected' : ''}>嘉義市</option>
+															<option value="臺南市"
+																${(pVO.product_County eq ('臺南市')) ? 'selected' : ''}>臺南市</option>
+															<option value="高雄市"
+																${(pVO.product_County eq ('高雄市')) ? 'selected' : ''}>高雄市</option>
+															<option value="屏東市"
+																${(pVO.product_County eq ('屏東市')) ? 'selected' : ''}>屏東市</option>
+															<option value="宜蘭市"
+																${(pVO.product_County eq ('宜蘭市')) ? 'selected' : ''}>宜蘭市</option>
+															<option value="花蓮市"
+																${(pVO.product_County eq ('花蓮市')) ? 'selected' : ''}>花蓮市</option>
+															<option value="臺東市"
+																${(pVO.product_County eq ('臺東市')) ? 'selected' : ''}>臺東市</option>
 														</select>
-													</div>
-
+														</div>
 													<p style="color: red">${errorMsgs.product_County}</p>
-
+													
+														
 													<div id="googleMap">
 														<iframe width="600" height="450" frameborder="0"
 															style="border: 0"

@@ -136,7 +136,7 @@
 <!--             </label> -->
 <!--           </div> -->
           <div class="">
-            <button class="addCreditcard" type="button" name="button">++使用新信用卡付款</button>
+            <a class="btn btn-primary addCreditcard" href="<%=request.getContextPath()%>/frontstage_member/member_Credit_Card/Member_Credit_Card.jsp">++使用新信用卡付款</a>
           </div>
         </div>
         <!-- <div class="col-12 col-md-3 creditCard">

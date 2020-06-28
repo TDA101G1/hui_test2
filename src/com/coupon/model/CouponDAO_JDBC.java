@@ -21,7 +21,7 @@ public class CouponDAO_JDBC implements CouponDAO_interface {
 //	String userid = "TDA101G1";
 //	String password = "123456";
 
-	private static final String INSERT = " INSERT INTO COUPON (COUPON_ID, EMP_ID, MEMBER_ID, COUPON_NAME, COUPON_CLASS, COUPON_NUMBER, COUPON_INFO , COUPON_STATE) VALUES (('CPID'||LPAD(to_char(SEQ_COUPON_ID.NEXTVAL),6,'0')), ?, ?, ?, ? , ?, ?,?)";
+	private static final String INSERT = " INSERT INTO COUPON (COUPON_ID, EMP_ID, MEMBER_ID, COUPON_NAME, COUPON_CLASS, COUPON_NUMBER, COUPON_INFO , COUPON_STATE) VALUES (('CNID'||LPAD(to_char(SEQ_COUPON_ID.NEXTVAL),6,'0')), ?, ?, ?, ? , ?, ?,?)";
 	private static final String UPDATE = " UPDATE COUPON SET EMP_ID=?, MEMBER_ID=?, COUPON_NAME=?, COUPON_CLASS=?, COUPON_NUMBER=?, COUPON_INFO=? ,COUPON_STATE=? where COUPON_ID = ? ";
 	private static final String DELETE = " DELETE  FROM  COUPON  WHERE COUPON_ID = ? ";
 	private static final String GET_ALL = " SELECT  COUPON_ID, EMP_ID, MEMBER_ID, COUPON_NAME, COUPON_CLASS, COUPON_NUMBER, COUPON_INFO , COUPON_DATE,COUPON_STATE FROM COUPON order by COUPON_ID ";
