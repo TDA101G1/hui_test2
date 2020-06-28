@@ -55,6 +55,12 @@ public class MemberServletforbackstage extends HttpServlet {
 				
 				req.setAttribute("mem_ID", mem_ID);
 				
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/backstage/member/getAllMember.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				
 			
 
 				/*************************** 2.開始查詢資料 *****************************************/

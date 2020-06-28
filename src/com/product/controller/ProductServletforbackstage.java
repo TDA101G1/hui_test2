@@ -556,6 +556,16 @@ public class ProductServletforbackstage extends HttpServlet {
 					errorMsgs.put("p_ID", "格式錯誤，商品號碼只能是PID開頭加上六個數字");
 				}
 				
+				req.setAttribute("p_ID", p_ID);
+
+				
+				
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/backstage/product/getAllproduct.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				
 				
 				// Send the use back to the form, if there were errors
 			
@@ -568,7 +578,6 @@ public class ProductServletforbackstage extends HttpServlet {
 
 				}
 				
-				req.setAttribute("p_ID", p_ID);
 
 				
 				// Send the use back to the form, if there were errors

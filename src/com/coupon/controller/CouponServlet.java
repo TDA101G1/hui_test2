@@ -172,14 +172,15 @@ public class CouponServlet extends HttpServlet {
 				if (cp_ID == null || cp_ID.trim().length() == 0) {
 					errorMsgs.put("cp_ID", "優惠券編號請勿空白");
 				} else if (!cp_ID.trim().matches(cp_IDReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.put("cp_ID", "格式錯誤，員編號碼只能是CNID開頭加上六個數字");
+					errorMsgs.put("cp_ID", "格式錯誤，優惠券編號只能是CNID開頭加上六個數字");
 				}
 				
 				
-				
-				
-
-			
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/backstage/coupon/getAllCoupon.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
 
 				/*************************** 2.開始查詢資料 *****************************************/
 				CouponService cpSvc = new CouponService();
