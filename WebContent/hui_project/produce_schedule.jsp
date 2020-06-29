@@ -61,7 +61,7 @@ pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
             position: relative;
             margin-bottom: -100px;
         }
-
+/* 
         footer {
             background-color: black;
             height: 164px;
@@ -69,9 +69,9 @@ pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
             font-weight: bold;
             /* position: absolute;
             bottom: 0;
-            left: 0; */
+            left: 0; 
             width: 100%;
-        }
+        } */
 
         button,
         img,
@@ -578,7 +578,7 @@ pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
 
         <div class="container-fluid -none">
             <div class="tex">
-                <div class="row" style="height: 1000px">
+                <div class="row" style="height:1000px;">
                     <div class="col col-md-1" style="padding: 0; z-index: 10;">
                         <div class="days">
                             <ul class="day">
@@ -1080,6 +1080,7 @@ pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
                 $("div.container-fluid").removeClass("-none")
                 $("div#schedule_list").addClass("-none")
                 $("div#top_bar").attr("class", "container-fluid");
+                $("div#top_bar").css("padding", "0");
                 $(this).addClass("-none");
                 $("button#btn_standard").removeClass("-none");
 
@@ -1091,6 +1092,7 @@ pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
                 $("div.container-fluid").addClass("-none")
                 $("div#schedule_list").removeClass("-none")
                 $("div#top_bar").attr("class", "container");
+                $("div#top_bar").css("padding", "0 15px");
                 $(this).addClass("-none");
                 $("button#btn_map").removeClass("-none");
             });

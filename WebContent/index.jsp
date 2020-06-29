@@ -459,7 +459,6 @@
     </div>
     <div class="row">
       <div class="guide-img col-6 col-sm-6 d-none d-sm-block" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/step1.jpg'); height: 300px;">
-        1-1
       </div>
       <div class="col-12 col-sm-6 text-center">
         <div>
@@ -479,10 +478,8 @@
         <div class="d-block d-sm-none" style="color: #d88181"><i class="fas fa-arrow-down fa-5x"></i></div>
       </div>
       <div class="guide-img col-6 col-sm-6 d-none d-sm-block" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/step2.jpg'); height: 300px;">
-        2-2
       </div>
       <div class="guide-img col-6 col-sm-6 d-none d-sm-block" style="background:url('<%=request.getContextPath()%>/img/david_img/index_image/step3.jpg'); height: 300px;">
-        3-1
       </div>
       <div class="col-12 col-sm-6 text-center">
         <p class="step">步驟三 確認路線</p>

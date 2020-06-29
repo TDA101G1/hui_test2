@@ -1260,31 +1260,64 @@
       }
     }
     
-    footer {
-        color: white;
-        background-color: black;
-        height: 164px;
-        font-size: 24px;
-        font-weight: bold;
-        width: 100%;
-        line-height: 164px;
-	 	margin-top: 100px;
-    }
+    /* Other Classes for Page Styling */
+	footer {
+		color: white;
+		background-color: black;
+		height: 180px;
+		font-size: 24px;
+		font-weight: bold;
+		/* width: 100%; */
+		/* line-height: 164px; */
+		padding: 100px 15px;
+		margin-top: 100px;
+	}
+	
+	footer img {
+		height: 120px;
+		width: 120px;
+		border-radius: 100px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+		transition: 1s;
+		/*變化的時間  可以在滑出滑鼠的時候會以動畫的方式自動返回*/
+	}
+	
+	.turn_over {
+		transform: rotateY(180deg);
+		opacity: 0;
+	}
+    
+    
+/*     footer { */
+/*         color: white; */
+/*         background-color: black; */
+/*         height: 164px; */
+/*         font-size: 24px; */
+/*         font-weight: bold; */
+/*         width: 100%; */
+/*         line-height: 164px; */
+/* 	 	margin-top: 100px; */
+/*     } */
 
-    footer img {
-        height: 120px;
-        width: 120px;
-        border-radius: 100px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        transition: 1s;
-        /*變化的時間  可以在滑出滑鼠的時候會以動畫的方式自動返回*/
-    }
-    .turn_over{
-        transform: rotateY(180deg);
-        opacity: 0;
-    }
+/*     footer img { */
+/*         height: 120px; */
+/*         width: 120px; */
+/*         border-radius: 100px; */
+/*         position: absolute; */
+/*         left: 0; */
+/*         top: 0; */
+/*         right: 0; */
+/*         bottom: 0; */
+/*         margin: auto; */
+/*         transition: 1s; */
+/*         變化的時間  可以在滑出滑鼠的時候會以動畫的方式自動返回 */
+/*     } */
+/*     .turn_over{ */
+/*         transform: rotateY(180deg); */
+/*         opacity: 0; */
+/*     } */
