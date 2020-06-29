@@ -1,3 +1,6 @@
+<%@page import="java.util.Set"%>
+<%@page import="com.customerize.websocket.controller.MemberDetail"%>
+<%@page import="com.customerize.websocket.controller.JedisEditSchedule"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
@@ -11,11 +14,13 @@
 <html lang="en">
 <%
 
-// CustVO custVO = (CustVO) request.getAttribute("custVO");
+CustomerizeVO custVO = (CustomerizeVO) request.getAttribute("custVO");
 List<CustDetailVO> lists = (List<CustDetailVO>) request.getAttribute("custDetails");
 pageContext.setAttribute("list", lists);
-// session.setAttribute("list", lists);
 
+JedisEditSchedule jedis = new JedisEditSchedule();
+Set<MemberDetail> JedismemberDetail = jedis.getRoomMembers(custVO.getCust_Schedule_ID());
+pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
 
 %>
 
@@ -533,7 +538,7 @@ pageContext.setAttribute("list", lists);
         </nav> --%>
 		<%@include file="../frontstage_member/pages/header.file" %>
 
-        <div class="container">
+        <div id="top_bar" class="container">
             <div class="top_navbar" data-schedule-id="${custVO.cust_Schedule_ID}" data-member-id="${custVO.member_ID}"
                 data-position="${custVO.cust_Position}" data-selected-county="${custVO.cust_Selected_County}">
                 <div class="row align-items-center" style="margin: 0;">
@@ -554,11 +559,13 @@ pageContext.setAttribute("list", lists);
                                 <div style="margin-top: 10px;">
                                     <hr id="loading" style="border-color: #E0DFDF !important;">
                                     <ul id="firend" style="text-align: center;">
-                                    <!--------------- 動態新增 --------------->
-                                    </ul>
+					                	<c:forEach var="member" items="${JedismemberDetail}">
+					                		<li style="margin-top:5px;">${member.member_email}</li>
+					                	</c:forEach>
+					                  <!--------------- 動態新增 --------------->
+					                </ul>
                                 </div>
                                 </div>
-                                <!-- <button id="btn_share" type="button" class="btn btn-primary btn-lg">分享行程</button> -->
                                 <input type="hidden" name="action" value="edit_schedule">
                                 <input type="hidden" name="cust_schedule_id" value="${custVO.cust_Schedule_ID}">
                             </div>
@@ -594,7 +601,7 @@ pageContext.setAttribute("list", lists);
         </div>
 
 
-        <div class="container" style="margin-top: -1px;">
+        <div id="schedule_list" class="container" style="margin-top: -1px;">
             <div class="test">
                 <div class="row">
                     <div class="col col-md-7" style="padding-right: 0;">
@@ -1052,8 +1059,7 @@ pageContext.setAttribute("list", lists);
                 });
 
             });
-            // String member_ID, String product_ID, String product_Name,
-			// String productDetail_ID, String quantity, String spc, String start, String end, String price
+
             /*----------------------------刪除購買項目--------------------------------*/
             $("span.trash").on("click", function () {
                 $(this).closest("li").remove();
@@ -1072,7 +1078,8 @@ pageContext.setAttribute("list", lists);
             $("button#btn_map").on("click", function () {
                 $("ul.day").find("li.Day1").addClass("-selected");
                 $("div.container-fluid").removeClass("-none")
-                $("div.container").addClass("-none")
+                $("div#schedule_list").addClass("-none")
+                $("div#top_bar").attr("class", "container-fluid");
                 $(this).addClass("-none");
                 $("button#btn_standard").removeClass("-none");
 
@@ -1082,7 +1089,8 @@ pageContext.setAttribute("list", lists);
             /*----------------------------標準模式按鈕--------------------------------*/
             $("button#btn_standard").on("click", function () {
                 $("div.container-fluid").addClass("-none")
-                $("div.container").removeClass("-none")
+                $("div#schedule_list").removeClass("-none")
+                $("div#top_bar").attr("class", "container");
                 $(this).addClass("-none");
                 $("button#btn_map").removeClass("-none");
             });
