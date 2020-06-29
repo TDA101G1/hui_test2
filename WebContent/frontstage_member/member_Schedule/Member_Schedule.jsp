@@ -182,7 +182,7 @@ div.sidebar a.nav-link:hover{
 				              	</c:if>
 				              </c:forEach>
 				              	<button type="button" name="button" class="removeSchedule" STYLE="background-color: transparent; border:2px blue none; outline:none;">
-				              	<i class="fas fa-heart fa-1x" style="color: #E93F3F; font-size: 1.5em;"></i>移除收藏
+				              	<i class="fas fa-heart fa-1x" style="color: #E93F3F; font-size: 1.5em;"></i>移除行程
 				              	</button>
 				                <i class="fas fa-spinner fa-spin fa-2x loading -none"></i>  
 				              </div>
