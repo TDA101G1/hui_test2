@@ -76,6 +76,7 @@ body {
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                                 <input type="text" class="form-control " name="name" id="name" placeholder="輸入您的姓名" value="${member.member_Name }"/><br>
+                                                <button class= "magic-btn btn btn-primary btn-sm" type="button">神奇</button>
                                             </div>
                                             <small class="form-text font-weight-bold text-danger">${errorMsg.name_empty }</small>
                                             <small class="form-text font-weight-bold text-danger">${errorMsg.name_Reg }</small>
@@ -250,7 +251,7 @@ body {
 	  checkAccount();
 	  
 	  
-	$("#birthday").flatpickr({
+	const fp = $("#birthday").flatpickr({
 	    altInput: true,
 	    altFormat: "Y年 m月 j日",
 	    dateFormat: "Y/m/d",
@@ -298,8 +299,8 @@ body {
 		    };
 		    var form_dataString = JSON.stringify(form_data);		//後端接收參數為String type的JSON
 			let this_button = $(this);
-			alert('begin ajax');
-			$.ajax({
+/* 			alert('begin ajax');
+ */			$.ajax({
 				url: "<%=request.getContextPath()%>/member/Login.Api",
 				type : 'POST',
 				contentType:'application/json',
@@ -342,7 +343,20 @@ body {
 		  
 	  })  
 	  
-
+	function magic(){
+		  $('input#name').val('旅遊達人');
+		  $('input#account').val('master');
+		  $('input#password').val('123');
+		  $('input#female').attr('checked', true);
+		  $('input#phone').val('0912345678');
+		  $('input#email').val('forbid7838@gmail.com');
+		  $('input#address_detail').val('仁路愛21號5樓');
+		  fp.setDate('1999/03/08');
+	  }
+	$('button.magic-btn').on('click', function(){
+		magic();
+		$('div.input-group').find('button.check_account').click();
+	})
 	 
 	  
 	</script>

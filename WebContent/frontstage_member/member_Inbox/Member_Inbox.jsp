@@ -496,9 +496,24 @@ div.tab-content{
 		
 		
 	$(function(){
+//停止刪除信件checkbox冒泡事件
 		$('table').on('click', 'input.checkbox_delete',function(e){
 			e.stopImmediatePropagation();
 		});
+		
+//全選
+		$('input[type=checkbox].all').on('click', function(){
+			if($(this).prop('checked')){
+				$(this).closest('tbody').find('input[type=checkbox].checkbox_delete').each(function(index, value){
+					$(value).prop('checked', true);
+				});
+			}else{
+				$(this).closest('tbody').find('input[type=checkbox].checkbox_delete').each(function(index, value){
+					$(value).prop('checked', false);
+				});
+			}
+		});
+		
 		$('button.writeMail').on('click', function(){
 			let name = $('select#write_name').val();
 			let title = $('input#write_title').val();
@@ -515,7 +530,6 @@ div.tab-content{
 		    };
 		    let form_dataString = JSON.stringify(form_data);		//後端接收參數為String type的JSON
 
-			alert('begin ajax');
 			$.ajax({
 				url: "<%=request.getContextPath()%>/inbox/Inbox.Api",
 				type : 'POST',
