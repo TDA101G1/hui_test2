@@ -12,7 +12,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
-	EmployeeVO empVO = (EmployeeVO) request.getAttribute("empVO");
+// 	EmployeeVO empVO = (EmployeeVO) request.getAttribute("empVO");
 EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
 
 %>
@@ -310,10 +310,10 @@ to get the desired effect
 //	Set<InboxVO> outboxs = service.getInboxByMemberID("3", member_ID);		//1是員工寄件夾
 //	pageContext.setAttribute("outboxs", outboxs);
 
-EmployeeVO employee = new EmployeeVO();
-employee.setEmp_ID("EID000000");
-session.setAttribute("employee", employee);
-String employee_ID = employee.getEmp_ID();
+// EmployeeVO employee = new EmployeeVO();
+// employee.setEmp_ID("EID000000");
+// session.setAttribute("employee", employee);
+String employee_ID = in_empVO.getEmp_ID();
 
 
 InboxService service = new InboxService();
