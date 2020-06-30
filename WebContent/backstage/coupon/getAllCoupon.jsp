@@ -1,17 +1,18 @@
+<%@page import="com.member.model.MemberVO"%>
+<%@page import="com.member.model.MemberService"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.coupon.model.*"%>
 <%@ page import="com.employee.model.*"%>
 <%@ page import="java.util.*"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	CouponVO cpVO = (CouponVO) request.getAttribute("cpVO");
 
 	EmployeeVO empVO = (EmployeeVO) request.getAttribute("empVO");
 	EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
-
- %>
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,8 +71,33 @@ div.pagination {
 }
 
 /* Add a grey background color on mouse-over */
-.paginationa:hover:not(.active){
-background-color:#ddd;
+.paginationa
+
+
+:hover
+
+
+:not
+
+ 
+
+(
+.active
+
+ 
+
+){
+background-color
+
+
+:
+
+ 
+
+#ddd
+
+
+;
 }
 label.label_area {
 	display: block;
@@ -179,83 +205,72 @@ to {
 }
 
 /*   搜尋欄相關      */
+.search_area {
+	width: 60%;
+	vertical-align: middle;
+	white-space: nowrap;
+	position: relative;
+	display: inline-block;
+	margin-left: 5%;
+	margin-bottom: 50px;
+	margin-top: 50px;
 
-.search_area{
-  width: 60%;
-  vertical-align: middle;
-  white-space: nowrap;
-  position: relative;
-  display: inline-block;
-  margin-left: 5%;
-  margin-bottom: 50px;
-  margin-top: 50px;
-
-  /* left: 10%; */
-  /* border: solid 2px; */
+	/* left: 10%; */
+	/* border: solid 2px; */
 }
 
-.search_area input#search{
-  width: 100%;
-  height: 40px;
-  /* border: solid 1px; */
-  font-size: 10pt;
-  float: left;
-  color: #63717f;
-  padding-left: 10px;
-  /* -webkit-border-radius: 5px;
+.search_area input#search {
+	width: 100%;
+	height: 40px;
+	/* border: solid 1px; */
+	font-size: 10pt;
+	float: left;
+	color: #63717f;
+	padding-left: 10px;
+	/* -webkit-border-radius: 5px;
   -moz-border-radius: 5px; */
-  border-radius: 20px;
-  display: block;
-  border: solid 1px;
-
-
-  /* -webkit-transition: background .55s ease;
+	border-radius: 20px;
+	display: block;
+	border: solid 1px;
+	/* -webkit-transition: background .55s ease;
   -moz-transition: background .55s ease;
   -ms-transition: background .55s ease;
   -o-transition: background .55s ease; */
-  transition: background .55s ease;
+	transition: background .55s ease;
 }
 
 .search_area input#search::-webkit-input-placeholder {
-   color: #65737e;
+	color: #65737e;
 }
 
 .search_area input#search:-moz-placeholder { /* Firefox 18- */
-   color: #65737e;
+	color: #65737e;
 }
 
-.search_area input#search::-moz-placeholder {  /* Firefox 19+ */
-   color: #65737e;
+.search_area input#search::-moz-placeholder { /* Firefox 19+ */
+	color: #65737e;
 }
 
 .search_area input#search:-ms-input-placeholder {
-   color: #65737e;
+	color: #65737e;
 }
 
-.search_area .searchIcon{
-  max-width: auto;
-  /* border: solid 2px; */
-  display: fixed;
-  position: absolute;
-  right: 10px;
-  top: 8px;
-
-  z-index: 1;
-  color: #4f5b66;
+.search_area .searchIcon {
+	max-width: auto;
+	/* border: solid 2px; */
+	display: fixed;
+	position: absolute;
+	right: 10px;
+	top: 8px;
+	z-index: 1;
+	color: #4f5b66;
 }
 
-.search_area input#search:hover, .search_area input#search:focus, .search_area input#search:active{
-    outline:none;
-    background: #f0f0f0;
-  }
-
-
-
-
-
-
-
-
+.search_area input#search:hover, .search_area input#search:focus,
+	.search_area input#search:active {
+	outline: none;
+	background: #f0f0f0;
+}
 </style>
 </head>
 <!--
@@ -271,14 +286,20 @@ to get the desired effect
 
 <%
 	CouponService cpSvc = new CouponService();
-	List<CouponVO> list = cpSvc.getAll().stream()
-			.filter(p -> p.getCoupon_State()==1)
+	List<CouponVO> list = cpSvc.getAll().stream().filter(p -> p.getCoupon_State() == 1)
 			.collect(Collectors.toList());
+
+	MemberService mSvc = new MemberService();
+	List<MemberVO> AllmVO = mSvc.getAll();
+	EmployeeService empSvc = new EmployeeService();
+	List<EmployeeVO> AllempVO = empSvc.getAll();
 	pageContext.setAttribute("list", list);
+	pageContext.setAttribute("AllmVO", AllmVO);
+	pageContext.setAttribute("AllempVO", AllempVO);
+
 	int length = 0;
 	int count = 0;
 	int number = 0;
-
 %>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -371,7 +392,7 @@ to get the desired effect
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>信箱</p>
 								</a></li>
-					
+
 
 							</ul></li>
 
@@ -497,35 +518,35 @@ to get the desired effect
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
-					   <!-- 搜尋欄 -->
-					   <div class="search_area">
-					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/backstage/coupon/coupon.do">
-						
-							<input type="text" id="search" name="cp_ID" placeholder="請輸入優惠券編號"  value="${cp_ID}"/>
-							<input type="hidden" name="action" value="getOne">
-							 <span class="searchIcon"><button class="btn btn-navbar" type="submit">
-                              <i class="fas fa-search"></i>
-                            </button>
-                            	</span>
-							
-						
-					</FORM>	
-					<br>
-					<br>
-						<a class="col" style="color: red">${errorMsgs.cp_ID}</a>
-					
-					</div>
-					
-					
-				
-						
+						<!-- 搜尋欄 -->
+						<div class="search_area">
+							<FORM METHOD="post"
+								ACTION="<%=request.getContextPath()%>/backstage/coupon/coupon.do">
+
+								<input type="text" id="search" name="cp_ID"
+									placeholder="請輸入優惠券編號" value="${cp_ID}" /> <input
+									type="hidden" name="action" value="getOne"> <span
+									class="searchIcon"><button class="btn btn-navbar"
+										type="submit">
+										<i class="fas fa-search"></i>
+									</button> </span>
+
+
+							</FORM>
+							<br> <br> <a class="col" style="color: red">${errorMsgs.cp_ID}</a>
+
+						</div>
+
+
+
+
 						<div class="card">
-						
+
 							<div class="card-header">
 								<%@ include file="pages/page1.file"%>
 							</div>
 							<div class="card-title">
-										<div class="col">
+								<div class="col">
 									<div class="card card-primary card-tabs">
 										<br> <br>
 										<div class="card-header p-0 pt-1">
@@ -546,7 +567,7 @@ to get the desired effect
 								<div class="card-body" style="overflow: auto">
 									<div class="col-lg">
 										<table class="table table-sm-12 ">
-										
+
 											<thead>
 												<tr>
 													<th scope="col">#</th>
@@ -559,7 +580,7 @@ to get the desired effect
 													<th scope="col">使用資訊</th>
 													<th scope="col">建立時間</th>
 													<th scope="col">修改</th>
-												
+
 													<!-- 				<th scope="col">刪除員工</th> -->
 												</tr>
 											</thead>
@@ -568,9 +589,9 @@ to get the desired effect
 
 
 
-												<c:forEach var="cpVO" items="${list}"
-													begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-																		
+												<c:forEach var="cpVO" items="${list}" begin="<%=pageIndex%>"
+													end="<%=pageIndex+rowsPerPage-1%>">
+
 													<%
 														/* 號碼 */
 															length = whichPage * rowsPerPage - rowsPerPage;
@@ -583,19 +604,29 @@ to get the desired effect
 													<tr>
 														<th scope="row"><%=number%></th>
 														<td>${cpVO.coupon_ID}</td>
-														<td>${cpVO.emp_ID}</td>
-														<td>${cpVO.member_ID}</td>
+														<c:forEach var="emp_VO" items="${AllempVO}">
+															<c:if test="${cpVO.emp_ID == emp_VO.emp_ID}">
+																<td>${cpVO.emp_ID}${emp_VO.emp_Name }</td>
+															</c:if>
+														</c:forEach>
+														<c:forEach var="mem_VO" items="${AllmVO}">
+															<c:if test="${cpVO.member_ID == mem_VO.member_ID}">
+
+																<td>${cpVO.member_ID}${mem_VO.member_Name}</td>
+															</c:if>
+														</c:forEach>
 														<td>${cpVO.coupon_Name}</td>
 														<td>${cpVO.coupon_Class}</td>
 														<td>${cpVO.coupon_Number}</td>
 														<td>${cpVO.coupon_Info}</td>
-														<td><fmt:formatDate value="${cpVO.coupon_Date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+														<td><fmt:formatDate value="${cpVO.coupon_Date}"
+																pattern="yyyy-MM-dd HH:mm:ss" /></td>
 														<td>
 															<FORM METHOD="post"
 																ACTION="<%=request.getContextPath()%>/backstage/coupon/coupon.do"
 																style="margin-bottom: 0px;">
 																<input type="submit" value="修改"> <input
-																	type="hidden" name="cp_ID" value="${cpVO.coupon_ID}">	 
+																	type="hidden" name="cp_ID" value="${cpVO.coupon_ID}">
 																<input type="hidden" name="action"
 																	value="getOne_For_Update">
 															</FORM>
@@ -631,7 +662,7 @@ to get the desired effect
 			</div>
 		</footer>
 	</div>
-	
+
 
 	<!-- ./wrapper -->
 
@@ -658,7 +689,7 @@ to get the desired effect
 	<script
 		src="<%=request.getContextPath()%>/backstage/Home/dist/js/pages/dashboard3.js"></script>
 	<script>
-
+		
 	</script>
 </body>
 </html>

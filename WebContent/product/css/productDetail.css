@@ -88,20 +88,38 @@ img.main_img{
   margin: auto;
 }
 
-div.smaller_img{
-  height: 100%;
+div.smaller_Area{
+/*   height: 100%; */
   width: 100%;
   margin: 8px 0px;
   display: flex;
   justify-content: space-between;
 }
-div.smaller_img img{
+
+.smaller_backgroundImg{
+	height: 50px;
+	width: 18%;
+	background-color: lightgray;
+	position: relative;
+}
+
+
+
+div.smaller_Area img{
+  max-width: 100%;
   max-height: 100%;
+  width: auto;
   height: auto; 
-  width: 18%;
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  
+  margin:auto;
   transition: 0.2s;
 }
-div.smaller_img img:hover{
+div.smaller_Area img:hover{
   opacity: 0.7;
 }
 h4{

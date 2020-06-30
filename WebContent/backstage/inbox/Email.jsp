@@ -810,7 +810,7 @@ pageContext.setAttribute("memAll", memAll);
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
           <input type="hidden" name="state" id="write_state" value="3">
-          <input type="hidden" id="write_id" value="${employee.emp_ID }">
+          <input type="hidden" id="write_id" value="${in_empVO.emp_ID }">
 <!--           <button type="submit" name="action" value="writeMail" class="btn btn-primary">送出</button> -->
           <button class="writeMail btn btn-primary" type="button">送出</button>
         </div>

@@ -45,12 +45,26 @@
               </div>
               <img class="card-img-top main_img" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT">
             </div>
-            <div class="smaller_img">
-              <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT"></img>
-              <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG2&tName=PRODUCT"></img>
-              <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG3&tName=PRODUCT"></img>
-              <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG4&tName=PRODUCT"></img>
-              <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG5&tName=PRODUCT"></img>
+            <div class="smaller_Area">
+              <div class="smaller_backgroundImg">
+                <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT"></img>
+			  </div>
+			  <div class="smaller_backgroundImg">
+                <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG2&tName=PRODUCT"></img>
+			  </div>
+			  <div class="smaller_backgroundImg">
+                <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG3&tName=PRODUCT"></img>
+			  </div>
+			  <div class="smaller_backgroundImg">
+                <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG4&tName=PRODUCT"></img>
+			  </div>
+			  <div class="smaller_backgroundImg">
+                <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG5&tName=PRODUCT"></img>
+			  </div>
+<%--               <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG2&tName=PRODUCT"></img> --%>
+<%--               <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG3&tName=PRODUCT"></img> --%>
+<%--               <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG4&tName=PRODUCT"></img> --%>
+<%--               <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG5&tName=PRODUCT"></img> --%>
             </div>
             <div>
               <button class="addCollection" type="button" name="button">
