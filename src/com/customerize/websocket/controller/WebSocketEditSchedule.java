@@ -21,7 +21,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
 
-@ServerEndpoint("/TogetherWS/{cust_schedule_id}/{current_member_id}/{owner_member_id}/{member_email}")
+@ServerEndpoint("/TogetherWS/{cust_schedule_id}/{member_email}/{owner_member_id}/{current_member_id}")
 public class WebSocketEditSchedule {
 
 //	private static final Set<Session> connectedSessions = Collections.synchronizedSet(new HashSet<>());
