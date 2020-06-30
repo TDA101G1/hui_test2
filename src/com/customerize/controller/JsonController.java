@@ -54,7 +54,7 @@ public class JsonController extends HttpServlet {
 //		System.out.println(action);
 
 		/*==============================依使用者所選的地點、類別篩選產品==============================*/	
-		if (action.equals("load_product")) {
+		if ("load_product".equals(action)) {
 			ProductService productDao = new ProductService();
 			ProductCmtService productCmtDao = new ProductCmtService();
 			List<ProductVO> listProducts = productDao.getAll();
@@ -133,7 +133,7 @@ public class JsonController extends HttpServlet {
 		}
 			
 		/*==============================載入單個產品的評價==============================*/		
-		if(action.equals("load_productCmt")) {
+		if("load_productCmt".equals(action)) {
 //			System.out.println(new java.util.Date().getTime() + " < start");
 			String product_id = req.getParameter("product_id");
 			MemberService memberDao = new MemberService();
@@ -173,7 +173,7 @@ public class JsonController extends HttpServlet {
 			
 
 		/*==============================insert行程細節==============================*/	
-		if (action.equals("insert_schedule")) {
+		if ("insert_schedule".equals(action)) {
 			try {
 				CustomerizeService customerizeDao = new CustomerizeService();
 				CustDetailService custDetailDao = new CustDetailService();
@@ -245,8 +245,7 @@ public class JsonController extends HttpServlet {
 		}
 		
 		/*==============================載入使用者的行程細節==============================*/	
-		if(action.equals("load_schedule")) {
-			System.out.println("進來了123");
+		if("load_schedule".equals(action)) {
 			String cust_schedule_id = req.getParameter("cust_schedule_id");
 			String selected_county = req.getParameter("selected_county");
 			Map<String, String[]> map = new TreeMap<>();
@@ -255,7 +254,7 @@ public class JsonController extends HttpServlet {
 				map.put("cust_schedule_id", new String[] {cust_schedule_id});
 			}
 			
-			if(selected_county.length() != 0 && selected_county != null) {
+			if(selected_county.length() != 0 && selected_county != null) {    //或許不用這個參數，還沒研究
 				str =  jsonArrayToStringArray(selected_county);
 				map.put("product_county", str);
 			}
@@ -275,7 +274,7 @@ public class JsonController extends HttpServlet {
 		}
 		
 		/*==============================搜尋欄位==============================*/	
-		if (action.equals("searchData")) {
+		if ("searchData".equals(action)) {
 			String query = req.getParameter("query");
 			if(query != null && query.trim().length() != 0) {
 //				System.out.println(query);
@@ -318,6 +317,7 @@ public class JsonController extends HttpServlet {
 		
 		/*==============================加入購物車==============================*/	
 		if("add_cart".equals(action)) {
+			JedisShoppingCar shoppingCar = new JedisShoppingCar();
 			String cart_list = req.getParameter("cart_list");
 			JSONArray array = new JSONArray(cart_list);
 			for(int i = 0; i < array.length(); i++) {
@@ -332,7 +332,6 @@ public class JsonController extends HttpServlet {
 					String start = obj.getString("start");
 					String end = obj.getString("start");
 					String price = obj.getString("price");
-					JedisShoppingCar shoppingCar = new JedisShoppingCar();
 					shoppingCar.add(member_ID, product_ID, product_Name, productDetail_ID, quantity, spc, start, end, price);
 				}
 			}

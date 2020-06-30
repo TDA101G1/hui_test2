@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple Map</title>
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 50%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="map"></div>
+    <input id="address" type="text">
+    <button>送出</button>
+    lat:<input id="lat">
+    lng:<input id="lng">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=你的API KEY&callback=initMap&libraries=&v=weekly"
+        defer></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        $("button").on("click", function () {
+            let geocoder = new google.maps.Geocoder();
+            let address = $("#address").val();
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status == 'OK') {
+                    $("#lat").val(results[0].geometry.location.lat())
+                    $("#lng").val(results[0].geometry.location.lng())
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
