@@ -7,8 +7,45 @@
     	  label.label_area{
     	    display:inline-block !important;
     	  }
+    	  div.img_Container{
+    	    height:200px; 
+    	  }
     	}
- 
+
+.img_Container{
+	 height:120px; 
+	 width:100%; 
+	 position: relative; 
+	 overflow: hidden;
+}
+
+.backgroundImg_Area{
+	height:100%; 
+	width:100%; 
+	background-image:background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	-webkit-filter: blur(15px);
+	-moz-filter: blur(15px);
+	-o-filter: blur(15px);
+	-ms-filter: blur(15px);
+	filter: blur(15px);
+}
+
+.main_Img{
+	max-height: 150%;  
+	max-width: 100%;  
+	width: auto;  
+	height: auto;  
+	position: absolute;  
+	top: 0;  
+	bottom: 0;  
+	left: 0;  
+	right: 0;  
+	margin: auto;
+}
+    	
+
  
  
 body {

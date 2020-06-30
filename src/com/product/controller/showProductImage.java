@@ -3,6 +3,8 @@ package com.product.controller;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,6 +14,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,16 +39,27 @@ public class showProductImage extends HttpServlet {
 //		List<EmployeeVO> beans = (List<EmployeeVO>) request.getAttribute("members");
 		String p_ID = request.getParameter("product_ID");
 		response.setContentType("image/png");
-		OutputStream os = response.getOutputStream();
+		ServletOutputStream os = response.getOutputStream();
+		BufferedOutputStream bos = new BufferedOutputStream(os);
 		if(p_ID != null && p_ID.length() != 0) {
-			List<ProductVO> beans = new ProductService().getAll();
-			for (ProductVO bean : beans) {
-				if (p_ID.equals(bean.getProduct_ID())) {
+			ProductService pService = new ProductService();
+			ProductVO bean = new ProductVO();
+			bean.setProduct_ID(p_ID);
+			bean = pService.select(bean);
+//			for (ProductVO bean : beans) {
+//				if (p_ID.equals(bean.getProduct_ID())) {
 //					System.out.println(employee_ID);
 					if (bean.getProduct_Img1() != null) {									//確認資料庫中有無圖片
 						byte[] image = bean.getProduct_Img1();
 						InputStream is = new ByteArrayInputStream(image);
-						imageOut(is,os);
+						BufferedInputStream bis = new BufferedInputStream(is);
+//						imageOut(bis, bos);
+						bos.write(image);
+						bos.flush();
+						bos.close();
+						os.close();
+						bis.close();
+						is.close();
 						
 //						System.out.println("DB:" + imageOut(is, os));
 					} else {
@@ -57,9 +71,9 @@ public class showProductImage extends HttpServlet {
 //						System.out.println("FILE:" + );
 					}
 
-				}
+//				}
 
-			}
+//			}
 
 		}
 		

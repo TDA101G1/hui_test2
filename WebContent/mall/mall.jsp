@@ -160,17 +160,17 @@
         </div> -->
 
 
-        <form class="" action="" method="post">
-          <a href="#"></a>
+<!--         <form class="" action="" method="post"> -->
+<!--           <a href="#"></a> -->
         <!-- 資料來源 -->
         <!-- https://webdesign.tutsplus.com/zh-hant/tutorials/css-experiments-with-a-search-form-input-and-button--cms-22069 -->
         <!-- <div class="box"> -->
           <div class="search_area">
-            <input type="input" id="search" placeholder="搜尋..." />
+            <input type="text" id="search" placeholder="搜尋..." />
             <span class="icon"><i class="fa fa-search"></i></span>
           </div>
         <!-- </div> -->
-        </form>
+<!--         </form> -->
 
 
         <!-- <div class="row">
@@ -201,7 +201,11 @@
 		<c:when test="${product.product_Class=='套裝行程' && product.product_State==1 && param.action == null && param.county == null}">
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100" data-product_ID="${product.product_ID}" data-product_Class="${product.product_Class}">
-              <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT" width="100%" height="120px"></a>
+              <div class="img_Container">
+                <div class="backgroundImg_Area" style="background-image:url('<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT');">
+                </div>
+                <img class="card-img-top main_Img" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT">
+              </div>
               <div class="card-body">
                 <h4 class="card-title">
                   <a href="#">${product.product_Name}</a>
@@ -225,7 +229,11 @@
 		<c:when test="${product.product_Class!='套裝行程' && product.product_State==1 && param.action == null && param.county == null}">
           	<div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100"  data-product_ID="${product.product_ID}"  data-product_Class="${product.product_Class}">
-              <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT" width="100%" height="120px"></a>
+              <div class="img_Container">
+                <div class="backgroundImg_Area" style="background-image:url('<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT');">
+                </div>
+                <img class="card-img-top main_Img" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT">
+              </div>
               <div class="card-body">
                 <h4 class="card-title">
                   <a href="#">${product.product_Name}</a>
@@ -295,14 +303,14 @@
 	  getRatingPriceRange();
 	  getCollections();
 	  
-	  console.log(location.href);
-	  console.log(location.protocol);
-	  console.log(location.hostname);
-	  console.log(location.host);
-	  console.log(location.port);
-	  console.log(location.pathname);
-	  console.log(location.search);
-	  console.log(location.hash);
+// 	  console.log(location.href);
+// 	  console.log(location.protocol);
+// 	  console.log(location.hostname);
+// 	  console.log(location.host);
+// 	  console.log(location.port);
+// 	  console.log(location.pathname);
+// 	  console.log(location.search);
+// 	  console.log(location.hash);
 // 	  console.log(location.search);
 	  let action = "";
 	  if(location.search.indexOf('?') != -1){
@@ -564,20 +572,26 @@
     
     
     var a;
-    $("#search").on("keyup", function(){
+    $("#search").on("keyup", function(e){
+//     	console.log(e.which);
+//     	if(e.which == 13){
+//     		alert();
+//     	}
     	clearTimeout(a);
 //     	a = setTimeout(function(){
 //     		updateMemberCar(product_Name, product_ID, productDetail_ID, spc, quantity, start, end, price, index, addTime);
 //     	}, 200);
     	
     	a = setTimeout(function(){
-	    	let keyword = $("#search").val();
-	    	findKeyword(keyword);
+	    	let keyword = $("#search").val().trim();
+	    	if(keyword != ""){
+		    	findKeyword(keyword);
+	    	}
     	}, 600);
     });
     
     function findKeyword(keyword){
-//     	console.log(keyword);
+    	console.log(keyword);
     	$.ajax({
 			// 資料請求的網址
     		url: "<%=request.getContextPath()%>/ProductServlet.do",
@@ -634,7 +648,11 @@
     	let foo = "<fmt:parseNumber var='i' integerOnly='true' type='number' value='${product.product_Click_Rec}' />"
     	    +"<div class='col-lg-4 col-md-6 mb-4'>"
     	    +"<div class='card h-100' data-product_ID='"+productID+"' data-product_Class='"+product_Class+"'>"
-    	      +"<a href='#'><img class='card-img-top' src='<%=request.getContextPath()%>/DBGifReader2?conditions="+productID+"&whichImg=PRODUCT_IMG1&tName=PRODUCT' width='100%' height='120px'></a>"
+    	    +`<div class="img_Container">`
+            +`<div class="backgroundImg_Area" style="background-image:url('<%=request.getContextPath()%>/DBGifReader2?conditions=`+productID+`&whichImg=PRODUCT_IMG1&tName=PRODUCT');">`
+            +`</div>`
+            +`<img class="card-img-top main_Img" src="<%=request.getContextPath()%>/DBGifReader2?conditions=`+productID+`&whichImg=PRODUCT_IMG1&tName=PRODUCT">`
+          +`</div>`
     	      +"<div class='card-body'>"				   
     	      +"<h4 class='card-title'>"
     	        +"<a href='#'>"+product_Name+"</a>"
@@ -656,7 +674,11 @@
     function createNewCard(productID, product_Name, product_Staytime, product_Click_Rec, product_Address, product_Class){
     	let foo = "<div class='col-lg-4 col-md-6 mb-4'>"
     		+"<div class='card h-100'  data-product_ID='"+productID+"' data-product_Class='"+product_Class+"'>"
-            +"<a href='#'><img class='card-img-top' src='<%=request.getContextPath()%>/DBGifReader2?conditions="+productID+"&whichImg=PRODUCT_IMG1&tName=PRODUCT' width='100%' height='120px'></a>"
+    		+`<div class="img_Container">`
+            +`<div class="backgroundImg_Area" style="background-image:url('<%=request.getContextPath()%>/DBGifReader2?conditions=`+productID+`&whichImg=PRODUCT_IMG1&tName=PRODUCT');">`
+            +`</div>`
+            +`<img class="card-img-top main_Img" src="<%=request.getContextPath()%>/DBGifReader2?conditions=`+productID+`&whichImg=PRODUCT_IMG1&tName=PRODUCT">`
+          +`</div>`
         +"<div class='card-body'>"
         +"<h4 class='card-title'>"
           +"<a href='#'>"+product_Name+"</a>"

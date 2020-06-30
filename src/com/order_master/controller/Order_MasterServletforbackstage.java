@@ -122,7 +122,7 @@ public class Order_MasterServletforbackstage extends HttpServlet {
 
 				/*************************** 2.開始修改資料 ***************************************/
 				Order_MasterService omSvc = new Order_MasterService();
-				omVO = omSvc.update(omVO);
+				omVO = omSvc.updateOrder_Master_State(omVO.getOrder_Master_ID());
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				req.setAttribute("omVO", omVO);
 				String url = "/backstage/Order_Master/getAllOrder_Master.jsp";

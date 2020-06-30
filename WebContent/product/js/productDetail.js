@@ -116,7 +116,8 @@ $(document).on("blur", ".input_quantity", function(){
 // 圖片切換
 $(".smaller_img img").on("click", function(){
   let src = $(this).attr("src")
-  $(".main_img img").attr("src", src);
+  $(".backgroundImg_Area").css("background-image", "url('"+src+"'")
+  $(".main_img").attr("src", src);
 });
 
 //數量高過max就等同max
@@ -496,7 +497,7 @@ $("img.comment_img").on("click", function(){
   modalImg.src = this.src;
   captionText.innerHTML = this.alt;
 });
-$(".main_img").children("img").on("click", function(){
+$(".main_img").on("click", function(){
   modal.style.display = "block";
   modalImg.src = this.src;
   captionText.innerHTML = this.alt;

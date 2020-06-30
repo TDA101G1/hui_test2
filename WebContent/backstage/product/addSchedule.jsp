@@ -7,7 +7,6 @@
 	ProductVO pVO = (ProductVO) request.getAttribute("pVO");
 	ProductDetailVO pdVO = (ProductDetailVO) request.getAttribute("pdVO");
 	EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
-
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +38,10 @@
 <style>
 img {
 	width: 150px;
+}
+
+.btn {
+	margin-left: 50px;
 }
 
 div.pagination {
@@ -78,7 +81,15 @@ div.pagination {
 
 
 
+
+
+
+
 :hover
+
+
+
+
 
 
 
@@ -176,7 +187,11 @@ div.pagination {
 
 
 
+
+
  
+
+
 
 
 
@@ -243,7 +258,11 @@ div.pagination {
 
 
 
+
+
  
+
+
 
 
 
@@ -342,7 +361,13 @@ background-color
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -408,7 +433,13 @@ background-color
 
 
 
+
+
 #ddd
+
+
+
+
 
 
 
@@ -847,7 +878,7 @@ to get the desired effect
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>信箱</p>
 								</a></li>
-							
+
 
 							</ul></li>
 
@@ -902,7 +933,8 @@ to get the desired effect
 
 										<li class="nav-item"><a
 											href="<%=request.getContextPath()%>/backstage/product/addSchedule.jsp"
-											class="nav-link active"> <i class="far fa-circle nav-icon"></i>
+											class="nav-link active"> <i
+												class="far fa-circle nav-icon"></i>
 												<p>新增套裝行程</p>
 										</a></li>
 							</ul></li>
@@ -1021,18 +1053,18 @@ to get the desired effect
 
 
 
-												<br>
+											
 												<p style="color: red">${errorMsgs.product_Img1}</p>
-												<br>
+										
 												<p style="color: red">${errorMsgs.product_Img2}</p>
-												<br>
+											
 												<p style="color: red">${errorMsgs.product_Img3}</p>
-												<br>
+										
 												<p style="color: red">${errorMsgs.product_Img4}</p>
-												<br>
+										
 												<p style="color: red">${errorMsgs.product_Img5}</p>
 
-												<br>
+												
 												<div class="row">
 
 
@@ -1070,8 +1102,8 @@ to get the desired effect
 
 														<input type="text" class="form-control col-6 "
 															placeholder="Name" aria-describedby="basic-addon1"
-															value="<%=(pVO == null) ? "123" : pVO.getProduct_Name()%>"
-															name="product_Name" />
+															value="<%=(pVO == null) ? "" : pVO.getProduct_Name()%>"
+															id="product_Name" name="product_Name" />
 													</div>
 													<p style="color: red">${errorMsgs.product_Name}</p>
 
@@ -1149,10 +1181,10 @@ to get the desired effect
 															<option value="臺東市"
 																${(pVO.product_County eq ('臺東市')) ? 'selected' : ''}>臺東市</option>
 														</select>
-														</div>
+													</div>
 													<p style="color: red">${errorMsgs.product_County}</p>
-													
-														
+
+
 													<div id="googleMap">
 														<iframe width="600" height="450" frameborder="0"
 															style="border: 0"
@@ -1167,9 +1199,9 @@ to get the desired effect
 														</div>
 
 														<input type="text" class="form-control col-1"
-															placeholder="Address" aria-describedby="basic-addon1"
-															value="<%=(pVO == null) ? "12個" : pVO.getProduct_Address()%>"
-															name="product_Address" />
+															placeholder="Quantity" aria-describedby="basic-addon1"
+															value="<%=(pVO == null) ? "" : pVO.getProduct_Address()%>"
+															id="product_Address" name="product_Address" />
 
 													</div>
 													<p style="color: red">${errorMsgs.product_Address}</p>
@@ -1205,9 +1237,9 @@ to get the desired effect
 														</div>
 
 														<input type="text" class="form-control col-6 "
-															placeholder="Name" aria-describedby="basic-addon1"
-															value="<%=(pVO == null) ? "123" : pVO.getProduct_Intro()%>"
-															name="product_Intro" />
+															placeholder="product_Intro" aria-describedby="basic-addon1"
+															value="<%=(pVO == null) ? "" : pVO.getProduct_Intro()%>"
+															id="product_Intro" name="product_Intro" />
 													</div>
 													<p style="color: red">${errorMsgs.product_Intro}</p>
 
@@ -1299,8 +1331,9 @@ to get the desired effect
 														<div class="input-group-prepend">
 															<span class="input-group-text" id="basic-addon1">景點詳情:</span>
 														</div>
-														<textarea class="form-control" name="product_Info"
-															id="exampleFormControlTextarea1" rows="3"><%=(pVO == null) ? "123" : pVO.getProduct_Info()%></textarea>
+														<textarea class="form-control product_Info"
+															name="product_Info" id="exampleFormControlTextarea1"
+															rows="3"><%=(pVO == null) ? "" : pVO.getProduct_Info()%></textarea>
 
 													</div>
 													<p style="color: red">${errorMsgs.product_Info}</p>
@@ -1312,7 +1345,7 @@ to get the desired effect
 
 														<input type="text" class="form-control col-2 "
 															placeholder="Spc" aria-describedby="basic-addon1"
-															value="<%=(pdVO == null) ? "" : pdVO.getProduct_Detail_Spc()%>"
+															value="<%=(pdVO == null) ? "" : pdVO.getProduct_Detail_Spc()%>" id="product_Detail_Spc"
 															name="product_Detail_Spc" />
 													</div>
 													<p style="color: red">${errorMsgs.product_Detail_Spc}</p>
@@ -1326,7 +1359,7 @@ to get the desired effect
 														<input type="number" min="0" max="99999"
 															class="form-control col-1 " placeholder="Money"
 															aria-describedby="basic-addon1"
-															value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Money()%>"
+															value="<%=(pdVO == null) ? "" : pdVO.getProduct_Detail_Money()%>" id="product_Detail_Money"
 															name="product_Detail_Money" />
 													</div>
 													<p style="color: red">${errorMsgs.product_Detail_Money}</p>
@@ -1341,7 +1374,7 @@ to get the desired effect
 														<input type="number" min="0" max="999"
 															class="form-control col-1 " placeholder="INSTOCK"
 															aria-describedby="basic-addon1"
-															value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Instock()%>"
+															value="<%=(pdVO == null) ? "" : pdVO.getProduct_Detail_Instock()%>" id="product_Detail_Instock"
 															name="product_Detail_Instock" />
 													</div>
 													<p style="color: red">${errorMsgs.product_Detail_Instock}</p>
@@ -1355,7 +1388,7 @@ to get the desired effect
 														<input type="number" min="0" max="999"
 															class="form-control col-1 " placeholder="SAFTYSTOCK"
 															aria-describedby="basic-addon1"
-															value="<%=(pdVO == null) ? "123" : pdVO.getProduct_Detail_Saftystock()%>"
+															value="<%=(pdVO == null) ? "" : pdVO.getProduct_Detail_Saftystock()%>" id="product_Detail_Saftystock"
 															name="product_Detail_Saftystock" />
 													</div>
 													<p style="color: red">${errorMsgs.product_Detail_Saftystock}</p>
@@ -1370,8 +1403,14 @@ to get the desired effect
 
 											</button>
 
+											<button type="button" id="getval" class="btn btn-secondary ">神奇按鈕!</button>
+
+											</button>
+
 
 										</FORM>
+
+
 
 									</div>
 								</div>
@@ -1756,8 +1795,47 @@ to get the desired effect
 			});
 			
 			
+			$('#getval').on("click",function(){
+				
+				$('#product_Name').val("台中懶人包兩天一夜玩遍2020台中最新秘境景點")
+				$('#product_Address').val('13個')
+				$('#product_Intro').val('最新拍照景點一覽，直接帶你體驗最好玩的台中之旅!')
+				$('#day1').val('中社觀光花市花海->外埔忘憂谷->獵犬不打獵->紙博館 紙的空間->大雅小麥田->靜宜大學主顧聖母堂->逢甲夜市 ->台中 逢甲商圈 微行旅(民宿)')
+				$('#day2').val('一支毛->工家美術館->帝國製糖廠->Bacitali 小義大利威尼斯宮->北屯大坑紙箱王創意園區->結束')
+				$('.product_Info').val(`第一天 中社觀光花市花海
+						台中中社觀光花市每到花季時期便吸引許多遊客前往賞花，而從12月開始便進入鬱金香花期，多達50種30萬株的繽紛鬱金香，約8公頃的七彩花田同時盛開，還有當季花卉一串紅、萬壽菊、鼠尾草、玫瑰花等花海百花齊放，一路開至3月中旬，宛若置身荷蘭，此外更有多個藝術裝置營造浪漫氛圍。外埔忘憂谷
+						小麥栽植面積僅次於大雅的外埔地區，出現了神秘的麥田圈圖騰，猶如外星人飛碟降落的痕跡，吸引許多攝影迷前往拍攝，難以相信這些如幽浮圖案的麥田圈，是一步一腳印踩出來的，一共有五種圖案供遊客欣賞，為此農友們還特別延後收割，也建議大家要實際走入麥田才能看到麥田圈，或是以空拍「上帝視角」才能飽覽完整的田野風光，這樣的地景藝術預計展至3月28日喔！
+				獵犬不打獵
+						獵犬不打獵是一家寵物友善餐廳，老闆養了10隻黃金獵犬和一隻臘腸狗，每一隻都很乖很親近人不怕生，也可以帶著你家的毛小孩跟牠們一起玩，能被這麼多陽光笑容的黃金獵犬及呆萌短腿的臘腸狗包圍根本置身幸福天堂！差點沒被療癒的狗狗們融化啦~ (未來擬改為預約制)
+				紙博館 紙的空間
+						喜歡DIY手作的你一定要去！紙博館的老闆非常熱愛紙張，花費4年在神岡打造了260坪的紙博館，展示了各式各樣的紙製作品，一邊逛著一邊不禁在內心讚嘆，難以想像如何把一張紙變成一件美麗又精緻的立體作品，對於沒有什麼美術天分的我來說，真的是打從心底佩服。館內最吸引我的便是這彩色PAPER字樣，每個字母都是由兩種顏色組成，從側面看更有一種延伸感，也是IG上熱門的打卡場景。
+				大雅小麥田
+						來到大雅小麥田一定要拍的就是這個可愛的土角厝，這裡的小麥田都是私人土地，欣賞可以千萬不要為了拍照而隨意踐踏，麥田間有小路可以走到土角厝，放眼望去一大片黃澄澄麥浪，搭配一瓶熟悉的麥香最對味了！台中大雅小麥文化節是每年熱門的追麥賞浪景點，今年(2020年)因為疫情的影響而停辦，但免費開放參觀的黃金稻田，依舊掀起一波IG打卡潮。
+				靜宜大學主顧聖母堂
+						除了東海大學的路思義教堂、霧峰的圓滿教堂等，台中現在又多了一個靜宜大學主顧聖母堂，結合了魚、竹子、竹筍等意象，是近期最火紅的拍照打卡景點。主顧聖母堂的外型特殊，由四個圓弧形牆板組成，屋頂的玻璃連接著十字架，讓陽光從玻璃灑落，不管是從正面、背面或者側面看，每個角度都有著截然不同的面貌，是一棟優美浪漫的特殊建築。
+				逢甲夜市
+						來到台中，還是要逛一下逢甲夜市才有到此一遊的踏實感。逢甲夜市商圈的店家競爭激烈，店面攤位一家家地開，又一家家地倒.，似乎每次去都會有新選擇
+				第二天
+						一支毛
+						隱藏在勤美附近的巷子裡，是最近新開的特色氣泡水專賣店，有一個機器人沒有嘴巴，只用燈號表達喜歡或不喜歡，它是「一支毛」，是這隻機器人的名字，也是店名的由來。盛裝氣泡水的容器更是特別設計過，瓶身是機器人的頭，蓋子則是他的天線，俏皮又活潑的小店，超吸睛的外觀快速的在IG上爆紅。
+						工家美術館
+						「工」代表工程、「家」則代表歸屬感，用台語來念「ㄍㄨㄥ ㄍㄟ」 有共享之意。「工家美術館」是全球第一座結合工地、展覽的複合式共享藝術空間，具開放精神、共享概念，以工地裡習以為常的鐵桿支架為基底，在 18×18 的方形基地中將建築結合老樹，創造出不完全封閉的綠地空間，內部的三角錐吧檯椅、鷹架桌子，濃厚的工業風中夾帶著創新，重新定義了工地美學。
+						帝國製糖廠
+						有著悠久歷史的老建物「帝國製糖廠」，是台中東區重要的產業地標，整建修復後以展演空間的形式重新開放，將糖廠注入了新的元素與活力，除了保有古色古香的日治時期建築，還有純白色的玻璃建築餐廳，搭配周邊的星泉湖，寬廣舒適的空間，視野十分遼闊，成為台中最新的打卡景點。
+						BACITALI 小義大利威尼斯宮
+						Bacitali 小義大利是台中近期很夯新開幕的餐廳，打造了威尼斯夏宮般800坪大的歐風唯美建築，搭配諾大的庭院造景，充滿了異國風情，歐式噴水池加上粉橘色的城堡建築，在南屯區龍富路上亮眼又突出，餐廳內部的玻璃、地板及吊燈也都瀰漫著濃郁的歐式華麗，從門口到室內再到後花園，每個角落任意取景都浪漫，除此之外，Bacitali 小義大利還是間寵物友善餐廳，建議用餐要事先訂位哦！
+						北屯大坑紙箱王創意園區
+						位於台中大坑的紙箱王創意園區占地約1600坪，園區內展示著各式各樣的紙藝品，更特別的是紙箱餐廳桌椅、火鍋還有火車都是用紙做成！園區內還有世界各國的大型地標，來到這裡就好像環遊世界一樣，不僅適合親子同遊，增進感情，也很適合情侶來這邊打卡拍照，就好像一起環遊世界般。`)
+				$('#product_Detail_Spc').val('景點門票包辦遊')
+				$('#product_Detail_Money').val(1200)
+				$('#product_Detail_Instock').val(20)
+				$('#product_Detail_Saftystock').val(10)
+				
+				
+			});
+			
 			  
-			  
+			
 			  
 			  
 	</script>

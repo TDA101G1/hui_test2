@@ -40,8 +40,10 @@
       <div class="row features_card">
         <div class="col-md leftside">
           <div class="img_area">
-            <div class="main_img">
-              <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT"></img>
+          	<div class="img_Container">
+              <div class="backgroundImg_Area" style="background-image:url('<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT');">
+              </div>
+              <img class="card-img-top main_img" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT">
             </div>
             <div class="smaller_img">
               <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT"></img>
@@ -268,12 +270,12 @@
               </td>
               <td class="filter_area">
                 <button class="btn_filter -on" type="button" data-filter="all">全部</button>
-                <button class="btn_filter" type="button" data-filter="hasImg">附圖評論</button>
-                <button class="btn_filter" type="button" data-filter="5">五星(2)</button>
-                <button class="btn_filter" type="button" data-filter="4">四星(2)</button>
-                <button class="btn_filter" type="button" data-filter="3">三星(2)</button>
-                <button class="btn_filter" type="button" data-filter="2">二星(2)</button>
-                <button class="btn_filter" type="button" data-filter="1">一星(2)</button>
+<!--                 <button class="btn_filter" type="button" data-filter="hasImg">附圖評論</button> -->
+                <button class="btn_filter" type="button" data-filter="5">五星評論</button>
+                <button class="btn_filter" type="button" data-filter="4">四星評論</button>
+                <button class="btn_filter" type="button" data-filter="3">三星評論</button>
+                <button class="btn_filter" type="button" data-filter="2">二星評論</button>
+                <button class="btn_filter" type="button" data-filter="1">一星評論</button>
               </td>
             </tr>
           </table>
@@ -694,8 +696,8 @@ $(document).on("click", ".addCollection", function(e){
                 <table class="scheduleContent">
 <c:forEach items="${scheduleArr}" var="schedule" varStatus="foo">
 	<tr>
-		<td>Day${foo.count}</td>
-		<td><i class="fas fa-grip-lines-vertical" style="color: #556FFF; font-size: 1.5em;"></i></td>
+		<td width="60px">Day${foo.count}</td>
+		<td width="25px"><i class="fas fa-grip-lines-vertical" style="color: #556FFF; font-size: 1.5em;"></i></td>
 		<td>${schedule}</td>
 	</tr>
 </c:forEach>

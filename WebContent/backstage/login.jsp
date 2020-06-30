@@ -141,14 +141,14 @@
 							<label for="exampleInputEmail1" class="text-uppercase">Username</label>
 							<input type="text" class="form-control" placeholder=""
 								name="emp_Account"
-								value="<%=(in_empVO == null) ? "ALEX" : in_empVO.getEmp_Account()%>">
+								value="<%=(in_empVO == null) ? "" : in_empVO.getEmp_Account()%>">
 							<p style="color: red">${errorMsgs.emp_Account}</p>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1" class="text-uppercase">Password</label>
 							<input type="password" class="form-control" placeholder=""
 								name="emp_Pwd"
-								value="<%=(in_empVO == null) ? "alex" : in_empVO.getEmp_Pwd()%>">
+								value="<%=(in_empVO == null) ? "" : in_empVO.getEmp_Pwd()%>">
 							<p style="color: red">${errorMsgs.emp_Pwd}</p>
 						</div>
 

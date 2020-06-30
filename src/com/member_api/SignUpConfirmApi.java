@@ -71,7 +71,7 @@ public class SignUpConfirmApi extends HttpServlet {
 					jedis.auth("123456");
 					String message = new GenerateRandomNumber().genAuthCode();
 					jedis.set(emailAddress, message);
-					Integer countdown = 120;
+					Integer countdown = 60;
 					jedis.expire(emailAddress, countdown);
 					jedis.close();
 					
