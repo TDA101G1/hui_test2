@@ -1,3 +1,5 @@
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.sql.Timestamp"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.order.model.OrderDetailVO"%>
@@ -58,27 +60,41 @@
 
 	int TotalMoney = 0;
 	//取沒有取消的訂單的總金額
-	for (OrderDetailVO od : AllodVO) {
-		for (Order_MasterVO om : AllomVO) {
-			if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
-				OrderDetailVO odd = new OrderDetailVO();
-				odd.setProduct_Detail_ID(od.getProduct_Detail_ID());
-				odd.setOrder_Detail_Qty(od.getOrder_Detail_Qty());
-				listod.add(odd);
 
-				for (OrderDetailVO od2 : listod) {
-					for (ProductDetailVO pd : AllpdVO) {
-						if (od2.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
-							TotalMoney += od2.getOrder_Detail_Qty() * pd.getProduct_Detail_Money();
-						}
+	for (Order_MasterVO om : AllomVO) {
+		for (OrderDetailVO od : AllodVO) {
+			if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+				for (ProductDetailVO pd : AllpdVO) {
+					if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+						TotalMoney += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
 					}
 				}
 
 			}
 		}
 	}
-// 	轉成日期
+	// 	轉成日期 本週
 	SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd");
+	DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	Timestamp ts = new Timestamp(System.currentTimeMillis());
+	// 	String day1 = sdFormat.format(date);  
+	// 	String tsStr = sdf.format(ts);  
+
+	int TotalMoneyday1 = 0;
+	int TotalMoneyday2 = 0;
+	int TotalMoneyday3 = 0;
+	int TotalMoneyday4 = 0;
+	int TotalMoneyday5 = 0;
+	int TotalMoneyday6 = 0;
+	int TotalMoneyday7 = 0;
+	int TotalMoneyday8 = 0;
+	int TotalMoneyday9 = 0;
+	int TotalMoneyday10 = 0;
+	int TotalMoneyday11 = 0;
+	int TotalMoneyday12 = 0;
+	int TotalMoneyday13 = 0;
+	int TotalMoneyday14 = 0;
+
 	Date date = new Date();
 	Date date2 = new Date();
 	Date date3 = new Date();
@@ -87,13 +103,13 @@
 	Date date6 = new Date();
 	Date date7 = new Date();
 
-	date2.setDate(date.getDate()-1);
-	date3.setDate(date.getDate()-2);
-	date4.setDate(date.getDate()-3);
-	date5.setDate(date.getDate()-4);
-	date6.setDate(date.getDate()-5);
-	date7.setDate(date.getDate()-6);
-	
+	date2.setDate(date.getDate() - 1);
+	date3.setDate(date.getDate() - 2);
+	date4.setDate(date.getDate() - 3);
+	date5.setDate(date.getDate() - 4);
+	date6.setDate(date.getDate() - 5);
+	date7.setDate(date.getDate() - 6);
+
 	String day1 = sdFormat.format(date);
 	String day2 = sdFormat.format(date2);
 	String day3 = sdFormat.format(date3);
@@ -101,16 +117,9 @@
 	String day5 = sdFormat.format(date5);
 	String day6 = sdFormat.format(date6);
 	String day7 = sdFormat.format(date7);
+	//拿本週日期轉陣列
 
-// 	System.out.println(day1);
-// 	System.out.println(day2);
-// 	System.out.println(day3);
-// 	System.out.println(day4);
-// 	System.out.println(day5);
-// 	System.out.println(day6);
-// 	System.out.println(day7);
-
-	List<String> Totaldate= new ArrayList<>();
+	List<String> Totaldate = new ArrayList<>();
 	Totaldate.add(day7);
 	Totaldate.add(day6);
 	Totaldate.add(day5);
@@ -118,79 +127,246 @@
 	Totaldate.add(day3);
 	Totaldate.add(day2);
 	Totaldate.add(day1);
-	
+	// 		System.out.println(day1);
+
+	//丟給js
 	String[] str = new String[Totaldate.size()];
 	Totaldate.toArray(str);
 	JSONObject json = new JSONObject();
 	json.put("day", Totaldate);
-	for(String a : str){
-		System.out.println(a);
+	//拿本週金額
+	for (Order_MasterVO om : AllomVO) {
+		String test = sdf.format(om.getOrder_Master_TimeStamp());
+		if (test.equals(day1)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday1 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
+
+				}
+			}
+		}else if (test.equals(day2)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday2 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
+
+				}
+			}
+		}else if (test.equals(day3)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday3 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
+
+				}
+			}
+		}else if (test.equals(day4)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday4 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
+
+				}
+			}
+		}else if (test.equals(day5)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday5 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
+
+				}
+			}
+		}else if (test.equals(day6)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday6 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
+
+				}
+			}
+		}else if (test.equals(day7)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday7 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
+
+				}
+			}
+		}
 	}
-//  	System.out.println(date2);
+	
+	List<Integer> weekMoney = new ArrayList<>();
+	weekMoney.add(TotalMoneyday7);
+	weekMoney.add(TotalMoneyday6);
+	weekMoney.add(TotalMoneyday5);
+	weekMoney.add(TotalMoneyday4);
+	weekMoney.add(TotalMoneyday3);
+	weekMoney.add(TotalMoneyday2);
+	weekMoney.add(TotalMoneyday1);
+// 	System.out.println(weekMoney);
+	
+	Integer[] getMoney = new Integer[weekMoney.size()];
+	weekMoney.toArray(getMoney);
+	JSONObject jsonMoney = new JSONObject();
+	json.put("weekMoney", weekMoney);
+	
+	
+	
+	//拿上週
+
+	// 	System.out.println(TotalMoneyday1);
+
+	//前一周	
+
+	Date olddate = new Date();
+	Date olddate2 = new Date();
+	Date olddate3 = new Date();
+	Date olddate4 = new Date();
+	Date olddate5 = new Date();
+	Date olddate6 = new Date();
+	Date olddate7 = new Date();
+
+	olddate.setDate(olddate.getDate() - 7);
+	olddate2.setDate(olddate2.getDate() - 8);
+	olddate3.setDate(olddate3.getDate() - 9);
+	olddate4.setDate(olddate4.getDate() - 10);
+	olddate5.setDate(olddate5.getDate() - 11);
+	olddate6.setDate(olddate6.getDate() - 12);
+	olddate7.setDate(olddate7.getDate() - 13);
+
+	String oldday1 = sdFormat.format(olddate);
+	String oldday2 = sdFormat.format(olddate2);
+	String oldday3 = sdFormat.format(olddate3);
+	String oldday4 = sdFormat.format(olddate4);
+	String oldday5 = sdFormat.format(olddate5);
+	String oldday6 = sdFormat.format(olddate6);
+	String oldday7 = sdFormat.format(olddate7);
 
 	
-// 	System.out.println(date);
-// 	System.out.println(date2);
-// 	System.out.println(date3);
-// 	System.out.println(date4);
-// 	System.out.println(date5);
-// 	System.out.println(date6);
-// 	System.out.println(date7);
 	
-// 	List<String> Totaldate= new ArrayList<>();
-// 	Totaldate.add(date);
-// 	Totaldate.add(date2);
-// 	Totaldate.add(date3);
-// 	Totaldate.add(date4);
-// 	Totaldate.add(date5);
-// 	Totaldate.add(date6);
-// 	Totaldate.add(date7);
-// 	System.out.println(Totaldate);
-	
-// 	for(Date dd:Totaldate){
-// 		for(Order_MasterVO om:AllomVO){
-// 			om.getOrder_Master_TimeStamp();
-// 		}
-// 	}
+	for (Order_MasterVO om : AllomVO) {
+		String test = sdf.format(om.getOrder_Master_TimeStamp());
+		if (test.equals(oldday1)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday8 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
 
+				}
+			}
+		}else if (test.equals(oldday2)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday9 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
 
+				}
+			}
+		}else if (test.equals(oldday3)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday10 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
 
-// 	String strDate = sdFormat.format(date);
-// 	System.out.println(strDate);
-// 	System.out.println(date2);
+				}
+			}
+		}else if (test.equals(oldday4)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday11 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
 
-// 	取得當下時間
-// 	Date date1 = new Date();
-// 	long l = date1.getTime();
-// 	System.out.println(l);
-	
-// 	long L = l - 86400000l;
-	
-// 	System.out.println(L);
-	
-// 	Date date3 = new Date();
-// 	date3.setTime(L); 
-	
-// 	System.out.println(date3);
+				}
+			}
+		}else if (test.equals(oldday5)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday12 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
 
+				}
+			}
+		}else if (test.equals(oldday6)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday13 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
 
-	
-// 	for(Order_MasterVO omTime:AllomVO){
-// 		System.out.println(	omTime.getOrder_Master_TimeStamp().getTime());
+				}
+			}
+		}else if (test.equals(oldday7)) {
+			for (OrderDetailVO od : AllodVO) {
+				if (od.getOrder_Master_ID().equals(om.getOrder_Master_ID())) {
+					for (ProductDetailVO pd : AllpdVO) {
+						if (od.getProduct_Detail_ID().equals(pd.getProduct_Detail_ID())) {
+							TotalMoneyday14 += (od.getOrder_Detail_Qty() * pd.getProduct_Detail_Money());
+						}
+					}
 
-// 	}
+				}
+			}
+		}
+	}
 	
-// 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//     Calendar c = Calendar.getInstance();
-     
-//     //过去七天
-//     c.setTime(new Date());
-//     c.add(Calendar.DATE, - 7);
-//     Date d = c.getTime();
-//     String day = format.format(d);
-//     System.out.println("过去七天："+day);
+	List<Integer> lastMoney = new ArrayList<>();
+	lastMoney.add(TotalMoneyday14);
+	lastMoney.add(TotalMoneyday13);
+	lastMoney.add(TotalMoneyday12);
+	lastMoney.add(TotalMoneyday11);
+	lastMoney.add(TotalMoneyday10);
+	lastMoney.add(TotalMoneyday9);
+	lastMoney.add(TotalMoneyday8);
+// 	System.out.println(weekMoney);
+	
+	Integer[] getlastMoney = new Integer[lastMoney.size()];
+	lastMoney.toArray(getlastMoney);
+	JSONObject jsonlastMoney = new JSONObject();
+	json.put("lastMoney", lastMoney);
+	
+	
+	
+	
 
-	
 	//反排
 	Collections.reverse(list);
 
@@ -218,6 +394,9 @@
 	pageContext.setAttribute("list", list);
 	pageContext.setAttribute("TotalMoney", TotalMoney);
 	pageContext.setAttribute("Totaldate", json.get("day"));
+	pageContext.setAttribute("weekMoney", json.get("weekMoney"));
+	pageContext.setAttribute("lastMoney", json.get("lastMoney"));
+
 %>
 
 
@@ -713,21 +892,19 @@ to get the desired effect
 			
 			var mode = 'index'
 			var intersect = true
-			var TT = ${Totaldate}
-			console.log(TT);
 			var $salesChart = $('#sales-chart')
 			var salesChart = new Chart($salesChart, {
 				type : 'bar',
 				data : {
-					labels : TT,
+					labels :  ${Totaldate},
 					datasets : [ {
 						backgroundColor : '#007bff',
 						borderColor : '#007bff',
-						data : [ 1000, 2000, 3000, 2500, 2700, 2500, 3000 ]
+						data : ${weekMoney}
 					}, {
 						backgroundColor : '#ced4da',
 						borderColor : '#ced4da',
-						data : [ 700, 1700, 2700, 2000, 1800, 1500, 2000 ]
+						data : ${lastMoney}
 					} ]
 				},
 				options : {

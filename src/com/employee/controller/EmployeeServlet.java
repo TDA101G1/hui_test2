@@ -502,6 +502,12 @@ public class EmployeeServlet extends HttpServlet {
 				} else if (!emp_Pwd.trim().matches(emp_PwdReg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.put("emp_Pwd", "密碼: 只能是英文字母和數字 , 且長度必需在2到10之間");
 				}
+				
+				EmployeeVO empVO1 = new EmployeeVO();
+				empVO1.setEmp_Account(emp_Account);
+				empVO1.setEmp_Pwd(emp_Pwd);
+				
+				req.setAttribute("in_empVO", empVO1);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {

@@ -13,7 +13,7 @@ public interface ProductDetailDAO {
 	public List<ProductDetailVO> getAll();
 	public String getPriceRange(String product_ID);
 	public void updateWithStock(ProductDetailVO productDetailVO, java.sql.Connection con);
-	
+
 		//新加的
 	public void update2(ProductDetailVO productDetailVO, Connection con);
 	public void insert2(ProductDetailVO productDetailVO, Connection con);

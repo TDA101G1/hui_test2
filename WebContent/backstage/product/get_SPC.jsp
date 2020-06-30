@@ -786,7 +786,11 @@ to get the desired effect
 
 								<%@ include file="pages/page1.file"%>
 										<h3>商品狀態:<%=(pVO.getProduct_State()==1)?"上架中":"下架中"%></h3>
+										
+														
 							</div>
+							
+							
 							<div class="card-title">
 								<div class="col"></div>
 
@@ -803,6 +807,7 @@ to get the desired effect
 													<th scope="col">安全庫存</th>
 													<th scope="col">價錢</th>
 													<th scope="col">修改</th>
+													<th scope="col">新增規格</th>
 
 
 												</tr>
@@ -829,7 +834,6 @@ to get the desired effect
 														<td>${pdVO.product_Detail_Instock}</td>
 														<td>${pdVO.product_Detail_Saftystock}</td>
 														<td>${pdVO.product_Detail_Money}</td>
-
 														<td>
 															<FORM METHOD="post"
 																ACTION="<%=request.getContextPath()%>/backstage/ProductServlet.do"
@@ -841,6 +845,17 @@ to get the desired effect
 																	type="hidden" name="action" value="get_Oneforupdate">
 															</FORM>
 														</td>
+														
+														<td>
+															<FORM METHOD="post"
+																ACTION="<%=request.getContextPath()%>/backstage/ProductServlet.do"
+																style="margin-bottom: 0px;">
+																<input type="submit" value="新增"> <input
+																	type="hidden" name="p_ID" value="${pVO.product_ID}">
+																 <input
+																	type="hidden" name="action" value="getforadd_SPC">
+															</FORM>
+														</td>
 
 													</tr>
 													
@@ -848,7 +863,7 @@ to get the desired effect
 
 												</c:forEach>
 													<tr>
-														<td colspan="7">
+														<td colspan="8">
 															<img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT"">
 															<img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG2&tName=PRODUCT"">
 															<img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG3&tName=PRODUCT"">

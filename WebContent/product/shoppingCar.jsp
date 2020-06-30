@@ -58,7 +58,7 @@
 
             <!-- =======================商品======================= -->
 <c:forEach items="${JedisShoppingCar.getMemberCar(member.member_ID)}" var="productVO">
-	<c:if test="${productVO.product_State == 1}">
+<%-- 	<c:if test="${productVO.product_State == 1}"> --%>
             <tr class="oneProduct">
               <td><input class="selectOne" type="checkbox" name="goods" value="1"></td>
               <td>
@@ -69,7 +69,7 @@
                 </div>
               </td>
               <td>
-                <a class="productName" data-addTime="" data-index="" data-product_ID="${productVO.product_ID}" data-product_Class="${productVO.product_Class}" href="<%=request.getContextPath()%>/ProductServlet.do?action=goDetailPage&product_ID=${productVO.product_ID}&product_Class=${productVO.product_Class}">${productVO.product_Name}</a>
+                <a class="productName" data-addTime="" data-index="" data-product_ID="${productVO.product_ID}" data-product_Class="${productVO.product_Class}" href="<%=request.getContextPath()%>/ProductServlet.do?action=goDetailPage&product_ID=${productVO.product_ID}&product_Class=${productVO.product_Class}">${productVO.product_State == 1?productVO.product_Name:"下架商品"}</a>
                 <div class="spc">
                   <select name="">
 	<c:forEach items="${ProductDetailService.all}" var="pdVO">
@@ -101,7 +101,7 @@
                 </button>
               </td>
             </tr>
-	</c:if>
+<%-- 	</c:if> --%>
 </c:forEach>
 
             <!-- ========================失效商品==================== -->
@@ -264,12 +264,11 @@
 // 	    		    	console.log(oneProduct);
 	    		    	$(oneProduct).find("option").each(function(){
 	    		    		if($(this).attr("id") == productDetail_ID){
-	    		    			if($(this).html() == spc && $(this).attr("data-price") == price){
+	    		    			if($(this).html() == spc && $(this).attr("data-price") == price && $(this).attr("data-instock") != 0){
 	    		    				$(this).attr("selected", "true");
 	    		    			}else{
-	    		    				console.log("產品失效0");
-	    		    				console.log("失效的產品規格: "+productDetail_ID+spc+" 售價:"+price);
-		    		    			console.log($(this).attr("data-price"));
+	    		    				console.log("產品失效原因:商品規格、商品售價更動過，或庫存量不足");
+	    		    				console.log(productDetail_ID+"失效\n資料庫:"+$(this).html()+"，售價"+$(this).attr("data-price")+"庫存量"+$(this).attr("data-instock")+"；\n購物車:"+spc+"，售價"+price);
 		    		    			addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
 		    		    			failure.push(oneProduct);
 	    		    			}
@@ -277,8 +276,7 @@
 	    		    	});
 	    		    	if(product_Name != $(oneProduct).find(".productName").html()){
 	    		    		console.log("產品失效1");
-	    		    		console.log($(oneProduct).find(".productName").html());
-	    		    		console.log(product_Name);
+	    		    		console.log("資料庫:"+$(oneProduct).find(".productName").html() +"，購物車:"+product_Name);
 	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
 	    		    		failure.push(oneProduct);
 	    		    	}
@@ -292,6 +290,8 @@
 	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
 	    		    		failure.push(oneProduct);
 	    		    	}
+	    		    	
+	    		    	
 	    		    	
 	    		    	$(oneProduct).find(".start").html(start);
 	    		    	$(oneProduct).find(".end").html(end);
