@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import com.inbox.model.InboxService;
+import com.inbox.model.InboxVO;
 import com.member.model.MemberService;
 import com.member.model.MemberVO;
 
@@ -145,6 +147,22 @@ public class SignUpController extends HttpServlet {
 						member_Birth+ member_Mail+ member_Address+ null+ member_Est_Time+ member_State);
 				System.out.println(memberInsert);
 				
+				if(memberInsert != null) {
+					InboxService inboxService = new InboxService();
+//					InboxVO newMail = new InboxVO();
+//					newMail.setEmp_ID("EID000000");
+//					newMail.setMember_ID(memberInsert.getMember_ID());
+//					newMail.setInbox_Mail_Info("內文");
+//					newMail.setInbox_Mail_Title("標題");
+//					newMail.setInbox_Mail_State("1");
+					inboxService.writeMail(memberInsert.getMember_ID(), "EID000000", "感謝您註冊本網站，請記住您的密碼，切勿給予他人", "完成註冊", "4");
+					inboxService.writeMail(memberInsert.getMember_ID(), "EID000000", "TOURISM於五月上架多個新產品，歡迎前往商城看看", "新商品上架囉", "4");
+					inboxService.writeMail(memberInsert.getMember_ID(), "EID000000", "TOURISM於四月上架多個新產品，歡迎前往商城看看", "新商品上架囉", "4");
+					inboxService.writeMail(memberInsert.getMember_ID(), "EID000000", "歡迎寄信給客服人員並索取優惠券，客服人員會很高興為您服務", "優惠券索取辦法", "4");
+					inboxService.writeMail(memberInsert.getMember_ID(), "EID000000", "TOURISM五月將有多個優惠活動，請寄信給客服人員才能拿到專屬優惠券喔", "專屬優惠券", "4");
+					inboxService.writeMail(memberInsert.getMember_ID(), "EID000000", "此為系統發送測試信件，請勿回覆", "信註冊會員測試信件", "4");
+					
+				}
 //				RequestDispatcher successView = request.getRequestDispatcher("/listAllMember.jsp");
 //				successView.forward(request, response);
 				response.sendRedirect(request.getContextPath() + "/frontstage_member/login2.jsp");
