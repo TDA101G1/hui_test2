@@ -875,6 +875,9 @@
       div.bottom_content{
         margin-top: 120px;
       }
+      div.product_header button#chat_icon{
+        left: 10%;
+      }
     }
     @media screen and (max-width:631px){
       div.current_date span{
