@@ -936,7 +936,7 @@ to get the desired effect
 		$('#emp_Name').val("王小明")
 		$('#emp_Pwd').val('gogo123')
 		$('#emp_Mail').val('qqp15601560@yahoo.com.tw')
-		$('#emp_Address').val('新北市板橋區民生路一段20號')
+		$('#Address').val('新北市板橋區民生路一段20號')
 		
 	})
 	

@@ -216,9 +216,13 @@
       margin-top: 20px;
       box-shadow: 0 0 6px;
     }
+
+    div.btn_model{
+      text-align: end;
+    }
+
     div.btn_model button {
       width: 120px;
-      float: right;
       margin-right: 20px;
     }
     div.input_title {
@@ -849,6 +853,47 @@
         font-size: 20px;
       }
     }
+
+    @media screen and (max-width:1200px){
+      div.bottom_content{
+        margin-top: 70px;
+      }
+      div.btn_model{
+        text-align: center;
+        margin-top: 10px;
+      }
+      
+      
+    }
+    @media screen and (max-width:804px){
+      div.current_date span{
+        font-size: 16px;
+      }
+      div.last_change span {
+        font-size: 16px;
+      }
+      div.bottom_content{
+        margin-top: 120px;
+      }
+    }
+    @media screen and (max-width:631px){
+      div.current_date span{
+        font-size: 20px;
+      }
+      div.last_change span {
+        font-size: 20px;
+      }
+      div.bottom_content{
+        margin-top: 200px;
+      }
+      div.btn_model button{
+        width: 200px;
+        margin-bottom: 10px;
+      }
+      div.product_header button#chat_icon{
+        left: 13%;
+      }
+    }
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <!-- <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css"> -->
@@ -883,7 +928,7 @@
 
   <div class="container-fluid">
     <div class="row align-items-center" id="first_row">
-      <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3" style="padding: 0;">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3" style="padding: 0;">
         <div class="input_title" data-schedule-id="${custVO.cust_Schedule_ID}" data-quantity="${custVO.cust_Quantity}"
           data-position="${custVO.cust_Position}" data-selected-county="${custVO.cust_Selected_County}"
           data-owner-member="${custVO.member_ID}" data-current-member="${member.member_ID}" 
@@ -897,7 +942,7 @@
           <input type="text" class="update_title -none">
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4" style="padding: 0; text-align: center;">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4" style="padding: 0; text-align: center;">
         <div class="last_change" data-last-time="${custVO.cust_Schedule_Last_Timestamp}">
           <span>最後修改時間：<span id="last_timestamp"><fmt:formatDate type="both" value="${custVO.cust_Schedule_Last_Timestamp}"/></span></span>
           <div class="current_date">
@@ -916,6 +961,10 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-5">
         <form id="produce" action="<%=request.getContextPath()%>/CustomerizeController" method="POST">
           <div class="btn_model">
+            <button id="btn_map" type="button" class="btn btn-primary btn-lg">地圖模式</button>
+            <button id="btn_standard" type="button" class="btn btn-primary btn-lg -none">標準模式</button>
+            <button id="btn_produce" type="button" class="btn btn-primary btn-lg">產生行程</button>
+            <button id="btn_Store" type="button" class="btn btn-primary btn-lg">儲存行程</button>
             <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">共同編輯</button>
             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
               <span>請輸入email：</span><input id="email" type="text" style="width: 75%;">
@@ -930,10 +979,6 @@
                 </ul>
               </div>
             </div>
-            <button id="btn_Store" type="button" class="btn btn-primary btn-lg">儲存行程</button>
-            <button id="btn_produce" type="button" class="btn btn-primary btn-lg">產生行程</button>
-            <button id="btn_map" type="button" class="btn btn-primary btn-lg">地圖模式</button>
-            <button id="btn_standard" type="button" class="btn btn-primary btn-lg -none">標準模式</button>
             <input type="hidden" name="action" value="produce_schedule">
             <input id="cust_schedule_id" type="hidden" name="cust_schedule_id" value="${custVO.cust_Schedule_ID}">
           </div>
@@ -941,163 +986,165 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-3 col-lg-3  col-xl-1">
-        <ul id="sum_day" data-start="${custVO.cust_Schedule_Start_Time}" data-end="${custVO.cust_Schedule_End_Time}"
-          data-days="${custVO.cust_Schedule_Total_Day}">
-          <!--------------- 動態新增 --------------->
-        </ul>
-        <div class="add_day">
-          <button type="button" class="btn btn-primary btn-lg add_day" style="width: 100%;">新增</button>
-        </div>
-      </div>
-      <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-4">
-        <div class="schedule_content">
-          <div class="schedule_header" data-date="${custVO.cust_Schedule_Start_Time}" data-sort="1">
-            <p>Day1</p>
-            <!-- <span class="plus"><i class="fas fa-plus fa-2x"></i></span> -->
+    <div class="bottom_content">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3  col-xl-1">
+          <ul id="sum_day" data-start="${custVO.cust_Schedule_Start_Time}" data-end="${custVO.cust_Schedule_End_Time}"
+            data-days="${custVO.cust_Schedule_Total_Day}">
+            <!--------------- 動態新增 --------------->
+          </ul>
+          <div class="add_day">
+            <button type="button" class="btn btn-primary btn-lg add_day" style="width: 100%;">新增</button>
           </div>
-          <div class="schedule_body">
-            <p class="no_schedule">請加入行程</p>
-            <div class="schedule_body_content">
-              <ul class="schedule_list" id="schedule_list">
-                <!--------------- 動態新增 --------------->
-              </ul>
+        </div>
+        <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-4">
+          <div class="schedule_content">
+            <div class="schedule_header" data-date="${custVO.cust_Schedule_Start_Time}" data-sort="1">
+              <p>Day1</p>
+              <!-- <span class="plus"><i class="fas fa-plus fa-2x"></i></span> -->
+            </div>
+            <div class="schedule_body">
+              <p class="no_schedule">請加入行程</p>
+              <div class="schedule_body_content">
+                <ul class="schedule_list" id="schedule_list">
+                  <!--------------- 動態新增 --------------->
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
-        <div class="product_content">
-          <div class="product_header">
-            <!-- <span class="product_filter"><i class="fas fa-filter"></i>新增條件</span> -->
-            <button id="chat_icon" type="button" class="btn btn-primary btn-lg ">聊天室 
-              <span id="bell" class="-none"><i class="fas fa-bell" style="color: red;"></i></span></button>
-            <div class="search_area">
-              <input type="search" id="search" placeholder="搜尋..." />
-              <span class="icon"><i class="fa fa-search"></i></span>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
+          <div class="product_content">
+            <div class="product_header">
+              <!-- <span class="product_filter"><i class="fas fa-filter"></i>新增條件</span> -->
+              <button id="chat_icon" type="button" class="btn btn-primary btn-lg">聊天室 
+                <span id="bell" class="-none"><i class="fas fa-bell" style="color: red;"></i></span></button>
+              <div class="search_area">
+                <input type="search" id="search" placeholder="搜尋..." />
+                <span class="icon"><i class="fa fa-search"></i></span>
+              </div>
+            </div>
+            <div class="product_checkbox">
+              <div class="checkbox_area">
+                <div class="row" style="padding-left: 15px; padding-right: 15px;">
+                  <div class="col-3 col-sm-3 col-md-3">
+                    <label class="label_area">
+                      <input id="all" type="checkbox" name="product_group" value="全部" class="checkbox_area" checked>
+                      <a>全部</a>
+                    </label>
+                  </div>
+                  <div class="col-3 col-sm-3 col-md-3">
+                    <label class="label_area">
+                      <input id="activities" type="checkbox" name="product_group" value="景點" class="checkbox_area"
+                        checked>
+                      <a>景點</a>
+                    </label>
+                  </div>
+                  <div class="col-3 col-sm-3 col-md-3">
+                    <label class="label_area">
+                      <input id="restaurant" type="checkbox" name="product_group" value="餐廳" class="checkbox_area"
+                        checked>
+                      <a>美食</a>
+                    </label>
+                  </div>
+                  <div class="col-3 col-sm-3 col-md-3">
+                    <label class="label_area">
+                      <input id="accommodation" type="checkbox" name="product_group" value="住宿" class="checkbox_area"
+                        checked>
+                      <a>住宿</a>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- 地圖模式使用的按鈕，一開始不顯示，設定為none -->
+              <div class="Transportation -none">
+                <div class="row" style="padding-left: 15px; padding-right: 15px;">
+                  <div class="col-3 col-md-3">
+                    <button class="btn_optimize" name="btn_optimize" style="margin-top: 5px; line-height: 50px;">優化路線</button>
+                  </div>
+                  <div class="col-3 col-md-3">
+                    <button id="btn_car" name="DRIVING" style="margin-top: 5px; line-height: 50px;""><i class="fas fa-car fa-2x"></i></button>
+                  </div>
+                  <div class="col-3 col-md-3">
+                    <button id="btn_motorcycle" name="BICYCLING" style="margin-top: 5px; line-height: 50px;""><i class="fas fa-motorcycle fa-2x"></i></button>
+                  </div>
+                  <div class="col-3 col-md-3">
+                    <button id="btn_walk" name="WALKING" style="margin-top: 5px; line-height: 50px;""><i class="fas fa-walking fa-2x"></i></i></button>
+                  </div>
+                </div>
+              </div> 
+  
+            </div>
+            <div class="product_body">
+              <div class="product_body_content" style="padding-left: 15px; padding-right: 15px;">
+                <!------------------------------- 由AJAX動態新增 -------------------------------->
+              </div>
+              <div class="chat -none">
+                <textarea id="messagesArea" class="panel message-area" readonly></textarea>
+                <input id="message" class="text-field" type="text" />
+                <input type="submit" id="sendMessage" class="button" value="Send" />
+                <!-- <input type="button" id="connect" class="button" value="Connect" onclick="connect();" />
+                <input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" /> -->
+              </div>
+            </div>
+            <!-- 地圖模式使用的畫面，一開始不顯示，設定為none -->
+            <div class="schedule_map -none">
+              <div id="map"></div>
             </div>
           </div>
-          <div class="product_checkbox">
-            <div class="checkbox_area">
-              <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                <div class="col-3 col-sm-3 col-md-3">
-                  <label class="label_area">
-                    <input id="all" type="checkbox" name="product_group" value="全部" class="checkbox_area" checked>
-                    <a>全部</a>
-                  </label>
+          <!-- 產品詳細資訊，一開始不顯示，設定為none -->
+          <div class="product_info_content -none">
+            <div class="product_info_header">
+              <div class="row" style="padding: 0 15px; height: 65px;">
+                <div class="col col-md-1" style="border-right: 2px solid #343434; height: 65px;">
+                  <span class="product_info_close" style="cursor: pointer;"><i class="fas fa-times"></i></span>
                 </div>
-                <div class="col-3 col-sm-3 col-md-3">
-                  <label class="label_area">
-                    <input id="activities" type="checkbox" name="product_group" value="景點" class="checkbox_area"
-                      checked>
-                    <a>景點</a>
-                  </label>
-                </div>
-                <div class="col-3 col-sm-3 col-md-3">
-                  <label class="label_area">
-                    <input id="restaurant" type="checkbox" name="product_group" value="餐廳" class="checkbox_area"
-                      checked>
-                    <a>美食</a>
-                  </label>
-                </div>
-                <div class="col-3 col-sm-3 col-md-3">
-                  <label class="label_area">
-                    <input id="accommodation" type="checkbox" name="product_group" value="住宿" class="checkbox_area"
-                      checked>
-                    <a>住宿</a>
-                  </label>
+                <div class="col col-md-11">
+                  <span class="product_info_name">自由廣場</span>
                 </div>
               </div>
             </div>
-            <!-- 地圖模式使用的按鈕，一開始不顯示，設定為none -->
-            <div class="Transportation -none">
-              <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                <div class="col-3 col-md-3">
-                  <button class="btn_optimize" name="btn_optimize" style="margin-top: 5px; line-height: 50px;">優化路線</button>
+            <div class="product_info_top">
+              <div class="row" style="padding: 0 15px; height: 200px;">
+                <div class="col col-md-6" style="padding: 0;">
+                  <div class="product_info_img">
+                    <img src=" ">
+                  </div>
                 </div>
-                <div class="col-3 col-md-3">
-                  <button id="btn_car" name="DRIVING" style="margin-top: 5px; line-height: 50px;""><i class="fas fa-car fa-2x"></i></button>
-                </div>
-                <div class="col-3 col-md-3">
-                  <button id="btn_motorcycle" name="BICYCLING" style="margin-top: 5px; line-height: 50px;""><i class="fas fa-motorcycle fa-2x"></i></button>
-                </div>
-                <div class="col-3 col-md-3">
-                  <button id="btn_walk" name="WALKING" style="margin-top: 5px; line-height: 50px;""><i class="fas fa-walking fa-2x"></i></i></button>
-                </div>
-              </div>
-            </div> 
- 
-          </div>
-          <div class="product_body">
-            <div class="product_body_content" style="padding-left: 15px; padding-right: 15px;">
-              <!------------------------------- 由AJAX動態新增 -------------------------------->
-            </div>
-            <div class="chat -none">
-              <textarea id="messagesArea" class="panel message-area" readonly></textarea>
-              <input id="message" class="text-field" type="text" />
-              <input type="submit" id="sendMessage" class="button" value="Send" />
-              <!-- <input type="button" id="connect" class="button" value="Connect" onclick="connect();" />
-              <input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" /> -->
-            </div>
-          </div>
-          <!-- 地圖模式使用的畫面，一開始不顯示，設定為none -->
-          <div class="schedule_map -none">
-            <div id="map"></div>
-          </div>
-        </div>
-        <!-- 產品詳細資訊，一開始不顯示，設定為none -->
-        <div class="product_info_content -none">
-          <div class="product_info_header">
-            <div class="row" style="padding: 0 15px; height: 65px;">
-              <div class="col col-md-1" style="border-right: 2px solid #343434; height: 65px;">
-                <span class="product_info_close" style="cursor: pointer;"><i class="fas fa-times"></i></span>
-              </div>
-              <div class="col col-md-11">
-                <span class="product_info_name">自由廣場</span>
-              </div>
-            </div>
-          </div>
-          <div class="product_info_top">
-            <div class="row" style="padding: 0 15px; height: 200px;">
-              <div class="col col-md-6" style="padding: 0;">
-                <div class="product_info_img">
-                  <img src=" ">
-                </div>
-              </div>
-              <div class="col col-md-6">
-                <div class="product_info_detail">
-                  <p class=""><i class="fas fa-map-marker-alt"></i>地址：<span class="address"></span></p>
-                  <p><i class="far fa-clock"></i> 建議遊玩時間：<span class="time"></span>小時</p>
-                  <div id="cmt_star">
-                    <!--------------- 動態新增 --------------->
+                <div class="col col-md-6">
+                  <div class="product_info_detail">
+                    <p class=""><i class="fas fa-map-marker-alt"></i>地址：<span class="address"></span></p>
+                    <p><i class="far fa-clock"></i> 建議遊玩時間：<span class="time"></span>小時</p>
+                    <div id="cmt_star">
+                      <!--------------- 動態新增 --------------->
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <hr id="top_hr">
-          <div class="product_info_middle">
-            <div class="product_intro">
-              <p style="font-size: 24px; margin: 0;">簡介</p>
-              <p class="product_intro_text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                quaerat modi repellat quasi excepturi at vitae placeat quo quam rerum, officiis a maiores
-                nesciunt laboriosam saepe impedit maxime ad illum? </p>
+            <hr id="top_hr">
+            <div class="product_info_middle">
+              <div class="product_intro">
+                <p style="font-size: 24px; margin: 0;">簡介</p>
+                <p class="product_intro_text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
+                  quaerat modi repellat quasi excepturi at vitae placeat quo quam rerum, officiis a maiores
+                  nesciunt laboriosam saepe impedit maxime ad illum? </p>
+              </div>
+            </div>
+            <hr id="bottom_hr">
+            <div class="product_info_bottom" style="padding: 0 15px;">
+              <div class="row" style="padding: 0 15px; height: 200px;">
+                <p style="font-size: 24px; margin: 0; width: 185px; display: inline-block;">評價<span
+                    class="bottom_count"></span></p>
+                <ul id="product_cmt_scope">
+                  <!--------------- 動態新增 --------------->
+                </ul>
+              </div>
             </div>
           </div>
-          <hr id="bottom_hr">
-          <div class="product_info_bottom" style="padding: 0 15px;">
-            <div class="row" style="padding: 0 15px; height: 200px;">
-              <p style="font-size: 24px; margin: 0; width: 185px; display: inline-block;">評價<span
-                  class="bottom_count"></span></p>
-              <ul id="product_cmt_scope">
-                <!--------------- 動態新增 --------------->
-              </ul>
-            </div>
-          </div>
+          
         </div>
-        
       </div>
     </div>
   </div>
@@ -2433,7 +2480,7 @@
         $.each(data, function (index, value) {
           product_id.push(value.product_ID); //儲存全部的ID要準備比對
           let cmt_avg = parseFloat(value.productCmtVO.product_Cmt_Grade.toFixed(1)) === 0 ? "" : value.productCmtVO.product_Cmt_Grade.toFixed(1);
-          insertHtml += `<div class="col-6 col-sm-6 col-md-4 col-lg-4">
+          insertHtml += `<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                               <div id="` + value.product_ID + `" class="card" data-latitutde="` + value.product_Latitutde + `" 
                                                                               data-longitude="` + value.product_Longitude +`">
                                 <img src="<%=request.getContextPath()%>/ImageController?action=printImage_product_id&product_id=` + value.product_ID + `"class="card-img-top">
