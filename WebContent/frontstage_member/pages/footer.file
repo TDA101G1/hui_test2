@@ -13,10 +13,10 @@
 
                 <div class="col col-md-2 offset">
                     <div class="back">
-                        <img src="" class="turn_over">
+                        <img src="<%=request.getContextPath()%>/img/profileCard/jumpu2.jpg" class="turn_over">
                     </div>
                     <div class="front">
-                        <a href="<%=request.getContextPath()%>/profilecard.jsp"><img src=""></a>
+                        <a href="<%=request.getContextPath()%>/profilecard.jsp"><img src="<%=request.getContextPath()%>/img/profileCard/Jumpu.png"></a>
                     </div>
                 </div>
                 <div class="col col-md-2 offset">
