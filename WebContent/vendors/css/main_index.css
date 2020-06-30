@@ -1291,6 +1291,25 @@
 		transform: rotateY(180deg);
 		opacity: 0;
 	}
+	
+	@media screen and (max-width: 1200px){
+		footer img{
+			height: 100px;
+			width: 100px;
+		}
+		footer span{
+			font-size: 20px;
+		}
+	
+	@media screen and (max-width: 768px){
+		footer img{
+			height: 80px;
+			width: 80px;
+		}
+		footer span{
+			font-size: 20px;
+		}
+	}
     
     
 /*     footer { */

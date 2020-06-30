@@ -1323,6 +1323,7 @@
     $("button#chat_icon").on("click", function(){
         $("div.chat").toggleClass("-none");
         $("span#bell").addClass("-none");
+        $("input#message").focus();
     });
     
     $("input#message").keyup(function(e){

@@ -144,9 +144,9 @@
               <h5 class="card-title">陳人輝</h5>
               <h5 class="card-text">負責項目:</h5>
               <p class="card-text">- 行程頁面</p>
+              <p class="card-text">- 行程總覽</p>
               <p class="card-text">- 行程功能</p>
-              <p class="card-text">- </p>
-              <div class="icon-block"><a href="#"><i class="far fa-file-pdf" style="font-size:1.8em"></i></a><a href="https://www.facebook.com/jenhui.chen.77/"><i class="fab fa-facebook fa-2x"></i></a><a href="#"> <i
+              <div class="icon-block"><a href="https://drive.google.com/drive/u/0/folders/1CU6v2zWw8_TTTgxz6YkpwC1SQbdBLsf9"><i class="far fa-file-pdf" style="font-size:1.8em"></i></a><a href="https://www.facebook.com/jenhui.chen.77/"><i class="fab fa-facebook fa-2x"></i></a><a href="#"> <i
                     class="fab fa-github fa-2x"></i></a><a href="#"> <i class="fab fa-linkedin fa-2x"></i></a><a href="http://tda101g1.tk/TDA101G1_final_V3/index.jsp"><i
                     class="fab fa-internet-explorer"></i></a></div>
             </div>
