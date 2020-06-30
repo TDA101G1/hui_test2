@@ -938,10 +938,8 @@ to get the desired effect
 		$('#emp_Mail').val('qqp15601560@yahoo.com.tw')
 		$('#emp_Address').val('新北市板橋區民生路一段20號')
 		$('#Address').val('新北市板橋區民生路一段20號')
-<<<<<<< HEAD
-=======
 		$('#emp_Phone').val('0926437333')
->>>>>>> feature/kevin
+
 		
 	})
 	
