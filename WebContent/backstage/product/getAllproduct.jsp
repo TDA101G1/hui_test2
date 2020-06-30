@@ -6,7 +6,7 @@
 <%@ page import="java.util.stream.Collectors"%>
 
 <%
-// 	ProductVO pVO = (ProductVO) request.getAttribute("pVO");
+	ProductVO pVO = (ProductVO) request.getAttribute("pVO");
 EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
 
 	
