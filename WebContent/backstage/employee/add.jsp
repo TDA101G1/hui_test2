@@ -652,7 +652,7 @@ to get the desired effect
 
 							<input type="text" class="form-control col-6 "
 								placeholder="Phone" aria-describedby="basic-addon1"
-								value="<%=(empVO == null) ? "0919336720" : empVO.getEmp_Phone()%>"
+								value="<%=(empVO == null) ? "" : empVO.getEmp_Phone()%>" id="emp_Phone"
 								name="emp_Phone" />
 						</div>
 						<p style="color: red">${errorMsgs.emp_Phone}</p>
@@ -936,7 +936,8 @@ to get the desired effect
 		$('#emp_Name').val("王小明")
 		$('#emp_Pwd').val('gogo123')
 		$('#emp_Mail').val('qqp15601560@yahoo.com.tw')
-		$('#emp_Address').val('新北市板橋區民生路一段20號')
+		$('#Address').val('新北市板橋區民生路一段20號')
+		$('#emp_Phone').val('0926437333')
 		
 	})
 	
