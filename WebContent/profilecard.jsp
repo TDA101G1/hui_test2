@@ -164,8 +164,8 @@
               <p class="card-text">- 首頁</p>
               <p class="card-text">- 前台整合</p>
               <p class="card-text">- 會員功能</p>
-              <div class="icon-block"><a href="#"><i class="far fa-file-pdf" style="font-size:1.8em"></i></a><a href="https://www.facebook.com/profile.php?id=100000119706380"><i class="fab fa-facebook fa-2x"></i></a><a href="#"> <i
-                    class="fab fa-github fa-2x"></i></a><a href="#"> <i class="fab fa-linkedin fa-2x"></i></a><a href="http://tda101g1.tk/TDA101G1_final_V3/index.jsp"><i
+              <div class="icon-block"><a href="https://drive.google.com/file/d/1lu1ujkNrguNMZX-0LNSxb8kmfw1arxdc/view?usp=sharing"><i class="far fa-file-pdf" style="font-size:1.8em"></i></a><a href="https://www.facebook.com/profile.php?id=100000119706380"><i class="fab fa-facebook fa-2x"></i></a><a href="#"> <i
+                    class="fab fa-github fa-2x"></i></a><a href="https://www.linkedin.com/in/%E5%8D%9A%E6%96%87-%E6%A5%8A-0107861a9/"> <i class="fab fa-linkedin fa-2x"></i></a><a href="http://tda101g1.tk/TDA101G1_final_V3/index.jsp"><i
                     class="fab fa-internet-explorer"></i></a></div>
             </div>
           </div>
