@@ -21,9 +21,9 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
 
-@ServerEndpoint("/TogetherWS/{cust_schedule_id}/{member_email}/{owner_member_id}/{current_member_id}")
+@ServerEndpoint("/TogetherWS/{cust_schedule_id}/{owner_member_id}/{current_member_id}")
 public class WebSocketEditSchedule {
-
+//	{member_email}/
 //	private static final Set<Session> connectedSessions = Collections.synchronizedSet(new HashSet<>());
 	private static Map<String, Session> sessionMap = new ConcurrentHashMap<>();
 //	private static Map<String, Map<String, Session>> roomMap = new HashMap<>();
