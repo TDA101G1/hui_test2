@@ -199,7 +199,7 @@ $(".confirm").on("click", function(){
     $(".selectedCoupon").css("background-color", "lightgray").css("border-radius", "10px").css("padding", "8px 18px");
     let discount = $("input.radioCoupon:checked").attr("data-discount")
     $(".discount").html(Math.ceil($(".tottleAmount").html()-$(".tottleAmount").html()*discount));
-    $(".discountPercentage").html(" (" + discount*100 + "折)");
+    $(".discountPercentage").html(" (" + discount*10 + "折)");
     $(".shouldPay").html($(".tottleAmount").html()-$(".discount").html());
   }
   modal.style.display = "none";

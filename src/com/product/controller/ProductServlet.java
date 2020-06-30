@@ -218,8 +218,18 @@ public class ProductServlet extends HttpServlet {
 					start = req.getParameter("start");
 					end = req.getParameter("end");
 				}
+//				System.out.println(member_ID);
+//				System.out.println(product_ID);
+//				System.out.println(product_Name);
+//				System.out.println(productDetail_ID);
+//				System.out.println(quantity);
+//				System.out.println(spc);
+//				System.out.println(start);
+//				System.out.println(end);
+//				System.out.println(index);
+//				System.out.println(addTime);
 				res.getWriter().write(new JedisShoppingCar().
-						delete(member_ID, index, addTime, start, end).toString());
+						delete(member_ID, addTime, start, end, productDetail_ID).toString());
 			}
 		}
 		

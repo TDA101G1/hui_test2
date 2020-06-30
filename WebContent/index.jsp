@@ -87,6 +87,7 @@
 	  background-size: cover !important;
 	  border: 5px solid #F5F5F5;
 	  border-radius: 20px;
+	  cursor: pointer;
 	}
 	div.location_img{
 		justify-content: center !important;
@@ -102,6 +103,7 @@
     	border-radius: 5px;
    		margin-bottom: -20%;
    		color: #373b40;
+   		
 	}
 	
 	.guide-img {
@@ -202,6 +204,12 @@
 	
 	.card-title a {
 	  color: #343434;
+	}
+	
+	@media screen and (max-width: 576px){
+		.display-4 h2{
+			font-size: 2rem;
+		}
 	}
   </style>
 </head>

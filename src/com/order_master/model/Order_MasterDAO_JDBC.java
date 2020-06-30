@@ -523,9 +523,11 @@ public class Order_MasterDAO_JDBC implements Order_MasterDAO_interface {
 			msg = "success";
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
+			msg = "fail to insert Order";
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
+			msg = "fail to insert Order";
 			if (con != null) {
 				try {
 					// 3●設定於當有exception發生時之catch區塊內
