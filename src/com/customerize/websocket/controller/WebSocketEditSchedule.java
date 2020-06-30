@@ -21,14 +21,14 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
 
-@ServerEndpoint("/TogetherWS/{cust_schedule_id}/{owner_member_id}/{current_member_id}")
+@ServerEndpoint("/TogetherWS/{cust_schedule_id}/{member_email}/{owner_member_id}/{current_member_id}")
 public class WebSocketEditSchedule {
-//	{member_email}/
-//	private static final Set<Session> connectedSessions = Collections.synchronizedSet(new HashSet<>());
+
 	private static Map<String, Session> sessionMap = new ConcurrentHashMap<>();
+//	private static final Set<Session> connectedSessions = Collections.synchronizedSet(new HashSet<>());
 //	private static Map<String, Map<String, Session>> roomMap = new HashMap<>();
 //	private static int roomNumber = 1;
-	Gson gson = new Gson();
+//	Gson gson = new Gson();
 	/*
 	 * 如果想取得HttpSession與ServletContext必須實作
 	 * ServerEndpointConfig.Configurator.modifyHandshake()，
@@ -41,7 +41,6 @@ public class WebSocketEditSchedule {
 		
 		MemberDetail member = new MemberDetail(current_member_id, member_email);
 		JedisEditSchedule.setRoomMembers(cust_schedule_id, member);
-//		JedisEditSchedule.setRoomMembers(cust_schedule_id, current_member_id);
 		if(!owner_member_id.equals(current_member_id)) {
 			JedisEditSchedule.setShareSchedule(current_member_id, cust_schedule_id);
 		}
@@ -80,11 +79,11 @@ public class WebSocketEditSchedule {
 
 	@OnMessage
 	public void onMessage(Session userSession, @PathParam("cust_schedule_id") String cust_schedule_id, String message) {
-		Set<MemberDetail> rooms = JedisEditSchedule.getRoomMembers(cust_schedule_id);
+		Set<MemberDetail> roomsMembers = JedisEditSchedule.getRoomMembers(cust_schedule_id);
 		Set<String> member_ids = sessionMap.keySet();
-		for(MemberDetail room : rooms) {
+		for(MemberDetail roomsMember : roomsMembers) {
 			for(String member_id : member_ids) {
-				if(room.getMember_id().equals(member_id)) {
+				if(roomsMember.getMember_id().equals(member_id)) {
 					Session session = sessionMap.get(member_id);
 					if(session.isOpen()) {
 						session.getAsyncRemote().sendText(message);
@@ -92,6 +91,7 @@ public class WebSocketEditSchedule {
 				}
 			}
 		}
+		System.out.println("Message received: " + message);
 //		Collection<Session> sessions = roomMap.get(roomName).values();
 //		System.out.println("sessions = " + sessions );
 //		for(Session session: sessions) {
@@ -100,7 +100,6 @@ public class WebSocketEditSchedule {
 //				System.out.println(session);
 //			}
 //		}
-		System.out.println("Message received: " + message);
 //		for (Session session : connectedSessions) {
 //			if (session.isOpen())
 //				session.getAsyncRemote().sendText(message);
@@ -109,10 +108,10 @@ public class WebSocketEditSchedule {
 
 	@OnClose
 	public void onClose(Session userSession, CloseReason reason) {
-//		connectedSessions.remove(userSession);
 		String text = String.format("session ID = %s, disconnected; close code = %d; reason phrase = %s",
 				userSession.getId(), reason.getCloseCode().getCode(), reason.getReasonPhrase());
 		System.out.println(text);
+//		connectedSessions.remove(userSession);
 	}
 
 	@OnError
