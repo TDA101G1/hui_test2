@@ -238,18 +238,32 @@ body {
 		src="<%=request.getContextPath()%>/vendors/popper/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="<%=request.getContextPath()%>/vendors/addressZip/twzipcode.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script type="text/javascript">
 	
 	  function checkAccount(){
 		  if($('div.account_group').data('check_account') === 0) {
-			  $('button.login-button').attr('disabled', true);
+			  $('button.login-button').prop('disabled', true);
 		  }else{
-			  $('button.login-button').attr('disabled', false);
+			  $('button.login-button').prop('disabled', false);
 		  }
 	  }
 	  
-	  checkAccount();
+	  function checkAccount(){
+		  $('button.login-button').on('click', function(e){
+			  if($('div.account_group').data('check_account') == 0){
+				  e.preventDefault();
+				  Swal.fire({
+					  icon: 'error',
+					  title: '請確認您的註冊帳號狀態',
+					  text: '請點擊check，確認帳號是否重複'
+				  });
+			  }
+		  });
+	  }
 	  
+	checkAccount();
+	
 	  
 	const fp = $("#birthday").flatpickr({
 	    altInput: true,
@@ -333,6 +347,11 @@ body {
 		});
 	});
     
+/* 		$('button.login-button').on('mouseenter', function(){
+			if($('div.account_group').data('check_account') === 0){
+				alert("請檢查您的帳號狀態");
+			}
+		}); */
 	  $('input#account').on('change', function(){
 		  $('div.account_group').data('check_account', 0);
 		  $(this).closest('div').find('button.check_account').show();

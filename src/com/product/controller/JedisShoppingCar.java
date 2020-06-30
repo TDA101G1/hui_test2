@@ -130,7 +130,7 @@ public class JedisShoppingCar {
 	}
 	
 	//移除購物車內單筆商品
-	public JSONObject delete(String member_ID, String index, String addTime, String start, String end) {
+	public JSONObject delete(String member_ID, String addTime, String start, String end, String productDetail_ID) {
 		Jedis jedis = new Jedis("localhost", 6379);
 		jedis.auth("123456");
 		String replaceID = member_ID.replace("MID", "");
@@ -138,7 +138,8 @@ public class JedisShoppingCar {
 		if(!jsonArray.isEmpty()) {
 			for(int i=0; i<jsonArray.length(); i++) {
 				JSONObject jsonObject = new JSONObject(jsonArray.getString(i).toString());
-				if(jsonObject.getString("addTime").equals(addTime) && jsonObject.getString("start").equals(start) && jsonObject.getString("end").equals(end)) {
+				if(jsonObject.getString("addTime").equals(addTime) && jsonObject.getString("start").equals(start) &&
+						jsonObject.getString("end").equals(end) && jsonObject.getString("productDetail_ID").equals(productDetail_ID)) {
 					jedis.lrem("member:"+replaceID+":shoppingCar", 0, jsonObject.toString());
 					jedis.close();
 					return new JSONObject().put("reply", "deleted");

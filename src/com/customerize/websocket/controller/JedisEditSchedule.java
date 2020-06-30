@@ -14,7 +14,7 @@ public class JedisEditSchedule {
 	public static void setShareSchedule(String member_id, String cust_schedule_id) {
 		Jedis jedis = new Jedis("localhost", 6379);
 		jedis.auth("123456");
-		String key = new StringBuilder("member").append(":").append(member_id).toString();
+		String key = new StringBuilder("member:").append(member_id).toString();
 		jedis.sadd(key, cust_schedule_id);
 		jedis.close();
 	}
@@ -23,8 +23,8 @@ public class JedisEditSchedule {
 	Gson gson = new Gson();
 	Jedis jedis = new Jedis("localhost", 6379);
 	jedis.auth("123456");
-	String key = new StringBuilder("customerize").append(":").append(cust_schedule_id)
-			.append(":").append("room").toString();
+	String key = new StringBuilder("customerize:")
+				.append(cust_schedule_id).append(":room").toString();
 	jedis.sadd(key, gson.toJson(member));
 	jedis.close();
 }
@@ -32,8 +32,8 @@ public class JedisEditSchedule {
 	public static Set<MemberDetail> getRoomMembers (String cust_schedule_id) {
 		Jedis jedis = new Jedis("localhost", 6379);
 		jedis.auth("123456");
-		String key = new StringBuilder("customerize").append(":").append(cust_schedule_id)
-				.append(":").append("room").toString();
+		String key = new StringBuilder("customerize:")
+				.append(cust_schedule_id).append(":room").toString();
 		System.out.println(key);
 		Set<String> setString = jedis.smembers(key);
 		if(setString == null || setString.size() == 0) {

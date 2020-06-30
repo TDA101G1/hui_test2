@@ -119,17 +119,17 @@
         <div class="col-md-3">
           <div class="card profile-card-2">
             <div class="card-img-block">
-              <img class="img-fluid" src="<%=request.getContextPath()%>/img/profileCard/IMG_5242.JPG" alt="Card image cap">
+              <img class="img-fluid" src="<%=request.getContextPath()%>/img/profileCard/jumpu3.jpg" alt="Card image cap">
             </div>
             <div class="card-body pt-5">
-              <img src="<%=request.getContextPath()%>/img/profileCard/IMG_6475.JPG" alt="profile-image" class="profile" />
-              <h5 class="card-title">楊博文</h5>
+              <img src="<%=request.getContextPath()%>/img/profileCard/Jumpu.png" alt="profile-image" class="profile" />
+              <h5 class="card-title">劉耀升</h5>
               <h5 class="card-text">負責項目:</h5>
-              <p class="card-text">- 首頁</p>
-              <p class="card-text">- 前台整合</p>
-              <p class="card-text">- 會員功能</p>
-              <div class="icon-block"><a href="https://www.facebook.com/profile.php?id=100000119706380"><i class="fab fa-facebook fa-2x"></i></a><a href="#"> <i
-                    class="fab fa-github fa-2x"></i></a><a href="#"> <i class="fab fa-linkedin fa-2x"></i></a><a href="http://tda101g1.tk/TDA101G1_final_V3/index.jsp"><i
+              <p class="card-text">- 商城</p>
+              <p class="card-text">- 購物車</p>
+              <p class="card-text">- 結帳功能</p>
+              <div class="icon-block"><a href="https://drive.google.com/drive/folders/13wBWk8bn1B1YTYMvwns334fNkJyfyrdt?usp=sharing"><i class="far fa-file-pdf" style="font-size:1.8em"></i></a><a href="https://www.facebook.com/da1117"><i class="fab fa-facebook fa-2x"></i></a><a href="https://github.com/sunset1117/productDetailPage/tree/master/product"> <i
+                    class="fab fa-github fa-2x"></i></a><a href="https://linkedin.com/in/jumpu1117"> <i class="fab fa-linkedin fa-2x"></i></a><a href="http://tda101g1.tk/TDA101G1_final_V3/index.jsp"><i
                     class="fab fa-internet-explorer"></i></a></div>
             </div>
           </div>
@@ -146,7 +146,7 @@
               <p class="card-text">- 行程頁面</p>
               <p class="card-text">- 行程功能</p>
               <p class="card-text">- </p>
-              <div class="icon-block"><a href="https://www.facebook.com/jenhui.chen.77/"><i class="fab fa-facebook fa-2x"></i></a><a href="#"> <i
+              <div class="icon-block"><a href="#"><i class="far fa-file-pdf" style="font-size:1.8em"></i></a><a href="https://www.facebook.com/jenhui.chen.77/"><i class="fab fa-facebook fa-2x"></i></a><a href="#"> <i
                     class="fab fa-github fa-2x"></i></a><a href="#"> <i class="fab fa-linkedin fa-2x"></i></a><a href="http://tda101g1.tk/TDA101G1_final_V3/index.jsp"><i
                     class="fab fa-internet-explorer"></i></a></div>
             </div>
@@ -164,7 +164,7 @@
               <p class="card-text">- 首頁</p>
               <p class="card-text">- 前台整合</p>
               <p class="card-text">- 會員功能</p>
-              <div class="icon-block"><a href="https://www.facebook.com/profile.php?id=100000119706380"><i class="fab fa-facebook fa-2x"></i></a><a href="#"> <i
+              <div class="icon-block"><a href="#"><i class="far fa-file-pdf" style="font-size:1.8em"></i></a><a href="https://www.facebook.com/profile.php?id=100000119706380"><i class="fab fa-facebook fa-2x"></i></a><a href="#"> <i
                     class="fab fa-github fa-2x"></i></a><a href="#"> <i class="fab fa-linkedin fa-2x"></i></a><a href="http://tda101g1.tk/TDA101G1_final_V3/index.jsp"><i
                     class="fab fa-internet-explorer"></i></a></div>
             </div>
@@ -182,7 +182,7 @@
               <p class="card-text">- 後台功能</p>
               <p class="card-text">- sql語法建立資料表格</p>
               <p class="card-text">- 後台首頁</p>
-              <div class="icon-block"><a href="https://www.facebook.com/profile.php?id=100002913804069"><i class="fab fa-facebook fa-2x"></i></a><a href="https://github.com/Ttaehee520"> <i
+              <div class="icon-block"><a href="#"><i class="far fa-file-pdf" style="font-size:1.8em"></i></a><a href="https://www.facebook.com/profile.php?id=100002913804069"><i class="fab fa-facebook fa-2x"></i></a><a href="https://github.com/Ttaehee520"> <i
                     class="fab fa-github fa-2x"></i></a><a href="https://www.linkedin.com/in/lin-kevin0323"> <i class="fab fa-linkedin fa-2x"></i></a><a href="http://tda101g1.tk/TDA101G1_final_V3/backstage/login.jsp"><i
                     class="fab fa-internet-explorer"></i></a></div>
             </div>

@@ -390,7 +390,7 @@ public class Order_MasterDAO_JDBC implements Order_MasterDAO_interface {
 			Order_MasterService omService = new Order_MasterService();
 			Order_MasterVO order_Master = omService.getOne(order_Master_ID);
 			order_Master.setOrder_Master_State(0);
-			
+
 //拿到orderDetail(跟參數傳進來的orderMaster一樣的orderMasterID）
 			OrderDetailService odService = new OrderDetailService();
 			List<OrderDetailVO> orderDetails = odService.getAll().stream()
@@ -429,13 +429,13 @@ public class Order_MasterDAO_JDBC implements Order_MasterDAO_interface {
 			ps.setString(3, order_Master.getOrder_Master_Payment());
 			ps.setInt(4, order_Master.getOrder_Master_State());
 			ps.setString(5, order_Master.getOrder_Master_ID());
-			
+
 			Integer updateNum = ps.executeUpdate();
 			ProductDetailDAO_JDBC dao = new ProductDetailDAO_JDBC();
-			for(ProductDetailVO pdbean : productDetails_tmp) {
+			for (ProductDetailVO pdbean : productDetails_tmp) {
 				dao.updateWithStock(pdbean, con);
 			}
-			
+
 			con.commit();
 			con.setAutoCommit(true);
 			return order_Master;
@@ -449,12 +449,11 @@ public class Order_MasterDAO_JDBC implements Order_MasterDAO_interface {
 					System.err.println("rolled back-��-dept");
 					con.rollback();
 				} catch (SQLException excep) {
-					throw new RuntimeException("rollback error occured. "
-							+ excep.getMessage());
+					throw new RuntimeException("rollback error occured. " + excep.getMessage());
 				}
 			}
 			throw new RuntimeException("A database error occured. " + e.getMessage());
-		}finally {
+		} finally {
 			if (ps != null) {
 				try {
 					ps.close();
@@ -472,7 +471,7 @@ public class Order_MasterDAO_JDBC implements Order_MasterDAO_interface {
 		}
 //		return null;
 	}
-	
+
 	@Override
 	public String inserWithOrder_Ditel(Order_MasterVO omVO, List<OrderDetailVO> list) {
 
@@ -523,9 +522,11 @@ public class Order_MasterDAO_JDBC implements Order_MasterDAO_interface {
 			msg = "success";
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
+			msg = "fail to insert Order";
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
+			msg = "fail to insert Order";
 			if (con != null) {
 				try {
 					// 3●設定於當有exception發生時之catch區塊內

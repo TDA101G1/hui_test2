@@ -86,8 +86,8 @@ div.main_content{
 		products.add(pService.select(product));
 	}
 //移除所有套裝行程收藏	
-/*  	products.removeIf(ProductVO -> ProductVO.getProduct_Class().equals("套裝行程"));
- */  	pageContext.setAttribute("products", products);
+  	products.removeIf(ProductVO -> ProductVO.getProduct_State().equals(0));
+   	pageContext.setAttribute("products", products);
  	
 //產生 所有productDetail
 	ProductDetailService pdService = new ProductDetailService();
