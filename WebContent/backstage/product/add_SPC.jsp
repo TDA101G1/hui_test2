@@ -1,3 +1,4 @@
+<%@page import="java.util.stream.Collectors"%>
 <%@page import="com.employee.model.EmployeeVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,8 +7,17 @@
 <%
 	ProductVO pVO = (ProductVO) request.getAttribute("pVO");
 	ProductDetailVO pdVO = (ProductDetailVO) request.getAttribute("pdVO");
-
+	
+	ProductService pSvc = new ProductService();
+	ProductDetailService pdSvc = new ProductDetailService();
+	
+	
+	List<ProductVO> list = pSvc.getAll().stream().filter(p -> p.getProduct_ID().equals(pVO.getProduct_ID()))
+			.collect(Collectors.toList());
+	System.out.println(list);
+	
 	EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
+	pageContext.setAttribute("list", list);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -776,7 +786,13 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
+
+.card-body{
+ margin-left:40%;
+}
+
 </style>
+
 
 </head>
 <!--
@@ -990,7 +1006,7 @@ to get the desired effect
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1 class="m-0 text-dark">新稱商品規格</h1>
+							<h1 class="m-0 text-dark">新增商品規格</h1>
 
 							<!-- Left navbar links -->
 
@@ -1040,7 +1056,10 @@ to get the desired effect
 
 											
 												<div class="container">
-
+													<c:forEach var="pVO" items="${list}">
+													<h2>${pVO.product_Name }</h2>
+													</c:forEach>
+													<br>
 													<div class="input-group-prepend">
 														<span class="input-group-text" id="basic-addon1">商品編號:<%=pVO.getProduct_ID()%>
 														</span>

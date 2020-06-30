@@ -10,19 +10,16 @@
 
 	EmployeeVO in_empVO = (EmployeeVO) session.getAttribute("in_empVO");
 
-
 	ProductService pSvc = new ProductService();
 	ProductDetailService pdSvc = new ProductDetailService();
-	
 
-	List<ProductDetailVO> list = pdSvc.getAll().stream().filter(p -> p.getProduct_ID().equals(pVO.getProduct_ID()))
-			.collect(Collectors.toList());
+	List<ProductDetailVO> list = pdSvc.getAll().stream()
+			.filter(p -> p.getProduct_ID().equals(pVO.getProduct_ID())).collect(Collectors.toList());
 	pageContext.setAttribute("list", list);
-	
+
 	int length = 0;
 	int count = 0;
 	int number = 0;
-	
 %>
 
 <!DOCTYPE html>
@@ -56,6 +53,10 @@ table {
 	display: table;
 	table-layout: fixed;
 	white-space: nowrap;
+}
+
+div#SPC {
+	margin-left: 85%;
 }
 
 td {
@@ -138,7 +139,15 @@ div.pagination {
 
 
 
+
+
+
+
 :hover
+
+
+
+
 
 
 
@@ -191,7 +200,11 @@ div.pagination {
 
 
 
+
+
  
+
+
 
 
 
@@ -228,7 +241,11 @@ div.pagination {
 
 
 
+
+
  
+
+
 
 
 
@@ -282,7 +299,13 @@ background-color
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -318,7 +341,13 @@ background-color
 
 
 
+
+
 #ddd
+
+
+
+
 
 
 
@@ -633,7 +662,7 @@ to get the desired effect
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>信箱</p>
 								</a></li>
-							
+
 
 							</ul></li>
 
@@ -785,12 +814,23 @@ to get the desired effect
 							<div class="card-header">
 
 								<%@ include file="pages/page1.file"%>
-										<h3>商品狀態:<%=(pVO.getProduct_State()==1)?"上架中":"下架中"%></h3>
-										
-														
+								<h1>${pVO.product_Name}</h1>
+								<h2>
+									商品狀態:<%=(pVO.getProduct_State() == 1) ? "上架中" : "下架中"%></h2>
+
+								<div id="SPC">
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/backstage/ProductServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="新增規格"> <input
+											type="hidden" name="p_ID" value="${pVO.product_ID}">
+										<input type="hidden" name="action" value="getforadd_SPC">
+									</FORM>
+								</div>
+
 							</div>
-							
-							
+
+
 							<div class="card-title">
 								<div class="col"></div>
 
@@ -807,7 +847,7 @@ to get the desired effect
 													<th scope="col">安全庫存</th>
 													<th scope="col">價錢</th>
 													<th scope="col">修改</th>
-													<th scope="col">新增規格</th>
+
 
 
 												</tr>
@@ -845,34 +885,29 @@ to get the desired effect
 																	type="hidden" name="action" value="get_Oneforupdate">
 															</FORM>
 														</td>
-														
-														<td>
-															<FORM METHOD="post"
-																ACTION="<%=request.getContextPath()%>/backstage/ProductServlet.do"
-																style="margin-bottom: 0px;">
-																<input type="submit" value="新增"> <input
-																	type="hidden" name="p_ID" value="${pVO.product_ID}">
-																 <input
-																	type="hidden" name="action" value="getforadd_SPC">
-															</FORM>
-														</td>
+
+
 
 													</tr>
-													
-													
+
+
 
 												</c:forEach>
-													<tr>
-														<td colspan="8">
-															<img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT"">
-															<img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG2&tName=PRODUCT"">
-															<img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG3&tName=PRODUCT"">
-															<img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG4&tName=PRODUCT"">
-															<img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG5&tName=PRODUCT"">
-														</td>
-													</tr>
-												
-												
+												<tr>
+													<td colspan="7"><img
+														src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT"">
+														<img
+														src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG2&tName=PRODUCT"">
+														<img
+														src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG3&tName=PRODUCT"">
+														<img
+														src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG4&tName=PRODUCT"">
+														<img
+														src="<%=request.getContextPath()%>/DBGifReader2?conditions=${pVO.product_ID}&whichImg=PRODUCT_IMG5&tName=PRODUCT"">
+													</td>
+												</tr>
+
+
 
 
 											</tbody>
@@ -958,32 +993,31 @@ to get the desired effect
 					 console.log(form_dataString);
 					
 					$.ajax({
-						url: "<%=request.getContextPath()%>/backstage/ProductServlet.do",
-						type : 'POST',
-						dataType : 'json',
-						data :{
-							"action":"getID",
-							"ID":name
-						}
-						
-					});
+						url: "<%=request.getContextPath()%>
+		/backstage/ProductServlet.do",
+										type : 'POST',
+										dataType : 'json',
+										data : {
+											"action" : "getID",
+											"ID" : name
+										}
 
+									});
 
-		
-				});
+						});
 
-				let modal = document.getElementById('myModal');
-				let modalImg = document.getElementById("img01");
-				let captionText = document.getElementById("caption");
-				$("img#myImg").on("click", function() {
-					modal.style.display = "block";
-					modalImg.src = this.src;
-					captionText.innerHTML = this.alt;
-				});
+		let modal = document.getElementById('myModal');
+		let modalImg = document.getElementById("img01");
+		let captionText = document.getElementById("caption");
+		$("img#myImg").on("click", function() {
+			modal.style.display = "block";
+			modalImg.src = this.src;
+			captionText.innerHTML = this.alt;
+		});
 
-				modal.onclick = function() {
-					modal.style.display = "none";
-				}
-			</script>
+		modal.onclick = function() {
+			modal.style.display = "none";
+		}
+	</script>
 </body>
 </html>
