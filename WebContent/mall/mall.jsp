@@ -578,9 +578,17 @@
 //     		alert();
 //     	}
     	clearTimeout(a);
-//     	a = setTimeout(function(){
-//     		updateMemberCar(product_Name, product_ID, productDetail_ID, spc, quantity, start, end, price, index, addTime);
-//     	}, 200);
+    	
+    	a = setTimeout(function(){
+	    	let keyword = $("#search").val().trim();
+	    	if(keyword != ""){
+		    	findKeyword(keyword);
+	    	}
+    	}, 600);
+    });
+    
+    $(".icon").on("click", function(e){
+    	clearTimeout(a);
     	
     	a = setTimeout(function(){
 	    	let keyword = $("#search").val().trim();
