@@ -35,17 +35,12 @@ public class Order_MasterServletforbackstage extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		HttpSession session = req.getSession();
-
-		String uri = (String) session.getAttribute("URL");
-
-		System.out.println(uri);
-
 		req.setCharacterEncoding("UTF-8");
 
 		String action = req.getParameter("action");
 
-	
+		System.out.println("action=" + action);
+
 		if ("getOneforupdate".equals(action)) {
 
 			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
@@ -98,8 +93,6 @@ public class Order_MasterServletforbackstage extends HttpServlet {
 				String order_Master_Payment = req.getParameter("order_Master_Payment").trim();
 
 				Integer order_Master_State = new Integer(req.getParameter("order_Master_State").trim());
-
-			
 
 				Order_MasterVO omVO = new Order_MasterVO();
 
@@ -237,29 +230,33 @@ public class Order_MasterServletforbackstage extends HttpServlet {
 				} else if (!order_Master_ID.trim().matches(order_Master_IDReg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.put("order_Master_ID", "格式錯誤，訂單號碼只能是OMID開頭加上六個數字");
 				}
-				
+
+				req.setAttribute("order_Master_ID", order_Master_ID);
+
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backstage/Order_Master/getAllOrder_Master.jsp");
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/backstage/Order_Master/getAllOrder_Master.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
-			
-				req.setAttribute("order_Master_ID", order_Master_ID);
+
 				/*************************** 2.開始查詢資料 *****************************************/
 				Order_MasterService omSvc = new Order_MasterService();
-				Order_MasterVO omVO = omSvc.getOne(order_Master_ID);
-				if (order_Master_ID == null) {
+				Order_MasterVO omVO = null;
+				omVO = omSvc.getOne(order_Master_ID);
+				if (omVO.getMember_ID() == null) {
 					errorMsgs.put("order_Master_ID", "查無此訂單");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backstage/Order_Master/getAllOrder_Master.jsp");
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/backstage/Order_Master/getAllOrder_Master.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("omVO", omVO); // 資料庫取出的empVO物件,存入req
+				req.setAttribute("omVO", omVO);
 				String url = "/backstage/Order_Master/getoneOrder_Master.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
@@ -267,7 +264,8 @@ public class Order_MasterServletforbackstage extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.put("Exception", e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backstage/Order_Master/getAllOrder_Master.jsp");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/backstage/Order_Master/getAllOrder_Master.jsp");
 				failureView.forward(req, res);
 			}
 		}
