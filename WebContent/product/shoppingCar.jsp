@@ -269,7 +269,7 @@
 	    		    			}else{
 	    		    				console.log("產品失效原因:商品規格、商品售價更動過，或庫存量不足");
 	    		    				console.log(productDetail_ID+"失效\n資料庫:"+$(this).html()+"，售價"+$(this).attr("data-price")+"庫存量"+$(this).attr("data-instock")+"；\n購物車:"+spc+"，售價"+price);
-		    		    			addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
+		    		    			addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime, productDetail_ID, start, end);
 		    		    			failure.push(oneProduct);
 	    		    			}
 	    		    		}
@@ -277,7 +277,7 @@
 	    		    	if(product_Name != $(oneProduct).find(".productName").html()){
 	    		    		console.log("產品失效1");
 	    		    		console.log("資料庫:"+$(oneProduct).find(".productName").html() +"，購物車:"+product_Name);
-	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
+	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime, productDetail_ID, start, end);
 	    		    		failure.push(oneProduct);
 	    		    	}
 	    		    	
@@ -287,7 +287,7 @@
 	    		    		console.log(new Date().getTime()-(1*60*60*24*1000) + " < yesterday");
 	    		    		console.log(new Date(end).getTime() + " < end");
 	    		    		console.log(new Date().getTime() + " < today");
-	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime);
+	    		    		addFailureItemDOM(product_ID, product_Name, $(oneProduct).find(".productName").attr("data-product_Class"), index, addTime, productDetail_ID, start, end);
 	    		    		failure.push(oneProduct);
 	    		    	}
 	    		    	

@@ -51,7 +51,7 @@ public class CustomerizeController extends HttpServlet {
 		res.setContentType("text/html; charset=UTF-8");
 		String action = req.getParameter("action");
 //接收資料
-		if (action.equals("create_schedule")) {
+		if ("create_schedule".equals(action)) {
 			String date = req.getParameter("cust_date"); // 前端有設定相對應的name，會判斷是否要增加value值
 			String quantity = req.getParameter("cust_quantity");
 			String position = req.getParameter("cust_position"); // 這是存一份經緯度到資料庫後續使用
@@ -258,7 +258,7 @@ public class CustomerizeController extends HttpServlet {
 
 		
 //產生行程
-		if (action.equals("produce_schedule")) {
+		if ("produce_schedule".equals(action)) {
 			System.out.println("產生行程");
 			String cust_schedule_id = req.getParameter("cust_schedule_id");
 			System.out.println(cust_schedule_id);
@@ -309,7 +309,7 @@ public class CustomerizeController extends HttpServlet {
 			}
 		}
 
-		if (action.equals("edit_schedule")) {
+		if ("edit_schedule".equals(action)) {
 			System.out.println("進來了edit_schedule");
 			String cust_schedule_id = req.getParameter("cust_schedule_id");
 			CustomerizeService dao = new CustomerizeService();

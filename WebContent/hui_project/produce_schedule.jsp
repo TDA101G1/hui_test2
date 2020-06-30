@@ -495,7 +495,7 @@ pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
     }
     .show{
       /* transform: translate3d(381px, 48px, 0px); */
-        left: -264px !important;
+        left: -210px !important;
         height: auto;
         max-height: 300px;
     }
@@ -508,6 +508,7 @@ pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
 
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <title>Tourism - 行程總覽</title>
 </head>
 
 <body>
@@ -1010,7 +1011,6 @@ pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
                 let member_ID = $("div.top_navbar").data("member-id");
                 let cart = []
                 $("ul#cart_list").find("li").each(function(i, value){
-                    console.log(value)
                     let product_ID = $(value).attr("id");
                     let product_Name = $(value).find("div.product_ticket_name p").text();
                     let productDetail_ID = $(value).find("select option:selected").data("productdetail-id");
@@ -1138,14 +1138,14 @@ pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
             }
 
             /*----------------------------測試--------------------------------*/
-            function calculateKm(distance, day){
-                let day_km = 0;
-                $.each(distance, function(i, item){
-                    day_km += item;
-                });
-                console.log(day_km)
-                $("div#"+day).find("span.total_km").html(day_km.toFixed(1));
-            }
+//             function calculateKm(distance, day){
+//                 let day_km = 0;
+//                 $.each(distance, function(i, item){
+//                     day_km += item;
+//                 });
+//                 console.log(day_km)
+//                 $("div#"+day).find("span.total_km").html(day_km.toFixed(1));
+//             }
 
 
 
