@@ -132,7 +132,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -307,7 +307,7 @@ input[type=text]:placeholder {
       <form method="post" action="<c:url value="/member/login.controller" />"> 
       <input type="text" id="login" class="fadeIn second" name="account" placeholder="login" value="${account }"><br>
       <span class="fadeIn fourth text-danger">${errorMsg.account }</span>
-      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password"><br>
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password"><br>
       <span class="fadeIn fourth text-danger">${errorMsg.password }</span>
       <div class="fadeIn fourth text-danger">${errorMsg.login }</div>
 		<div class="fadeIn fourth text-danger">${errorMsg.other }</div>
