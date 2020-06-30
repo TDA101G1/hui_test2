@@ -88,6 +88,10 @@ label.label_area a {
 	display: inline-block;
 }
 
+.btn {
+	margin-left: 50px;
+}
+
 /* Style the Image Used to Trigger the Modal */
 #myImg {
 	border-radius: 5px;
@@ -539,7 +543,7 @@ to get the desired effect
 
 							<input type="text" class="form-control col-6 "
 								placeholder="Username" aria-describedby="basic-addon1"
-								value="<%=(empVO == null) ? "林鈺凱" : empVO.getEmp_Name()%>"
+								value="<%=(empVO == null) ? "" : empVO.getEmp_Name()%>"  id="emp_Name"
 								name="emp_Name" />
 						</div>
 						<p style="color: red">${errorMsgs.emp_Name}</p>
@@ -553,7 +557,7 @@ to get the desired effect
 
 							<input type="text" class="form-control col-6 "
 								placeholder="Account" aria-describedby="basic-addon1"
-								value="<%=(empVO == null) ? "taehee520" : empVO.getEmp_Account()%>"
+								value="<%=(empVO == null) ? "" : empVO.getEmp_Account()%>" id="emp_Account"
 								name="emp_Account" />
 						</div>
 						<p style="color: red">${errorMsgs.emp_Account}</p>
@@ -566,7 +570,7 @@ to get the desired effect
 
 							<input type="text" class="form-control col-6 "
 								placeholder="Password" aria-describedby="basic-addon1"
-								value="<%=(empVO == null) ? "a092667172" : empVO.getEmp_Pwd()%>"
+								value="<%=(empVO == null) ? "" : empVO.getEmp_Pwd()%>" id="emp_Pwd"
 								name="emp_Pwd" />
 						</div>
 						<p style="color: red">${errorMsgs.emp_Pwd}</p>
@@ -635,7 +639,7 @@ to get the desired effect
 
 							<input type="text" class="form-control col-6 "
 								placeholder="E-mail" aria-describedby="basic-addon1"
-								value="<%=(empVO == null) ? "qqp15601560@yahoo.com.tw" : empVO.getEmp_Mail()%>"
+								value="<%=(empVO == null) ? "" : empVO.getEmp_Mail()%>" id="emp_Mail"
 								name="emp_Mail" />
 						</div>
 						<p style="color: red">${errorMsgs.emp_Mail}</p>
@@ -673,7 +677,7 @@ to get the desired effect
 							<input type="text" class="form-control col-6 "
 								placeholder="Address" aria-describedby="basic-addon1"
 								id="Address"
-								value="<%=(empVO == null) ? "吳鳳路81巷20號1樓" : empVO.getEmp_Address()%>"
+								value="<%=(empVO == null) ? "" : empVO.getEmp_Address()%>" id="emp_Address"
 								name="emp_Address" />
 						</div>
 						<p style="color: red">${errorMsgs.emp_Address}</p>
@@ -732,7 +736,9 @@ to get the desired effect
 						<input class="btn btn-secondary active" type="submit" value="送出">
 				
 </button>
+<button type="button" id="getval" class="btn btn-secondary ">神奇按鈕!</button>
 
+											</button>
 
 				</FORM>
 
@@ -924,6 +930,15 @@ to get the desired effect
 		};
 		reader.readAsDataURL(file);
 	});
+	
+	$('#getval').on("click",function(){
+		$('#emp_Account').val("TDA101G1")
+		$('#emp_Name').val("王小明")
+		$('#emp_Pwd').val('gogo123')
+		$('#emp_Mail').val('qqp15601560@yahoo.com.tw')
+		$('#emp_Address').val('新北市板橋區民生路一段20號')
+		
+	})
 	
 
 <!--  	$('#title').css("color", "black"); -->

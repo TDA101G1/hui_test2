@@ -72,9 +72,7 @@ div.pagination {
 	color: white;
 }
 
-.btn{
-	margin-left: 50px;
-}
+
 
 /* Add a grey background color on mouse-over */
 .paginationa
@@ -992,7 +990,7 @@ to get the desired effect
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1 class="m-0 text-dark">新稱商品</h1>
+							<h1 class="m-0 text-dark">新稱商品規格</h1>
 
 							<!-- Left navbar links -->
 
@@ -1037,276 +1035,19 @@ to get the desired effect
 
 										<FORM METHOD="post"
 											ACTION="<%=request.getContextPath()%>/backstage/ProductServlet.do"
-											name="form1" enctype="multipart/form-data">
+											name="form1" >
 											<table>
 
-												<label>商品圖片：</label>
-												<br>
-												<input type="file" id="p_file" accept="image/*"
-													name="product_Img1" class="col-2">
-
-												<input type="file" id="p_file1" accept="image/*"
-													name="product_Img2" class="col-2">
-
-												<input type="file" id="p_file2" accept="image/*"
-													name="product_Img3" class="col-2">
-												<input type="file" id="p_file3" accept="image/*"
-													name="product_Img4" class="col-2">
-												<input type="file" id="p_file4" accept="image/*"
-													name="product_Img5" class="col-2">
-
-
-
-												<br>
-												<p style="color: red">${errorMsgs.product_Img1}</p>
-												<p style="color: red">${errorMsgs.product_Img2}</p>
-												<p style="color: red">${errorMsgs.product_Img3}</p>
-												<p style="color: red">${errorMsgs.product_Img4}</p>
-												<p style="color: red">${errorMsgs.product_Img5}</p>
-
-												<br>
-												<div class="row">
-
-
-													<div id="preview" class="col-2">
-														<span class="text">預覽圖</span>
-													</div>
-
-
-													<div id="preview1" class="col-2">
-														<span class="text">預覽圖</span>
-													</div>
-
-													<div id="preview2" class="col-2">
-														<span class="text">預覽圖</span>
-													</div>
-
-													<div id="preview3" class="col-2">
-														<span class="text">預覽圖</span>
-													</div>
-
-													<div id="preview4" class="col-2">
-														<span class="text">預覽圖</span>
-													</div>
-												</div>
-
-												<hr>
-												<br>
+											
 												<div class="container">
 
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon1">商品編號:<%=pVO.getProduct_ID()%>
+														</span>
 
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">商品名稱:</span>
-														</div>
-
-														<input type="text" class="form-control col-6 "
-															placeholder="Name" aria-describedby="basic-addon1"
-															value="<%=(pVO == null) ? "" : pVO.getProduct_Name()%>" id="product_Name"
-															name="product_Name" />
 													</div>
-													<p style="color: red">${errorMsgs.product_Name}</p>
-
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">景點類別:</span>
-														</div>
-
-														<select name="product_Class" class="city">
-															<option value="景點"
-																${(pVO.product_Class eq ('景點')) ? 'selected' : ''}>景點</option>
-															<option value="住宿"
-																${(pVO.product_Class eq ('住宿')) ? 'selected' : ''}>住宿</option>
-															<option value="餐廳"
-																${(pVO.product_Class eq ('餐廳')) ? 'selected' : ''}>餐廳</option>
-														</select>
-													</div>
-
-
-
-
-													<div class="input-group">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">景點狀態:</span>
-
-															<div class="input-group-prepend">
-																<div class="input-group-text">
-																	<input type="radio" name="product_State"
-																		aria-label="Radio button for following text input"
-																		value="1"
-																		<%=(pVO == null) ? "checked" : (pVO.getProduct_State() == 1) ? "checked" : ""%> />上架
-																	<input type="radio" name="product_State"
-																		aria-label="Radio button for following text input"
-																		value="0"
-																		<%=(pVO != null && pVO.getProduct_State() == 0) ? "checked" : ""%> />下架
-																</div>
-															</div>
-														</div>
-													</div>
-
 													<br>
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">景點縣市:</span>
-														</div>
-
-														<select name="product_County" class="city">
-															<option value="縣市"
-																${(pVO.product_County eq ('縣市')) ? 'selected' : ''}>縣市</option>
-															<option value="基隆市"
-																${(pVO.product_County eq ('基隆市')) ? 'selected' : ''}>基隆市</option>
-															<option value="新北市"
-																${(pVO.product_County eq ('新北市')) ? 'selected' : ''}>新北市</option>
-															<option value="臺北市"
-																${(pVO.product_County eq ('臺北市')) ? 'selected' : ''}>臺北市</option>
-															<option value="桃園市"
-																${(pVO.product_County eq ('桃園市')) ? 'selected' : ''}>桃園市</option>
-															<option value="新竹市"
-																${(pVO.product_County eq ('新竹市')) ? 'selected' : ''}>新竹市</option>
-															<option value="苗栗市"
-																${(pVO.product_County eq ('苗栗市')) ? 'selected' : ''}>苗栗市</option>
-															<option value="臺中市"
-																${(pVO.product_County eq ('臺中市')) ? 'selected' : ''}>臺中市</option>
-															<option value="南投市"
-																${(pVO.product_County eq ('南投市')) ? 'selected' : ''}>南投市</option>
-															<option value="雲林市"
-																${(pVO.product_County eq ('雲林市')) ? 'selected' : ''}>雲林市</option>
-															<option value="嘉義市"
-																${(pVO.product_County eq ('嘉義市')) ? 'selected' : ''}>嘉義市</option>
-															<option value="臺南市"
-																${(pVO.product_County eq ('臺南市')) ? 'selected' : ''}>臺南市</option>
-															<option value="高雄市"
-																${(pVO.product_County eq ('高雄市')) ? 'selected' : ''}>高雄市</option>
-															<option value="屏東市"
-																${(pVO.product_County eq ('屏東市')) ? 'selected' : ''}>屏東市</option>
-															<option value="宜蘭市"
-																${(pVO.product_County eq ('宜蘭市')) ? 'selected' : ''}>宜蘭市</option>
-															<option value="花蓮市"
-																${(pVO.product_County eq ('花蓮市')) ? 'selected' : ''}>花蓮市</option>
-															<option value="臺東市"
-																${(pVO.product_County eq ('臺東市')) ? 'selected' : ''}>臺東市</option>
-														</select>
-
-														<p style="color: red">${errorMsgs.product_County}</p>
-													</div>
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">景點地址:</span>
-														</div>
-
-														<input type="text" class="form-control col-6 "
-															placeholder="Address" aria-describedby="basic-addon1"
-															id="Address"
-															value="<%=(pVO == null) ? "" : pVO.getProduct_Address()%>"
-															name="product_Address" />
-
-														<p style="color: red">${errorMsgs.product_Address}</p>
-
-														<button type="button" id="getGPS"
-															class="btn btn-secondary ">取得經緯度</button>
-
-														</button>
-
-
-													</div>
-													<div>
-														<p style="color: red">${errorMsgs.emp_Address}</p>
-													</div>
-
-
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">經度:</span>
-														</div>
-
-														<input type="text" class="form-control col-1 "
-															placeholder="lng" aria-describedby="basic-addon1"
-															id="lng"
-															value="<%=(pVO == null) ? "" : pVO.getProduct_Longitude()%>"
-															name="product_Longitude" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Longitude}</p>
-
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">緯度:</span>
-														</div>
-
-														<input type="text" class="form-control col-1 "
-															placeholder="lat" aria-describedby="basic-addon1"
-															id="lat"
-															value="<%=(pVO == null) ? "" : pVO.getProduct_Latitutde()%>"
-															name="product_Latitutde" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Latitutde}</p>
-
-
-													<div id="googleMap">
-														<iframe width="600" height="450" frameborder="0"
-															style="border: 0"
-															src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBPJRhviSK2E8-7hm5IIc1HLh0PbmPeTEA&q=台灣省"
-															allowfullscreen> </iframe>
-													</div>
-
-													<br>
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">平均停留時間:</span>
-														</div>
-
-														<input type="text" class="form-control col-1 "
-															placeholder="Staytime" aria-describedby="basic-addon1" id="product_Staytime"
-															value="<%=pVO == null ? 0.0 : pVO.getProduct_Staytime()%>"
-															name="product_Staytime" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Staytime}</p>
-
-
-
-
-
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">景點簡介:</span>
-														</div>
-
-														<input type="text" class="form-control col-6 "
-															placeholder="Name" aria-describedby="basic-addon1"
-															value="<%=(pVO == null) ? "" : pVO.getProduct_Intro()%>" id="product_Intro"
-															name="product_Intro" />
-													</div>
-													<p style="color: red">${errorMsgs.product_Intro}</p>
-
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">行程總覽:</span>
-														</div>
-														<textarea class="form-control product_Total_Schedule"
-															name="product_Total_Schedule"
-															id="exampleFormControlTextarea1" rows="1"><%=(pVO == null) ? "" : pVO.getProduct_Total_Schedule()%></textarea>
-
-													</div>
-													<p style="color: red">${errorMsgs.product_Total_Schedule}</p>
-
-
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon1">景點詳情:</span>
-														</div>
-														<textarea class="form-control product_Info" name="product_Info"
-															id="exampleFormControlTextarea1" rows="3"><%=(pVO == null) ? "" : pVO.getProduct_Info()%></textarea>
-
-													</div>
-													<p style="color: red">${errorMsgs.product_Info}</p>
-
+											
 													<div class="input-group mb-3">
 														<div class="input-group-prepend">
 															<span class="input-group-text" id="basic-addon1">景點規格:</span>
@@ -1361,21 +1102,20 @@ to get the desired effect
 															name="product_Detail_Saftystock" />
 													</div>
 													<p style="color: red">${errorMsgs.product_Detail_Saftystock}</p>
-											</table>
+											
 
 
 											<button type="button" class="btn">
 
-												<input type="hidden" name="action" value="insert"> <input
+												<input type="hidden" name="action" value="add_SPC"> 
+												<input type="hidden" name="p_ID" value=<%=pVO.getProduct_ID()%>>
+												<input
 													class="btn btn-secondary active" type="submit" value="送出">
 
 											</button>
 
-											
-											<button type="button" id="getval" class="btn btn-secondary ">神奇按鈕!</button>
-
-											</button>
-
+											</table>						
+										
 
 										</FORM>
 
@@ -1455,259 +1195,14 @@ to get the desired effect
 		window.addEventListener("load", function(e) {
 
 			// =========================== 元素 ========================= //
-			var drop_zone_el = document.getElementById("drop_zone");
-			var preview_el = document.getElementById("preview");
-			var preview_el1 = document.getElementById("preview1");
-			var preview_el2 = document.getElementById("preview2");
-			var preview_el3 = document.getElementById("preview3");
-			var preview_el4 = document.getElementById("preview4");
-			var p_file_el = document.getElementById("p_file");
-			var p_file_el1 = document.getElementById("p_file1");
-			var p_file_el2 = document.getElementById("p_file2");
-			var p_file_el3 = document.getElementById("p_file3");
-			var p_file_el4 = document.getElementById("p_file4");
-
-			// =========================== Drag and Drop ========================= //
-			preview.addEventListener("dragover", function(e) {
-				e.preventDefault();
-				e.target.classList.add("-on");
-			});
-			preview.addEventListener("dragleave", function(e) {
-				e.target.classList.remove("-on");
-			});
-			preview.addEventListener("drop", function(e) {
-				e.preventDefault();
-				e.target.classList.remove("-on");
-
-				console.log(e.dataTransfer.files); // 取得 files
-				preview_img(e.dataTransfer.files[0]);
-				p_file_el.value = ""; // 將 type="file" 那個清空
-			});
-
-			preview1.addEventListener("dragover", function(e) {
-				e.preventDefault();
-				e.target.classList.add("-on");
-			});
-			preview1.addEventListener("dragleave", function(e) {
-				e.target.classList.remove("-on");
-			});
-			preview1.addEventListener("drop", function(e) {
-				e.preventDefault();
-				e.target.classList.remove("-on");
-
-				console.log(e.dataTransfer.files); // 取得 files
-				preview_img1(e.dataTransfer.files[0]);
-				p_file_el1.value = ""; // 將 type="file" 那個清空
-			});
-
-			preview2.addEventListener("dragover", function(e) {
-				e.preventDefault();
-				e.target.classList.add("-on");
-			});
-			preview2.addEventListener("dragleave", function(e) {
-				e.target.classList.remove("-on");
-			});
-			preview2.addEventListener("drop", function(e) {
-				e.preventDefault();
-				e.target.classList.remove("-on");
-
-				console.log(e.dataTransfer.files); // 取得 files
-				preview_img2(e.dataTransfer.files[0]);
-				p_file_el2.value = ""; // 將 type="file" 那個清空
-			});
-
-			preview3.addEventListener("dragover", function(e) {
-				e.preventDefault();
-				e.target.classList.add("-on");
-			});
-			preview3.addEventListener("dragleave", function(e) {
-				e.target.classList.remove("-on");
-			});
-			preview3.addEventListener("drop", function(e) {
-				e.preventDefault();
-				e.target.classList.remove("-on");
-
-				console.log(e.dataTransfer.files); // 取得 files
-				preview_img3(e.dataTransfer.files[0]);
-				p_file_el3.value = ""; // 將 type="file" 那個清空
-			});
-
-			preview4.addEventListener("dragover", function(e) {
-				e.preventDefault();
-				e.target.classList.add("-on");
-			});
-			preview4.addEventListener("dragleave", function(e) {
-				e.target.classList.remove("-on");
-			});
-			preview4.addEventListener("drop", function(e) {
-				e.preventDefault();
-				e.target.classList.remove("-on");
-
-				console.log(e.dataTransfer.files); // 取得 files
-				preview_img4(e.dataTransfer.files[0]);
-				p_file_el4.value = ""; // 將 type="file" 那個清空
-			});
-
-			// =========================== 透過 File 取得預覽圖 ========================= //
-			var preview_img = function(file) {
-				var img_node = document.createElement("img");
-				var reader = new FileReader(); // 用來讀取檔案
-				reader.addEventListener("load", function() {
-					//console.log(reader.result);
-					let img_node = document.createElement("img");
-					img_node.setAttribute("src", reader.result);
-					img_node.setAttribute("class", "preview_img");
-					preview_el.innerHTML = '';
-					preview_el.append(img_node);
-				});
-				reader.readAsDataURL(file); // 讀取檔案
-			};
-
-			var preview_img1 = function(file) {
-				var img_node = document.createElement("img");
-				var reader = new FileReader(); // 用來讀取檔案
-				reader.addEventListener("load", function() {
-					//console.log(reader.result);
-					let img_node = document.createElement("img");
-					img_node.setAttribute("src", reader.result);
-					img_node.setAttribute("class", "preview_img");
-					preview_el1.innerHTML = '';
-					preview_el1.append(img_node);
-				});
-				reader.readAsDataURL(file); // 讀取檔案
-			};
-
-			var preview_img2 = function(file) {
-				var img_node = document.createElement("img");
-				var reader = new FileReader(); // 用來讀取檔案
-				reader.addEventListener("load", function() {
-					//console.log(reader.result);
-					let img_node = document.createElement("img");
-					img_node.setAttribute("src", reader.result);
-					img_node.setAttribute("class", "preview_img");
-					preview_el2.innerHTML = '';
-					preview_el2.append(img_node);
-				});
-				reader.readAsDataURL(file); // 讀取檔案
-			};
-
-			var preview_img3 = function(file) {
-				var img_node = document.createElement("img");
-				var reader = new FileReader(); // 用來讀取檔案
-				reader.addEventListener("load", function() {
-					//console.log(reader.result);
-					let img_node = document.createElement("img");
-					img_node.setAttribute("src", reader.result);
-					img_node.setAttribute("class", "preview_img");
-					preview_el3.innerHTML = '';
-					preview_el3.append(img_node);
-				});
-				reader.readAsDataURL(file); // 讀取檔案
-			};
-
-			var preview_img4 = function(file) {
-				var img_node = document.createElement("img");
-				var reader = new FileReader(); // 用來讀取檔案
-				reader.addEventListener("load", function() {
-					//console.log(reader.result);
-					let img_node = document.createElement("img");
-					img_node.setAttribute("src", reader.result);
-					img_node.setAttribute("class", "preview_img");
-					preview_el4.innerHTML = '';
-					preview_el4.append(img_node);
-				});
-				reader.readAsDataURL(file); // 讀取檔案
-			};
-
-			
-			p_file_el.addEventListener("change", function(e) {
-				if (this.files.length > 0) {
-					preview_img(this.files[0]);
-				} else {
-					preview_el.innerHTML = '<span class="text">預覽圖</span>';
-				}
-			});
-
-			p_file_el1.addEventListener("change", function(e) {
-				if (this.files.length > 0) {
-					preview_img1(this.files[0]);
-				} else {
-					preview_el1.innerHTML = '<span class="text">預覽圖</span>';
-				}
-			});
-
-			p_file_el2.addEventListener("change", function(e) {
-				if (this.files.length > 0) {
-					preview_img2(this.files[0]);
-				} else {
-					preview_el2.innerHTML = '<span class="text">預覽圖</span>';
-				}
-			});
-
-			p_file_el3.addEventListener("change", function(e) {
-				if (this.files.length > 0) {
-					preview_img3(this.files[0]);
-				} else {
-					preview_el3.innerHTML = '<span class="text">預覽圖</span>';
-				}
-			});
-
-			p_file_el4.addEventListener("change", function(e) {
-				if (this.files.length > 0) {
-					preview_img4(this.files[0]);
-				} else {
-					preview_el4.innerHTML = '<span class="text">預覽圖</span>';
-				}
-			});
-
-		});
 		
 	
 		
-		//快速神奇按鈕
-		$('#getval').on("click", function() {
-			$('#product_Name').val("象山親子步道")
-			$('#Address').val("110台北市信義區信義路五段150巷342弄")
-			$('#lng').val(121.5708454)
-			$('#lat').val(25.0265142)
-			$('#product_Staytime').val(4.0)
-			$('#product_Intro').val('台北著名的運動地點，俯瞰信義區美景')
-			$('.product_Total_Schedule').val("爬山運動")
-			$('.product_Info').val("漫遊山間步道，爬階梯磨練自身的毅力，體驗山間的清淨空氣，遠離都市喧嘩。")
-			$('#product_Detail_Spc').val('自由散步')
-			$('#product_Detail_Money').val(0)
-			$('#product_Detail_Instock').val(20)
-			$('#product_Detail_Saftystock').val(10)
-			
-			});
 		
 		
-// 		google map按鈕
-		  $("button#getGPS").on("click", function () {
-            let geocoder = new google.maps.Geocoder();
-            let address = $("#Address").val();
-            geocoder.geocode({
-                'address': address
-            }, function (results, status) {
-                if (status == 'OK') {
-                    $("#lat").val(results[0].geometry.location.lat())
-                    $("#lng").val(results[0].geometry.location.lng())
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
-        });
+// 		
         
-			$('#Address').on('change', function() {
-				var address=$(this).val();
-				console.log(address);
-				$('#googleMap').html(`
-				<iframe width="600" height="450" frameborder="0"
-					style="border: 0"
-					src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBPJRhviSK2E8-7hm5IIc1HLh0PbmPeTEA&q=`+address+`"
-					allowfullscreen> </iframe>
-				
-					`)
+		
 
 			});
 			

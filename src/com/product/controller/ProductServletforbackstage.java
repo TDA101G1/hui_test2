@@ -141,7 +141,7 @@ public class ProductServletforbackstage extends HttpServlet {
 				byte[] product_Img2 = null;
 				Part part2 = req.getPart("product_Img2");
 				if (part2 == null || part2.getSize() == 0) {
-					errorMsgs.put("product_Img2", "請存入第五張照片");
+					errorMsgs.put("product_Img2", "請存入第二張照片");
 				} else {
 					InputStream in = part2.getInputStream();
 					product_Img2 = new byte[in.available()];
@@ -152,7 +152,7 @@ public class ProductServletforbackstage extends HttpServlet {
 				byte[] product_Img3 = null;
 				Part part3 = req.getPart("product_Img3");
 				if (part3 == null || part3.getSize() == 0) {
-					errorMsgs.put("product_Img3", "請存入第四張照片");
+					errorMsgs.put("product_Img3", "請存入第三張照片");
 				} else {
 					InputStream in = part3.getInputStream();
 					product_Img3 = new byte[in.available()];
@@ -163,7 +163,7 @@ public class ProductServletforbackstage extends HttpServlet {
 				byte[] product_Img4 = null;
 				Part part4 = req.getPart("product_Img4");
 				if (part4 == null || part4.getSize() == 0) {
-					errorMsgs.put("product_Img4", "請存入第三張照片");
+					errorMsgs.put("product_Img4", "請存入第四張照片");
 				} else {
 					InputStream in = part4.getInputStream();
 					product_Img4 = new byte[in.available()];
@@ -174,7 +174,7 @@ public class ProductServletforbackstage extends HttpServlet {
 				byte[] product_Img5 = null;
 				Part part5 = req.getPart("product_Img5");
 				if (part5 == null || part5.getSize() == 0) {
-					errorMsgs.put("product_Img5", "請存入第二張照片");
+					errorMsgs.put("product_Img5", "請存入第五張照片");
 				} else {
 					InputStream in = part5.getInputStream();
 					product_Img5 = new byte[in.available()];
@@ -194,7 +194,7 @@ public class ProductServletforbackstage extends HttpServlet {
 				try {
 					product_Detail_Instock = new Integer(req.getParameter("product_Detail_Instock").trim());
 				} catch (NumberFormatException e) {
-					e.printStackTrace();
+//					e.printStackTrace();
 					product_Detail_Instock = null;
 					errorMsgs.put("product_Detail_Instock", "請輸入庫存量");
 				}
@@ -286,7 +286,6 @@ public class ProductServletforbackstage extends HttpServlet {
 				try {
 					product_Staytime = new Double(req.getParameter("product_Staytime").trim());
 
-					System.out.println(product_Staytime);
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 					product_Staytime = null;
@@ -1270,6 +1269,146 @@ public class ProductServletforbackstage extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+		
+		
+		
+		if ("add_SPC".equals(action)) { // 來自select_page.jsp的請求
+
+			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String p_ID = req.getParameter("p_ID").trim();
+				
+				
+				String product_Detail_Spc = req.getParameter("product_Detail_Spc").trim();
+
+				if (product_Detail_Spc.trim().length() == 0 || product_Detail_Spc ==null) {
+					errorMsgs.put("product_Detail_Spc", "請加入規格");
+				}
+
+				Integer product_Detail_Instock = null;
+				try {
+					product_Detail_Instock = new Integer(req.getParameter("product_Detail_Instock").trim());
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					product_Detail_Instock = null;
+					errorMsgs.put("product_Detail_Instock", "請輸入庫存量");
+				}
+				Integer product_Detail_Money = null;
+				try {
+					product_Detail_Money = new Integer(req.getParameter("product_Detail_Money").trim());
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					product_Detail_Money = null;
+					errorMsgs.put("product_Detail_Money", "請輸入景點金額");
+				}
+
+				Integer product_Detail_Saftystock = null;
+				try {
+					product_Detail_Saftystock = new Integer(req.getParameter("product_Detail_Saftystock").trim());
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					product_Detail_Saftystock = null;
+					errorMsgs.put("product_Detail_Saftystock", "請輸入安全庫存量");
+				}
+				
+				ProductVO productVO = new ProductVO();
+				
+				productVO.setProduct_ID(p_ID);
+				
+				ProductDetailVO productDetailVO = new ProductDetailVO();
+
+				productDetailVO.setProduct_Detail_Instock(product_Detail_Instock);
+				productDetailVO.setProduct_Detail_Money(product_Detail_Money);
+				productDetailVO.setProduct_Detail_Saftystock(product_Detail_Saftystock);
+				productDetailVO.setProduct_Detail_Spc(product_Detail_Spc);
+				productDetailVO.setProduct_ID(p_ID);
+				
+				req.setAttribute("pVO", productVO);
+				req.setAttribute("pdVO", productDetailVO);
+				
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/backstage/product/add_SPC.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				
+				ProductDetailService pdSvc = new ProductDetailService();
+				productDetailVO = pdSvc.insert(productDetailVO, productVO);
+				
+				ProductService pSvc = new ProductService();
+				ProductVO pVO = pSvc.select(productVO);
+				
+				req.setAttribute("pVO", pVO);
+				req.setAttribute("pdVO", productDetailVO);
+				
+				
+				String url = "/backstage/product/get_SPC.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.put("Exception", e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/backstage/product/add_SPC.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		
+		if ("getforadd_SPC".equals(action)) { // 來自select_page.jsp的請求
+
+			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String p_ID = req.getParameter("p_ID").trim();
+				
+		
+				ProductVO productVO = new ProductVO();
+				
+				productVO.setProduct_ID(p_ID);
+			
+				
+				ProductService pSvc = new ProductService();
+				ProductVO pVO = pSvc.select(p_ID);
+				
+				req.setAttribute("pVO", productVO);
+
+				
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/backstage/product/get_SPC.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+			
+				
+				String url = "/backstage/product/add_SPC.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.put("Exception", e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/backstage/product/get_SPC.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
 
 		
 	}
