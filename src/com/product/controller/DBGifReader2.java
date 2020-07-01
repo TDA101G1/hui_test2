@@ -39,7 +39,7 @@ public class DBGifReader2 extends HttpServlet {
 				rs = stmt.executeQuery("SELECT "+whichImg+" FROM "+tName+" WHERE PRODUCT_CMT_ID = '"+conditions+"'");
 			}else if (tName.equals("MEMBERS")) {
 //				System.out.println("到MEMBERS搜尋圖片");
-				rs = stmt.executeQuery("SELECT MEMBER_IMG FROM "+tName+" WHERE MEMBER_ID = '"+conditions+"'");
+				rs = stmt.executeQuery("SELECT "+whichImg+" FROM "+tName+" WHERE MEMBER_ID = '"+conditions+"'");
 			}
 			
 			if (rs.next()) {

@@ -302,7 +302,7 @@
 		<div class="col-md-2">
 	    	<div class="user_info">
 		    	<div class="user_img">
-	              <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${comment.member_ID}&tName=MEMBERS" />
+	              <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${comment.member_ID}&tName=MEMBERS&whichImg=MEMBER_IMG" />
 	            </div>
  	            <c:forEach items="${memberService.all}" var="member">
  	            	<c:if test="${member.member_ID==comment.member_ID}">
