@@ -95,8 +95,9 @@ div.sidebar a.nav-link:hover{
 		}
 		
 	}
+//移除空的VO (有可能某個行程已被刪除 但是redis中被分享了該行程沒移除)
+	custs.removeIf(cust -> cust == null);
 	pageContext.setAttribute("custsMaster", custs);
-	
 	
 //取得custMaster的custsDetail資訊（主要是product ID)
 //找出collection中的所有productID
