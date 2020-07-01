@@ -677,7 +677,7 @@ $(document).on("click", ".addCollection", function(e){
               </div>
               <div class="col-md-6">
                 <div class="img_scheduleLight">
-                  <img src="" alt="">
+                  <img src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG1&tName=PRODUCT" alt="">
                 </div>
               </div>
 
@@ -688,17 +688,17 @@ $(document).on("click", ".addCollection", function(e){
               </div>
               <div class="col-md-4" style="padding: 5px;">
                 <div class="ref_img">
-                  <img class="img_smaller_scheduleLight" src="" alt="">
+                  <img class="img_smaller_scheduleLight" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG2&tName=PRODUCT" alt="">
                 </div>
               </div>
               <div class="col-md-4" style="padding: 5px;">
                 <div class="ref_img">
-                  <img class="img_smaller_scheduleLight" src="" alt="">
+                  <img class="img_smaller_scheduleLight" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG3&tName=PRODUCT" alt="">
                 </div>
               </div>
               <div class="col-md-4" style="padding: 5px;">
                 <div class="ref_img">
-                  <img class="img_smaller_scheduleLight" src="" alt="">
+                  <img class="img_smaller_scheduleLight" src="<%=request.getContextPath()%>/DBGifReader2?conditions=${product.product_ID}&whichImg=PRODUCT_IMG4&tName=PRODUCT" alt="">
                 </div>
               </div>
 

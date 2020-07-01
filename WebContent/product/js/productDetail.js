@@ -114,7 +114,7 @@ $(document).on("blur", ".input_quantity", function(){
 });
 
 // 圖片切換
-$(".smaller_img img").on("click", function(){
+$(".smaller_backgroundImg img").on("click", function(){
   let src = $(this).attr("src")
   $(".backgroundImg_Area").css("background-image", "url('"+src+"'")
   $(".main_img").attr("src", src);
