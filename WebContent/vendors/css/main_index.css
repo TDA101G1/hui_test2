@@ -1309,9 +1309,15 @@
 		footer span{
 			font-size: 20px;
 		}
+		footer{
+    		padding:0 15px;
+    	}
+    	.rwd{
+    		text-align: center;
+    		margin: 10px 0 80px 0;
+    	}
 	}
-    
-    
+
 /*     footer { */
 /*         color: white; */
 /*         background-color: black; */

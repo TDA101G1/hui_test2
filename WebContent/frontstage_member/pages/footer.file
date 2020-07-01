@@ -5,7 +5,7 @@
   <footer id="sticky-footer" class="">
  <div class="contain">
             <div class="row justify-content-center">
-                <div class="col-12 col-sm-12 col-md-2">
+                <div class="col-12 col-sm-12 col-md-2 rwd">
                     <div class="">
                         <span class="text-muted">WEB DEVELOPER</span>
                     </div>

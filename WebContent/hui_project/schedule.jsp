@@ -890,7 +890,7 @@
         margin-top: 200px;
       }
       div.btn_model button{
-        width: 200px;
+        width: 160px;
         margin-bottom: 10px;
       }
       div.product_header button#chat_icon{
