@@ -1246,7 +1246,8 @@ pageContext.setAttribute("JedismemberDetail", JedismemberDetail);
                 initMap();
                 var directionsRenderer = new google.maps.DirectionsRenderer({polylineOptions: {
                                                                                       strokeColor: "blue",  //路線顏色
-                                                                                      strokeWeight: 5       //線的寬度
+                                                                                      strokeWeight: 6,      //線的寬度
+                                                                                      strokeOpacity: 0.7
                                                                                     }
                                                                             });
                 var directionsService = new google.maps.DirectionsService;
