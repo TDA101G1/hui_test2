@@ -27,6 +27,7 @@ public class EmployeeDAO_JDBC implements EmployeeDAO_interface {
 	private static final String DELETE = " DELETE  FROM  EMPLOYEE WHERE EMP_ID = ? ";
 	private static final String GET_ALL = " SELECT  EMP_ID, EMP_ACCOUNT, EMP_PWD, EMP_GRADE, EMP_NAME, EMP_SEX, emp_Birth, EMP_MAIL, EMP_PHONE, EMP_ADDRESS, to_char(emp_Est_Time,'yyyy-mm-dd')emp_Est_Time, EMP_IMG,EMP_STATE FROM EMPLOYEE ";
 	private static final String GET_ONE = " SELECT  emp_ID, emp_Account, emp_Pwd, emp_Grade, emp_Name, emp_Sex,emp_Birth, emp_Mail, emp_Phone, emp_Address,to_char(emp_Est_Time,'yyyy-mm-dd')emp_Est_Time,emp_Img ,emp_State FROM EMPLOYEE WHERE emp_ID= ? ";
+	private static final String GET_ONE_noIMG = " SELECT  emp_ID, emp_Account, emp_Pwd, emp_Grade, emp_Name, emp_Sex,emp_Birth, emp_Mail, emp_Phone, emp_Address,to_char(emp_Est_Time,'yyyy-mm-dd')emp_Est_Time ,emp_State FROM EMPLOYEE WHERE emp_ID= ? ";
 	private static final String SELECT  = " SELECT  emp_ID, emp_Account, emp_Pwd, emp_Grade, emp_Name, emp_Sex,emp_Birth, emp_Mail, emp_Phone, emp_Address,to_char(emp_Est_Time,'yyyy-mm-dd')emp_Est_Time,emp_Img ,emp_State FROM EMPLOYEE where EMP_ACCOUNT= ?  ";
 	// 皜祈岫
 	public static void main(String[] args) {
@@ -333,6 +334,73 @@ public class EmployeeDAO_JDBC implements EmployeeDAO_interface {
 				employeeVO.setEmp_Address(rs.getString("emp_Address"));
 				employeeVO.setEmp_Est_Time(rs.getDate("emp_Est_Time"));
 				employeeVO.setEmp_Img(rs.getBytes("emp_Img"));
+				employeeVO.setEmp_State(rs.getInt("emp_State"));
+
+			}
+
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("driver error" + e.getMessage());
+		} catch (SQLException e) {
+			throw new RuntimeException("database error" + e.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return employeeVO;
+	}
+	
+	@Override
+	public EmployeeVO getOneNoImg(String emp_ID) {
+
+		EmployeeVO employeeVO = null;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(common.DRIVER);
+//			con = DriverManager.getConnection(common.URL, common.USERID, common.PASSWD);
+			con = common.dataSource.getConnection();
+			ps = con.prepareStatement(GET_ONE_noIMG);
+
+			ps.setString(1, emp_ID);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				employeeVO = new EmployeeVO();
+
+				employeeVO.setEmp_ID(rs.getString("emp_ID"));
+				employeeVO.setEmp_Account(rs.getString("emp_Account"));
+				employeeVO.setEmp_Pwd(rs.getString("emp_Pwd"));
+				employeeVO.setEmp_Grade(rs.getString("emp_Grade"));
+				employeeVO.setEmp_Name(rs.getString("emp_Name"));
+				employeeVO.setEmp_Sex(rs.getString("emp_Sex"));
+				employeeVO.setEmp_Birth(rs.getDate("emp_Birth"));
+				employeeVO.setEmp_Mail(rs.getString("emp_Mail"));
+				employeeVO.setEmp_Phone(rs.getString("emp_Phone"));
+				employeeVO.setEmp_Address(rs.getString("emp_Address"));
+				employeeVO.setEmp_Est_Time(rs.getDate("emp_Est_Time"));
+//				employeeVO.setEmp_Img(rs.getBytes("emp_Img"));
 				employeeVO.setEmp_State(rs.getInt("emp_State"));
 
 			}

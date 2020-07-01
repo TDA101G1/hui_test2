@@ -65,7 +65,7 @@ public class InboxSearchApi extends HttpServlet {
 			EmployeeService empService = new EmployeeService();
 			Set<EmployeeVO> emps = new HashSet<EmployeeVO>();
 			for(InboxVO inbox : inboxs) {
-				emps.add(empService.getOne(inbox.getEmp_ID()));
+				emps.add(empService.getOneNoImg(inbox.getEmp_ID()));
 			}
 			
 			System.out.println(inboxs);

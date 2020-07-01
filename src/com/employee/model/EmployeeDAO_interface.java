@@ -14,4 +14,6 @@ public interface EmployeeDAO_interface {
 	public List<EmployeeVO> getAll();
 	
 	public EmployeeVO select(String emp_Account );
+
+	EmployeeVO getOneNoImg(String emp_ID);
 }
