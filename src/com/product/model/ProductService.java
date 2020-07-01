@@ -103,7 +103,7 @@ public class ProductService {
 				.filter(p -> p.getProduct_ID().contains(keyword) || p.getProduct_Name().contains(keyword) || 
 						p.getProduct_Intro().contains(keyword) || p.getProduct_Address().contains(keyword) || 
 						p.getProduct_County().contains(keyword) || p.getProduct_Class().contains(keyword) || 
-						p.getProduct_Style().contains(keyword) || p.getProduct_Total_Schedule().contains(keyword))
+						p.getProduct_Total_Schedule().contains(keyword))
 				.collect(Collectors.toList());
 	}
 
