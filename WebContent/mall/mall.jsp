@@ -587,16 +587,16 @@
     	}, 600);
     });
     
-    $(".icon").on("click", function(e){
-    	clearTimeout(a);
+//     $(".icon").on("click", function(e){
+//     	clearTimeout(a);
     	
-    	a = setTimeout(function(){
-	    	let keyword = $("#search").val().trim();
-	    	if(keyword != ""){
-		    	findKeyword(keyword);
-	    	}
-    	}, 600);
-    });
+//     	a = setTimeout(function(){
+// 	    	let keyword = $("#search").val().trim();
+// 	    	if(keyword != ""){
+// 		    	findKeyword(keyword);
+// 	    	}
+//     	}, 600);
+//     });
     
     function findKeyword(keyword){
     	console.log(keyword);
