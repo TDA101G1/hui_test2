@@ -34,7 +34,7 @@ public class ImageController extends HttpServlet {
 		ServletOutputStream outs = res.getOutputStream();
 		String action = req.getParameter("action");
 		
-		if (action.equals("printImage_product_id")) {
+		if ("printImage_product_id".equals(action)) {
 			String product_id = req.getParameter("product_id");
 			ProductVO bean = new ProductVO();
 			bean.setProduct_ID(product_id);
@@ -81,7 +81,7 @@ public class ImageController extends HttpServlet {
 			}
 		}
 		
-		if (action.equals("printImage_cmt_id")) {
+		if ("printImage_cmt_id".equals(action)) {
 			String product_cmt_id = req.getParameter("product_cmt_id");
 			String img = req.getParameter("img");
 			ProductCmtService dao = new ProductCmtService();
@@ -95,7 +95,23 @@ public class ImageController extends HttpServlet {
 					outs.write(image);
 					outs.flush();
 					outs.close();
+				}else {
+					FileInputStream fin = new FileInputStream(req.getServletContext().getRealPath("/NoData/null4.jpg"));
+					BufferedInputStream bin = new BufferedInputStream(fin);
+					int length = 0;
+					byte[] b = new byte[4096];
+					while ((length = bin.read(b)) != -1) {
+						// b: 代表要輸出的byte陣列 (資料都放在裡面了)
+						// 0: 代表從這個陣列的第一個元素開始輸出 (索引值)
+						// length: 代表要輸出的資料量
+						outs.write(b, 0, length);
+					}
+					bin.close();
+					fin.close();
+					outs.flush();
+					outs.close();
 				}
+				
 			}
 			if (img.equals("img2")) {
 				bean = dao.select(bean);
@@ -104,12 +120,27 @@ public class ImageController extends HttpServlet {
 					outs.write(image);
 					outs.flush();
 					outs.close();
+				}else {
+					FileInputStream fin = new FileInputStream(req.getServletContext().getRealPath("/NoData/null4.jpg"));
+					BufferedInputStream bin = new BufferedInputStream(fin);
+					int length = 0;
+					byte[] b = new byte[4096];
+					while ((length = bin.read(b)) != -1) {
+						// b: 代表要輸出的byte陣列 (資料都放在裡面了)
+						// 0: 代表從這個陣列的第一個元素開始輸出 (索引值)
+						// length: 代表要輸出的資料量
+						outs.write(b, 0, length);
+					}
+					bin.close();
+					fin.close();
+					outs.flush();
+					outs.close();
 				}
 			}
 		}
 		
 		
-		if (action.equals("printImage_member_id")) {
+		if ("printImage_member_id".equals(action)) {
 			String member_id = req.getParameter("member_id");
 			MemberService dao = new MemberService();
 			MemberVO result = dao.getOne(member_id);
