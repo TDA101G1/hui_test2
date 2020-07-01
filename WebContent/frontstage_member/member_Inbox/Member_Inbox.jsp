@@ -620,7 +620,7 @@ div.tab-content{
 			    };
 			    let form_dataString = JSON.stringify(form_data);		//後端接收參數為String type的JSON
 				console.log(form_data);
-				alert('begin ajax');
+// 				alert('begin ajax');
 				$.ajax({
 					url: "<%=request.getContextPath()%>/inbox/InboxSearch.Api",
 					type : 'POST',

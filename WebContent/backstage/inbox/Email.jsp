@@ -951,7 +951,7 @@ $(function(){
 	    };
 	    let form_dataString = JSON.stringify(form_data);		//後端接收參數為String type的JSON
 
-		alert('begin ajax');
+// 		alert('begin ajax');
 		$.ajax({
 			url: "<%=request.getContextPath()%>/inbox/Inbox.Apiforbackstage",
 			type : 'POST',
@@ -1042,7 +1042,7 @@ $(function(){
 		    };
 		    let form_dataString = JSON.stringify(form_data);		//後端接收參數為String type的JSON
 			console.log(form_data);
-			alert('begin ajax');
+// 			alert('begin ajax');
 			$.ajax({
 				url: "<%=request.getContextPath()%>/inbox/InboxSearch.Apiforbackstage",
 				type : 'POST',
@@ -1139,7 +1139,7 @@ $(function(){
 		    };
 		    let form_dataString = JSON.stringify(form_data);		//後端接收參數為String type的JSON
 			console.log(form_data);
-			alert('begin ajax');
+// 			alert('begin ajax');
 			$.ajax({
 				url: "<%=request.getContextPath()%>/inbox/InboxSearch.Apiforbackstage",
 				type : 'POST',
