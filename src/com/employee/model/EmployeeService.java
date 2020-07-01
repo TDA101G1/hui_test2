@@ -75,6 +75,10 @@ public class EmployeeService {
 	public EmployeeVO getOne(String emp_ID) {
 		return dao.getOne(emp_ID);
 	}
+	
+	public EmployeeVO getOneNoImg(String emp_ID) {
+		return dao.getOneNoImg(emp_ID);
+	}
 
 	public List<EmployeeVO> getAll() {
 		return dao.getAll();
